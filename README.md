@@ -147,28 +147,28 @@ git push origin main
 
 如果仓库没有出现在列表中，打开 GitHub 的 **Settings → Applications → Installed GitHub Apps → Cloudflare Workers and Pages → Configure**，确认该仓库已经授权。
 
-### 3. 填写构建配置
+### 3. 按照部署界面填写构建配置
 
-在 **Set up builds and deployments** 页面填写：
+进入截图所示的 **Set up builds and deployments（设置构建和部署）** 页面后，直接按照下面的值填写：
 
-| Cloudflare 配置项      | 本项目填写值                         | 说明                                |
-| ---------------------- | ------------------------------------ | ----------------------------------- |
-| Project name           | `kang-tools`                         | 决定默认的 `*.pages.dev` 地址       |
-| Production branch      | `main`                               | Push 到此分支会更新生产环境         |
-| Framework preset       | `React (Vite)`、`Vite` 或保持 `None` | 只要下面两个构建字段正确即可        |
-| Build command          | `npm run build`                      | 包含 TypeScript 检查和 Vite 构建    |
-| Build output directory | `dist`                               | 不要填写 `/dist` 或仓库根目录       |
-| Root directory         | 留空                                 | 本项目位于仓库根目录，不是 monorepo |
-| Environment variable   | `NODE_VERSION=22`                    | 固定 Cloudflare 构建时的 Node 版本  |
+| 中文界面字段   | 英文界面字段           | 本项目填写值      | 说明                                               |
+| -------------- | ---------------------- | ----------------- | -------------------------------------------------- |
+| 项目名称       | Project name           | `dh`              | 截图中已经填写；Cloudflare 分配 `dh-3sp.pages.dev` |
+| 生产分支       | Production branch      | `main`            | Push 到 `main` 后自动部署生产环境                  |
+| 框架预设       | Framework preset       | `React (Vite)`    | 推荐；没有该选项时可选 `无` / `None` 并手动填写    |
+| 构建命令       | Build command          | `npm run build`   | 依次生成 SEO、执行 TypeScript 检查并构建 Vite      |
+| 构建输出目录   | Build output directory | `dist`            | 输入框中只填写 `dist`，不要填写 `/dist`            |
+| 根目录（高级） | Root directory         | 留空              | 代码就在仓库根目录，不是 monorepo                  |
+| 环境变量       | Environment variables  | `NODE_VERSION=22` | 变量名填 `NODE_VERSION`，值填 `22`                 |
 
-如果页面还显示 **Install command**，可填写 `npm ci`；没有该字段则保持 Cloudflare 默认依赖安装流程。
+如果输出目录输入框左侧已经固定显示 `/`，仍然只输入 `dist`；最终界面显示 `/dist` 是正常的。如果页面还显示 **Install command（安装命令）**，填写 `npm ci`；没有该字段则保持 Cloudflare 默认依赖安装流程。
 
 本项目当前不需要 API Key、数据库连接或其他业务环境变量。不要把 Token、密码或 `.env` 内容写进仓库。`package.json` 要求 Node.js 20.15 以上，推荐统一使用 Node.js 22。
 
 填写完成后选择 **Save and Deploy**。首次部署日志应依次看到依赖安装、`npm run build`、`Generated SEO files`、`vite build` 和静态资源上传。部署成功后会生成：
 
 ```text
-https://kang-tools.pages.dev
+https://dh-3sp.pages.dev
 ```
 
 如果项目名称已经被占用，Cloudflare 会生成带随机字符的地址，以 Dashboard 实际显示为准。
@@ -210,7 +210,7 @@ Push 后 Cloudflare Pages 会自动创建新的生产部署。其他分支和 Pu
 
 ### 6. 绑定自定义域名
 
-1. 打开 **Workers & Pages → kang-tools → Custom domains**；
+1. 打开 **Workers & Pages → dh → Custom domains**；
 2. 选择 **Set up a domain**；
 3. 输入正式域名，例如 `tools.example.com`；
 4. 如果域名 DNS 已托管在同一个 Cloudflare 账号，确认后记录会自动创建；
@@ -219,7 +219,7 @@ Push 后 Cloudflare Pages 会自动创建新的生产部署。其他分支和 Pu
 ```text
 Type: CNAME
 Name: tools
-Target: kang-tools.pages.dev
+Target: dh-3sp.pages.dev
 ```
 
 不要只在 DNS 中手动添加 CNAME 而跳过 Pages 的 **Set up a domain**，否则域名可能返回 522。根域名（例如 `example.com`）需要将该域名作为 Cloudflare Zone，并把 Nameserver 指向 Cloudflare。等待 Dashboard 中域名和 SSL 证书状态变为 **Active** 后再正式使用。
@@ -243,7 +243,7 @@ npm ci
 npm run build
 npx wrangler login
 npx wrangler whoami
-npx wrangler pages deploy dist --project-name kang-tools
+npx wrangler pages deploy dist --project-name dh
 ```
 
 `npx wrangler whoami` 必须显示正确的 Cloudflare 账号。`--project-name` 必须与 Dashboard 中的 Pages 项目名称一致；如果创建项目时使用了其他名称，请同时修改命令和 `wrangler.toml` 中的 `name`。
@@ -251,7 +251,7 @@ npx wrangler pages deploy dist --project-name kang-tools
 如需发布预览分支：
 
 ```bash
-npx wrangler pages deploy dist --project-name kang-tools --branch=preview
+npx wrangler pages deploy dist --project-name dh --branch=preview
 ```
 
 ### 8. 常见问题
