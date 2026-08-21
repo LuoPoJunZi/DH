@@ -1,0 +1,154 @@
+[
+  {
+    "id": "json-formatter",
+    "name": "JSON 格式化",
+    "shortName": "JSON",
+    "description": "格式化、压缩并校验 JSON 数据",
+    "category": "developer",
+    "path": "/tools/json-formatter",
+    "icon": "braces",
+    "keywords": ["JSON", "格式化", "校验", "压缩", "formatter", "开发工具"],
+    "featured": true,
+    "seo": {
+      "title": "JSON 格式化与校验",
+      "description": "在线格式化、压缩和校验 JSON 数据，所有内容仅在浏览器本地处理。"
+    },
+    "usage": ["输入或粘贴 JSON 数据。", "选择格式化、压缩或仅校验。", "复制或下载处理后的结果。"],
+    "features": ["语法错误定位", "2 或 4 空格缩进", "一键压缩与下载"]
+  },
+  {
+    "id": "base64",
+    "name": "Base64 编码 / 解码",
+    "shortName": "Base64",
+    "description": "安全处理 Unicode 文本的 Base64 转换",
+    "category": "developer",
+    "path": "/tools/base64",
+    "icon": "binary",
+    "keywords": ["Base64", "编码", "解码", "encode", "decode", "Unicode"],
+    "featured": true,
+    "seo": {
+      "title": "Base64 编码与解码",
+      "description": "支持中文和 Unicode 的 Base64 在线编码解码工具，数据不离开浏览器。"
+    },
+    "usage": ["在输入区粘贴文本或 Base64 内容。", "选择编码或解码。", "确认结果后复制使用。"],
+    "features": ["完整 Unicode 支持", "清晰的无效输入提示", "浏览器本地转换"]
+  },
+  {
+    "id": "url-codec",
+    "name": "URL 编码 / 解码",
+    "shortName": "URL",
+    "description": "转换 URL 参数中的特殊字符",
+    "category": "developer",
+    "path": "/tools/url-codec",
+    "icon": "link",
+    "keywords": ["URL", "URI", "encodeURIComponent", "编码", "解码", "链接"],
+    "featured": true,
+    "seo": {
+      "title": "URL 编码与解码",
+      "description": "在线进行 URL Encode 与 Decode，适合处理查询参数和特殊字符。"
+    },
+    "usage": ["输入需要处理的 URL 或参数文本。", "选择编码或解码。", "复制生成结果。"],
+    "features": ["基于标准 URI Component 规则", "支持中文与特殊字符", "输入错误即时反馈"]
+  },
+  {
+    "id": "timestamp",
+    "name": "时间戳转换",
+    "shortName": "时间戳",
+    "description": "在 Unix 时间戳与日期时间之间转换",
+    "category": "developer",
+    "path": "/tools/timestamp",
+    "icon": "clock",
+    "keywords": ["时间戳", "Unix", "日期", "时间", "timestamp", "UTC"],
+    "featured": true,
+    "seo": {
+      "title": "Unix 时间戳转换",
+      "description": "在线转换秒或毫秒 Unix 时间戳，并显示本地时间与 UTC 时间。"
+    },
+    "usage": [
+      "输入 10 位秒或 13 位毫秒时间戳。",
+      "点击转换查看本地与 UTC 时间。",
+      "也可一键填入当前时间。"
+    ],
+    "features": ["自动识别秒与毫秒", "同时显示本地和 UTC", "快速获取当前时间戳"]
+  },
+  {
+    "id": "uuid-generator",
+    "name": "UUID 生成",
+    "shortName": "UUID",
+    "description": "批量生成符合规范的 UUID v4",
+    "category": "developer",
+    "path": "/tools/uuid-generator",
+    "icon": "fingerprint",
+    "keywords": ["UUID", "GUID", "v4", "随机 ID", "生成器", "开发工具"],
+    "featured": true,
+    "seo": {
+      "title": "UUID v4 在线生成器",
+      "description": "使用浏览器加密随机数批量生成 UUID v4，支持大小写与移除连字符。"
+    },
+    "usage": ["选择生成数量与输出格式。", "点击生成获得新的 UUID。", "复制单项或全部结果。"],
+    "features": ["浏览器加密随机源", "最多批量生成 100 个", "大小写与连字符选项"]
+  },
+  {
+    "id": "word-counter",
+    "name": "文本字数统计",
+    "shortName": "字数统计",
+    "description": "实时统计字数、字符、行数与阅读时长",
+    "category": "text",
+    "path": "/tools/word-counter",
+    "icon": "text-cursor",
+    "keywords": ["字数", "字符", "单词", "行数", "阅读时长", "word count", "文本工具"],
+    "featured": true,
+    "seo": {
+      "title": "在线文本字数统计",
+      "description": "实时统计中英文文本的字数、字符、单词、段落、行数和预计阅读时长。"
+    },
+    "usage": [
+      "输入或粘贴需要统计的文本。",
+      "统计结果会随输入实时更新。",
+      "需要时可加载示例或清空内容。"
+    ],
+    "features": ["中英文混合统计", "字符、词语、段落与行数", "预计阅读时间"]
+  },
+  {
+    "id": "text-deduplicator",
+    "name": "文本去重",
+    "shortName": "文本去重",
+    "description": "按行移除重复文本并保留原始顺序",
+    "category": "text",
+    "path": "/tools/text-deduplicator",
+    "icon": "list-filter",
+    "keywords": ["文本去重", "行去重", "重复", "列表", "deduplicate", "文本工具"],
+    "featured": false,
+    "seo": {
+      "title": "在线文本按行去重",
+      "description": "按行移除重复文本，可忽略大小写和首尾空格，并保持原始顺序。"
+    },
+    "usage": [
+      "每行输入一条待整理的内容。",
+      "根据需要开启忽略大小写或空白。",
+      "点击去重并复制结果。"
+    ],
+    "features": ["保持首次出现顺序", "可忽略大小写与空白", "显示移除数量"]
+  },
+  {
+    "id": "radix-converter",
+    "name": "进制转换",
+    "shortName": "进制转换",
+    "description": "在 2 至 36 进制之间精确转换整数",
+    "category": "converter",
+    "path": "/tools/radix-converter",
+    "icon": "arrow-left-right",
+    "keywords": ["进制", "二进制", "八进制", "十进制", "十六进制", "radix", "hex"],
+    "featured": false,
+    "seo": {
+      "title": "2-36 进制转换",
+      "description": "在线进行 2 至 36 进制整数转换，使用 BigInt 保持大整数精度。"
+    },
+    "usage": [
+      "输入整数并选择原始进制。",
+      "点击转换查看常用进制结果。",
+      "也可指定任意 2 至 36 的目标进制。"
+    ],
+    "features": ["2 至 36 进制", "BigInt 大整数精确计算", "输入字符严格校验"]
+  }
+]

@@ -1,0 +1,16 @@
+{
+  "name": "KANG 在线工具",
+  "short_name": "KANG Tools",
+  "description": "简洁、快速、注重隐私的浏览器本地工具集合。",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f4f1ea",
+  "theme_color": "#2159d1",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

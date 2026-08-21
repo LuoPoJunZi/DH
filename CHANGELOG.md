@@ -1,0 +1,33 @@
+# Changelog
+
+本项目的重要变更记录在此。格式参考 Keep a Changelog，版本遵循语义化版本。
+
+## [Unreleased]
+
+### Added
+
+- 为全部网站导航入口增加集中配置的网站 Logo，并提供图片加载失败时的首字母回退。
+
+### Changed
+
+- Header 使用项目所有者提供的图床 Logo，并保留本地 Favicon 加载回退
+- 导航升级为自动读取工具注册表的桌面工具目录与移动端分组菜单
+- 新增十一分类网站导航页、站点搜索和集中式外部链接配置
+- 合并 `dh.luopojunzi.com` 的 AI、云服务、网络与代理工具入口
+
+### Planned
+
+- 增加更多图片与转换类工具
+- 为复杂纯函数补充单元测试
+
+## [0.1.0] - 2026-08-21
+
+### Added
+
+- 初始化 React、TypeScript 与 Vite 工程
+- 首页工具导航、前端搜索与分类页面
+- 跟随系统、浅色、深色三档主题
+- 基于单一配置源的工具注册与懒加载路由
+- JSON、Base64、URL、时间戳、UUID、字数统计、文本去重和进制转换工具
+- 基础 SEO、Sitemap、robots.txt 与 Cloudflare Pages 配置
+- 项目开发规范、README 和开发记录
