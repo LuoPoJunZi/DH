@@ -1,0 +1,1832 @@
+{
+  "source": "https://tools.liumingye.cn",
+  "categories": [
+    {
+      "id": "video",
+      "name": "影视",
+      "description": "影视检索、在线播放与多端客户端",
+      "sourceUrl": "https://tools.liumingye.cn/category/video",
+      "subcategories": [
+        {
+          "id": "watch",
+          "name": "在线看",
+          "sourceId": 3,
+          "links": [
+            {
+              "name": "No视频",
+              "description": "主打海外影视剧资源，致力于最轻松的追剧体验",
+              "url": "https://www.novipnoad.uk/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/AIgBo7g.png"
+            },
+            {
+              "name": "追光影视",
+              "description": "免费追剧的网站",
+              "url": "https://www.4kmovie.site/",
+              "logoUrl": "https://s3.liumingye.cn/files/2026/05/20260521190828051.png"
+            },
+            {
+              "name": "注视影视",
+              "description": "海外影视剧、国内高口碑影视剧资源为主的在线影视网站",
+              "url": "https://gazes.top/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/wNTNRdl.png"
+            },
+            {
+              "name": "厂长资源",
+              "description": "高清、秒播不卡顿的综合型影视资源网站",
+              "url": "https://www.cz4k.com/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/Mis53u9.png"
+            },
+            {
+              "name": "西瓜TV",
+              "description": "弹幕多、高清线路多的综合追剧网站",
+              "url": "https://www.xiguatv.club/",
+              "logoUrl": "https://s3.liumingye.cn/files/2026/06/18004975.webp"
+            },
+            {
+              "name": "SA 影视",
+              "description": "活泼有趣的影像潮流站",
+              "url": "https://safilm69.com/",
+              "logoUrl": "https://s3.liumingye.cn/files/2026/06/3101654060.png"
+            },
+            {
+              "name": "威尔伯TV",
+              "description": "海外华人在线影院",
+              "url": "https://wei2bo.com/",
+              "logoUrl": "https://s3.liumingye.cn/files/2026/05/20260526185307065.png"
+            },
+            {
+              "name": "凡客影视",
+              "description": "免费视频资源网站",
+              "url": "https://fktv.me/",
+              "logoUrl": "https://s3.liumingye.cn/files/2026/05/1432969890.png"
+            },
+            {
+              "name": "看片狂人",
+              "description": "为影迷剧迷建立的可免费在线观看",
+              "url": "https://kpkuang.us/",
+              "logoUrl": "https://s3.liumingye.cn/files/2026/05/3171009377.jpg"
+            },
+            {
+              "name": "毒舌电影",
+              "description": "奈飞Netflix免费看",
+              "url": "https://www.dushe3.app/",
+              "logoUrl": "https://s3.liumingye.cn/files/2026/05/1331263285.png"
+            },
+            {
+              "name": "LIBVIO",
+              "description": "以海外影视资源为主的老牌网站",
+              "url": "https://www.libhd.com/",
+              "logoUrl": "https://s3.liumingye.cn/files/2026/05/20260503142143405.png"
+            },
+            {
+              "name": "青禾影视",
+              "description": "海量高清视频在线观看",
+              "url": "https://movie.qhdaohang.cn/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/0eyu3Sc.png"
+            },
+            {
+              "name": "努努影院",
+              "description": "免费在线影院",
+              "url": "https://nnyy.la/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/QQdDsp9.png"
+            },
+            {
+              "name": "猴影工坊",
+              "description": "免费在线电影大全",
+              "url": "https://monkey-flix.com/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/tFb8H0A.png"
+            },
+            {
+              "name": "影猫の仓库",
+              "description": "免费实用的影视资源搜索神器",
+              "url": "https://www.ymck.pro/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/Sebmm9g.png"
+            },
+            {
+              "name": "布布影视",
+              "description": "高清、无广、更新快",
+              "url": "https://bubutv.top/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/QxNfqpu.png"
+            },
+            {
+              "name": "HDmoli",
+              "description": "以海外影视在线观看为主的影视资源网站",
+              "url": "https://www.hdmoli.com/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/xIEoU7D.png"
+            },
+            {
+              "name": "雪落影视",
+              "description": "原哔嘀影视，内容丰富的综合型老牌优质影视名站",
+              "url": "https://v.xl01.eu.cc/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/EHce32M.png"
+            },
+            {
+              "name": "饭搭子影视",
+              "description": "每日热门即时更新",
+              "url": "https://fdzys.net/",
+              "logoUrl": "https://s3.liumingye.cn/files/2026/06/1011543887.png"
+            },
+            {
+              "name": "4k影视",
+              "description": "综合性的网站",
+              "url": "https://4kvm.site/",
+              "logoUrl": "https://s3.liumingye.cn/files/2026/05/413445498.png"
+            },
+            {
+              "name": "LibreTV",
+              "description": "免费在线视频搜索与观看平台",
+              "url": "https://libretv.liumingye.cn/",
+              "logoUrl": "https://libretv.liumingye.cn/image/logo-black.png"
+            }
+          ]
+        },
+        {
+          "id": "download",
+          "name": "下载",
+          "sourceId": 6,
+          "links": [
+            {
+              "name": "不太灵",
+              "description": "高清电影下载的资源站",
+              "url": "https://web5.mukaku.com/",
+              "logoUrl": "https://s3.liumingye.cn/files/2026/06/4118524023.png"
+            },
+            {
+              "name": "摩羯座BT资源站",
+              "description": "专注电影、电视剧资源的资源站",
+              "url": "https://bt.mojiez.net/",
+              "logoUrl": "https://s3.liumingye.cn/files/2026/06/1623676190.png"
+            },
+            {
+              "name": "高清族",
+              "description": "提供4K、1080、720、标清等版本资源的高清影视下载网站",
+              "url": "https://hdzu.org/",
+              "logoUrl": "https://s3.liumingye.cn/files/2026/06/1136762926.webp"
+            },
+            {
+              "name": "POMO 4K",
+              "description": "以4K资源为主的🧲资源网站",
+              "url": "https://pomo.mom/",
+              "logoUrl": "https://s3.liumingye.cn/files/2026/06/2952560559.webp"
+            },
+            {
+              "name": "BD影视",
+              "description": "支持迅雷、网盘下载的4K分享网站",
+              "url": "https://www.juhebd.com/",
+              "logoUrl": "https://s3.liumingye.cn/files/2026/04/20260426223006016.png"
+            },
+            {
+              "name": "无名小站",
+              "description": "观影GYing、片库网，老牌影视资源名站",
+              "url": "https://www.xn--ykq321c.com/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/mmlJ7NI.png"
+            },
+            {
+              "name": "爱努努",
+              "description": "分享各种主流网盘资源的老牌资源站点",
+              "url": "https://video.ainunu.org/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/RVZhpcU.png"
+            },
+            {
+              "name": "SeedHub",
+              "description": "专注分享优质影视资源的网站",
+              "url": "https://seeduck.cc/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/yeBqExs.png"
+            },
+            {
+              "name": "美剧粉",
+              "description": "专业的美剧、Netflix资源下载网站",
+              "url": "https://www.mjf2020.com/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/JP4G8ee.png"
+            },
+            {
+              "name": "磁力熊",
+              "description": "界面简洁清爽、小而美的高分影视资源下载网站",
+              "url": "https://www.cilixiong.xyz/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/wJ7y9sr.png"
+            },
+            {
+              "name": "人人影视分享站",
+              "description": "提供4K、1080P、720P、标清等版本资源的高清影视下载网站",
+              "url": "https://yyets.click/search",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/8JopJHY.png"
+            },
+            {
+              "name": "老电影时光",
+              "description": "提供迅雷下载、主流网盘资源下载的网站",
+              "url": "https://www.ldysg.com/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/RqIW08y.png"
+            },
+            {
+              "name": "迅雷电影天堂",
+              "description": "高清迅雷电影、电视剧下载老牌网站",
+              "url": "https://www.xl720.com/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/8HDvt10.png"
+            },
+            {
+              "name": "悠悠MP4",
+              "description": "主打迅雷下载的影视资源分享网站",
+              "url": "https://www.uump4.cc/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/pm9IUaj.png"
+            },
+            {
+              "name": "电影天堂",
+              "description": "专业的老牌迅雷下载网站",
+              "url": "https://www.dygod.vip/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/a8or4EQ.png"
+            }
+          ]
+        },
+        {
+          "id": "cloud-drive",
+          "name": "网盘",
+          "sourceId": 7,
+          "links": [
+            {
+              "name": "盘盘搜",
+              "description": "网盘搜索引擎与资源聚合",
+              "url": "https://pan.liumingye.cn/",
+              "logoUrl": "https://s3.liumingye.cn/files/2026/06/2215826504.png"
+            },
+            {
+              "name": "片库",
+              "description": "网盘,磁力下载，在线观看三合一的视频网站",
+              "url": "https://4k03.pianku.online/",
+              "logoUrl": "https://4k03.pianku.online/logo.png"
+            },
+            {
+              "name": "泽索搜",
+              "description": "支持夸克、迅雷、百度网盘的搜索引擎",
+              "url": "https://zreso.cn/",
+              "logoUrl": "https://s3.liumingye.cn/files/2026/06/3667059596.webp"
+            },
+            {
+              "name": "聚盘搜索",
+              "description": "全网优质网盘资源搜索引擎",
+              "url": "https://www.dyuzi.com/",
+              "logoUrl": "https://s3.liumingye.cn/files/2026/06/3815896453.webp"
+            },
+            {
+              "name": "Showpaw",
+              "description": "省下找资源的时间，多看两集",
+              "url": "https://www.showpaw.xyz/",
+              "logoUrl": "https://s3.liumingye.cn/files/2026/06/3778240575.png"
+            },
+            {
+              "name": "人人电影",
+              "description": "夸克、百度、迅雷、UC等多网盘资源搜索站",
+              "url": "https://www.rrdynb.com/",
+              "logoUrl": "https://s3.liumingye.cn/files/2026/04/20260427184543342.png"
+            },
+            {
+              "name": "影视搜",
+              "description": "以夸克、百度网盘为主的影视资源搜索网站",
+              "url": "https://yingshi.co/",
+              "logoUrl": "https://s3.liumingye.cn/files/2026/04/20260427183747697.webp"
+            },
+            {
+              "name": "珈珈4K网盘",
+              "description": "以百度、夸克、迅雷、阿里、UC为主影片搜索疫情",
+              "url": "https://j-so.com/",
+              "logoUrl": "https://s3.liumingye.cn/files/2026/04/20260427183600321.webp"
+            },
+            {
+              "name": "刀搜盘",
+              "description": "提供百度、迅雷、迅雷网盘的资源搜索站",
+              "url": "https://www.daoso.cn/",
+              "logoUrl": "https://s3.liumingye.cn/files/2026/04/20260427183415800.webp"
+            },
+            {
+              "name": "kkkob影视网盘",
+              "description": "支持迅雷云盘、阿里云盘、夸克网盘、百度网盘等主流网盘的影视网盘搜索站",
+              "url": "https://tools.liumingye.cn/site/221/",
+              "logoUrl": "https://s3.liumingye.cn/files/2026/04/sousuopan.png"
+            },
+            {
+              "name": "夸克小站",
+              "description": "以夸克网盘资源为主的资源搜索网站",
+              "url": "https://www.pioz.cn/",
+              "logoUrl": "https://s3.liumingye.cn/files/2026/04/20260426224058765.png"
+            },
+            {
+              "name": "盘搜",
+              "description": "高性能的网盘资源搜索",
+              "url": "https://so.252035.xyz/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/INzUc0T.png"
+            },
+            {
+              "name": "飞花美剧",
+              "description": "以夸克网盘下载为主的美剧网站",
+              "url": "https://www.fhmj8.top/",
+              "logoUrl": "https://s3.liumingye.cn/files/2026/04/20260426222839320.png"
+            },
+            {
+              "name": "夸克网盘-短剧",
+              "description": "以夸克网盘下载为主的短剧库",
+              "url": "https://tools.liumingye.cn/site/149/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/PmYkgaR.png"
+            },
+            {
+              "name": "夸客搜",
+              "description": "夸克网盘为主的网盘资源搜索站",
+              "url": "https://www.kuakeso.net/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/EdcaqTM.png"
+            },
+            {
+              "name": "热剧搜索",
+              "description": "以夸克网盘为主的网盘搜索引擎",
+              "url": "https://rejusou.com/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/DxXTdHI.png"
+            },
+            {
+              "name": "A控屋",
+              "description": "恐怖电影资源分享为主的网站",
+              "url": "https://akongwu.com/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/SMBM9TL.png"
+            },
+            {
+              "name": "肥猫追剧",
+              "description": "短剧、电视剧、动漫、综艺的夸克网盘资源分享网站",
+              "url": "https://mao.souldebug.com/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/SoJ0222.png"
+            },
+            {
+              "name": "TV搜",
+              "description": "夸克网盘资源搜索引擎",
+              "url": "https://www.tvso.uk/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/g3I1trd.png"
+            },
+            {
+              "name": "追新番",
+              "description": "专注日本影视剧的腾讯微云网盘资源分享网站",
+              "url": "https://www.fanxinzhui.com/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/k0w1KgZ.png"
+            },
+            {
+              "name": "夸克网盘寻宝",
+              "description": "以夸克网盘为主的影视剧资源分享网站",
+              "url": "https://www.quarkfinder.top/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/iQfTZ3p.png"
+            },
+            {
+              "name": "夕阳小站",
+              "description": "专注韩剧、韩国电影资源的网盘资源分享网站",
+              "url": "https://tools.liumingye.cn/site/47/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/7C21GvO.png"
+            }
+          ]
+        },
+        {
+          "id": "android",
+          "name": "Android",
+          "sourceId": 49,
+          "links": [
+            {
+              "name": "影视仓",
+              "description": "支持TV版、手机版双端的强悍APP",
+              "url": "https://tools.liumingye.cn/site/388/",
+              "logoUrl": "https://s3.liumingye.cn/files/2026/06/2232539551.png"
+            },
+            {
+              "name": "UZ影视",
+              "description": "覆盖多平台、可自定义内容源的视频软件",
+              "url": "https://tools.liumingye.cn/site/382/",
+              "logoUrl": "https://s3.liumingye.cn/files/2026/06/1052195163.webp"
+            },
+            {
+              "name": "电影天堂",
+              "description": "随时随地看世界",
+              "url": "https://tools.liumingye.cn/site/393/",
+              "logoUrl": "https://s3.liumingye.cn/files/2026/06/2063257049.png"
+            },
+            {
+              "name": "螃蟹视频",
+              "description": "查看网站详情",
+              "url": "https://tools.liumingye.cn/site/453/",
+              "logoUrl": "https://s3.liumingye.cn/files/2026/06/927438590.png"
+            },
+            {
+              "name": "小橙子",
+              "description": "查看网站详情",
+              "url": "https://tools.liumingye.cn/site/448/",
+              "logoUrl": "https://s3.liumingye.cn/files/2026/06/1920801432.png"
+            },
+            {
+              "name": "顾我追剧",
+              "description": "查看网站详情",
+              "url": "https://tools.liumingye.cn/site/443/",
+              "logoUrl": "https://s3.liumingye.cn/files/2026/06/548290341.png"
+            },
+            {
+              "name": "咕噜咕噜",
+              "description": "查看网站详情",
+              "url": "https://tools.liumingye.cn/site/438/",
+              "logoUrl": "https://s3.liumingye.cn/files/2026/06/510561983.png"
+            },
+            {
+              "name": "小苹果影视",
+              "description": "查看网站详情",
+              "url": "https://tools.liumingye.cn/site/429/",
+              "logoUrl": "https://s3.liumingye.cn/files/2026/06/2846275853.png"
+            },
+            {
+              "name": "大师兄影视",
+              "description": "查看网站详情",
+              "url": "https://tools.liumingye.cn/site/424/",
+              "logoUrl": "https://s3.liumingye.cn/files/2026/06/3958870630.png"
+            },
+            {
+              "name": "快追影视",
+              "description": "查看网站详情",
+              "url": "https://tools.liumingye.cn/site/412/",
+              "logoUrl": "https://s3.liumingye.cn/files/2026/06/3591309436.png"
+            },
+            {
+              "name": "地瓜影院",
+              "description": "查看网站详情",
+              "url": "https://tools.liumingye.cn/site/403/",
+              "logoUrl": "https://s3.liumingye.cn/files/2026/06/1633568432.png"
+            },
+            {
+              "name": "爱看影视",
+              "description": "查看网站详情",
+              "url": "https://tools.liumingye.cn/site/398/",
+              "logoUrl": "https://s3.liumingye.cn/files/2026/06/421162317.png"
+            }
+          ]
+        },
+        {
+          "id": "ios",
+          "name": "iOS",
+          "sourceId": 52,
+          "links": [
+            {
+              "name": "电影天堂",
+              "description": "随时随地看世界",
+              "url": "https://tools.liumingye.cn/site/393/",
+              "logoUrl": "https://s3.liumingye.cn/files/2026/06/2063257049.png"
+            }
+          ]
+        },
+        {
+          "id": "pc",
+          "name": "PC",
+          "sourceId": 50,
+          "links": [
+            {
+              "name": "UZ影视",
+              "description": "覆盖多平台、可自定义内容源的视频软件",
+              "url": "https://tools.liumingye.cn/site/382/",
+              "logoUrl": "https://s3.liumingye.cn/files/2026/06/1052195163.webp"
+            },
+            {
+              "name": "ZY Player",
+              "description": "支持Windows、macOS的PC开源播放器",
+              "url": "https://tools.liumingye.cn/site/419/",
+              "logoUrl": "https://s3.liumingye.cn/files/2026/06/3334604084.webp"
+            }
+          ]
+        },
+        {
+          "id": "tv",
+          "name": "TV",
+          "sourceId": 51,
+          "links": [
+            {
+              "name": "TVBoxOSC",
+              "description": "免费的安卓、TV必备观影神器",
+              "url": "https://tools.liumingye.cn/site/309/",
+              "logoUrl": "https://s3.liumingye.cn/files/2026/06/2400408510.png"
+            },
+            {
+              "name": "影视仓",
+              "description": "支持TV版、手机版双端的强悍APP",
+              "url": "https://tools.liumingye.cn/site/388/",
+              "logoUrl": "https://s3.liumingye.cn/files/2026/06/2232539551.png"
+            },
+            {
+              "name": "电影天堂",
+              "description": "随时随地看世界",
+              "url": "https://tools.liumingye.cn/site/393/",
+              "logoUrl": "https://s3.liumingye.cn/files/2026/06/2063257049.png"
+            },
+            {
+              "name": "趣看秒播",
+              "description": "查看网站详情",
+              "url": "https://tools.liumingye.cn/site/406/",
+              "logoUrl": "https://s3.liumingye.cn/files/2026/06/448373369.webp"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "anime",
+      "name": "二次元",
+      "description": "动画、漫画与二次元资源工具",
+      "sourceUrl": "https://tools.liumingye.cn/category/cat",
+      "subcategories": [
+        {
+          "id": "anime",
+          "name": "动漫",
+          "sourceId": 5,
+          "links": [
+            {
+              "name": "樱花动漫",
+              "description": "完全免费、无须注册、高速播放、更新及时的专业在线樱花动漫站",
+              "url": "https://tools.liumingye.cn/site/27/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/0XBW9YE.png"
+            },
+            {
+              "name": "Kazumi",
+              "description": "国番、日番、美番、韩番资源聚合的追番APP",
+              "url": "https://tools.liumingye.cn/site/371/",
+              "logoUrl": "https://s3.liumingye.cn/files/2026/06/2531150457.png"
+            },
+            {
+              "name": "TvTFun",
+              "description": "专注日本番剧的在线追番网站",
+              "url": "https://www.tvtfun.net/",
+              "logoUrl": "https://s3.liumingye.cn/files/2026/06/1301403569.webp"
+            },
+            {
+              "name": "动漫共和国",
+              "description": "可观看日漫、国漫、美漫资源的追番APP",
+              "url": "https://tools.liumingye.cn/site/316/",
+              "logoUrl": "https://s3.liumingye.cn/files/2026/06/2318437066.png"
+            },
+            {
+              "name": "Animeko",
+              "description": "内置多个动漫源的在线弹幕追番APP，支持Android、Windows、MacOS客户端",
+              "url": "https://tools.liumingye.cn/site/235/",
+              "logoUrl": "https://s3.liumingye.cn/files/2026/05/20260521195812991.png"
+            },
+            {
+              "name": "Animius",
+              "description": "多数据源的动漫APP",
+              "url": "https://tools.liumingye.cn/site/234/",
+              "logoUrl": "https://s3.liumingye.cn/files/2026/05/20260521194806432.png"
+            },
+            {
+              "name": "纯纯看番",
+              "description": "内置多番源的开源追番软件",
+              "url": "https://tools.liumingye.cn/site/233/",
+              "logoUrl": "https://s3.liumingye.cn/files/2026/05/20260521194233769.png"
+            },
+            {
+              "name": "番茶屋",
+              "description": "日番、国番、美番在线观看的动漫站",
+              "url": "https://www.fcwdm.com/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/J3tpPiu.png"
+            },
+            {
+              "name": "花子动漫",
+              "description": "提供日本动漫免费在线观看的网站",
+              "url": "https://www.huazidm.com/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/eYWPbma.png"
+            },
+            {
+              "name": "动漫窝",
+              "description": "提供国漫、日漫、美漫的在线追番网站",
+              "url": "https://www.dmwo.one/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/twGNb9E.png"
+            },
+            {
+              "name": "西瓜卡通",
+              "description": "4K超清日番、国番、美番在线观看的动漫网站",
+              "url": "https://www.xgcartoon.com/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/74E9Z7X.png"
+            },
+            {
+              "name": "E站弹幕网",
+              "description": "以在线追番为主的二次元分享社区",
+              "url": "https://www.ezdmw.org/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/YlJzsLG.png"
+            },
+            {
+              "name": "MuteFun动漫",
+              "description": "日本动漫为主的免费在线观看动漫网站",
+              "url": "https://www.2kdm.com/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/4LXzy42.png"
+            },
+            {
+              "name": "佩可爱动漫",
+              "description": "以日本动漫在线观看为主的高清动漫网站，适合海外用户。",
+              "url": "https://ani.pekolove.net/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/w6Igedp.png"
+            },
+            {
+              "name": "Anime1.me",
+              "description": "日番神器：界面简洁、更新速度快的日本动漫网站",
+              "url": "https://anime1.me/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/1KOwxAD.png"
+            },
+            {
+              "name": "girigiri爱动漫",
+              "description": "日番、美番为主的番剧影视资源站",
+              "url": "https://anime.girigirilove.top/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/BwngDZV.png"
+            },
+            {
+              "name": "D站 – 第五弹",
+              "description": "专注提供日本动漫免费在线观看的弹幕视频网站",
+              "url": "https://www.5dm.dev/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/yboZM4a.png"
+            }
+          ]
+        },
+        {
+          "id": "comic",
+          "name": "漫画",
+          "sourceId": 8,
+          "links": [
+            {
+              "name": "萌喵漫画",
+              "description": "汇集了海量漫画作品，从温馨治愈到搞笑幽默！",
+              "url": "https://tools.liumingye.cn/site/417/",
+              "logoUrl": "https://s3.liumingye.cn/files/2026/06/1716539267.png"
+            },
+            {
+              "name": "包子漫画",
+              "description": "提供国产漫画、日漫、韩漫的综合型免费在线观看漫画网站",
+              "url": "https://www.baozimh.com/",
+              "logoUrl": "https://s3.liumingye.cn/files/2026/06/456951566.webp"
+            },
+            {
+              "name": "MYCOMIC",
+              "description": "国漫、日漫、韩漫、欧美漫画免费在线阅读的网站",
+              "url": "https://mycomic.com/cn",
+              "logoUrl": "https://s3.liumingye.cn/files/2026/03/30364042.webp"
+            },
+            {
+              "name": "Goda漫画",
+              "description": "提供国漫、日漫、韩漫以及欧美漫画的在线免费阅读网站",
+              "url": "https://godamh.com/",
+              "logoUrl": "https://s3.liumingye.cn/files/2026/03/408643373.webp"
+            },
+            {
+              "name": "Mihon",
+              "description": "支持订阅源的漫画阅读神器",
+              "url": "https://tools.liumingye.cn/site/162/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/GrUMyPL.png"
+            },
+            {
+              "name": "Neko",
+              "description": "提供漫画、漫画、轻小说资源的二次元小站",
+              "url": "https://nekoyo.co/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/bUDSdMe.png"
+            },
+            {
+              "name": "Komiic漫画",
+              "description": "免费提供日漫在线阅读的漫画网站",
+              "url": "https://komiic.com/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/kcbZzyF.png"
+            },
+            {
+              "name": "如漫画",
+              "description": "在线阅读日漫、韩漫、韩漫资源的网站",
+              "url": "https://tools.liumingye.cn/site/159/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/N2eOQ4J.png"
+            },
+            {
+              "name": "读漫屋",
+              "description": "提供日漫、韩漫、韩漫资源的在线漫画网站",
+              "url": "https://tools.liumingye.cn/site/158/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/DPutR5O.png"
+            },
+            {
+              "name": "爱韩漫",
+              "description": "以韩漫、日漫、国漫为主的在线漫画网站",
+              "url": "https://www.ihanman.com/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/8YdHuXS.png"
+            },
+            {
+              "name": "YY漫画",
+              "description": "专注日本漫画在线阅读的网站",
+              "url": "https://www.yymanhua.com/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/Yi8aFbn.png"
+            },
+            {
+              "name": "漫画狗",
+              "description": "提供国漫、日漫、韩漫、美漫免费在线阅读的网站",
+              "url": "https://www.manhuagou.net/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/Vb6aA0H.png"
+            },
+            {
+              "name": "漫本",
+              "description": "瑛麒动漫打造的华人原创漫画作品分享平台",
+              "url": "https://www.manben.com/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/HPeUAeO.png"
+            },
+            {
+              "name": "漫自由",
+              "description": "提供日漫、韩漫、美漫下载的漫画资源站",
+              "url": "https://mheee.com/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/MHy2SvQ.png"
+            },
+            {
+              "name": "Kox.moe",
+              "description": "提供免费漫画下载的网站",
+              "url": "https://kox.moe/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/rGbI2Ix.png"
+            }
+          ]
+        },
+        {
+          "id": "download",
+          "name": "下载站",
+          "sourceId": 10,
+          "links": [
+            {
+              "name": "BiliTools",
+              "description": "支持哔哩哔哩视频、音乐、番剧、课程下载的PC客户端",
+              "url": "https://tools.liumingye.cn/site/226/",
+              "logoUrl": "https://s3.liumingye.cn/files/2026/04/20260427185345503.webp"
+            },
+            {
+              "name": "ACG.RIP",
+              "description": "以番剧、日剧为主的ACG下载站",
+              "url": "https://acg.rip/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/bNuTfST.png"
+            },
+            {
+              "name": "动漫花园同步站",
+              "description": "动漫花园的镜像网站",
+              "url": "https://dongmanhuayuan.myheartsite.com/",
+              "logoUrl": "https://iph.href.lu/72x72?text=%E5%8A%A8"
+            },
+            {
+              "name": "Anime Garden",
+              "description": "动漫花园的第三方镜像网站",
+              "url": "https://animes.garden/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/Txx7om8.png"
+            },
+            {
+              "name": "菲特动漫",
+              "description": "以日本动漫为主的资源下载站",
+              "url": "https://fitacg.com/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/IZgQpQw.png"
+            },
+            {
+              "name": "蜜柑计划",
+              "description": "新一代日本动漫下载站",
+              "url": "https://mikanani.me/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/0HtZPYH.png"
+            },
+            {
+              "name": "诸神字幕组",
+              "description": "专注日本动漫、纪录片的下载网站",
+              "url": "https://subs.kamigami.org/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/NG5kxL6.png"
+            }
+          ]
+        },
+        {
+          "id": "tools",
+          "name": "神器",
+          "sourceId": 9,
+          "links": [
+            {
+              "name": "新番列表",
+              "description": "易用的新番播放时间表",
+              "url": "https://www.miluxing.com/",
+              "logoUrl": "https://s3.liumingye.cn/files/2026/03/2900137028.webp"
+            },
+            {
+              "name": "动漫新番表",
+              "description": "为动漫爱好者提供高质量、实用的新番表（追番表）",
+              "url": "https://xf.hmacg.cn/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/tyatEQX.png"
+            },
+            {
+              "name": "番组放送",
+              "description": "番剧更新表，简约、专业又强大的追番神器网站",
+              "url": "https://bgm.liumingye.cn/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/57rovKA.png"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "music",
+      "name": "音乐",
+      "description": "在线听歌、无损音乐与网络电台",
+      "sourceUrl": "https://tools.liumingye.cn/category/music",
+      "subcategories": [
+        {
+          "id": "listen",
+          "name": "听歌",
+          "sourceId": 16,
+          "links": [
+            {
+              "name": "下歌吧",
+              "description": "免费下载MP3与FLAC无损音乐",
+              "url": "https://xiageba.liumingye.cn/",
+              "logoUrl": "https://s3.liumingye.cn/files/2026/06/2677134968.png"
+            },
+            {
+              "name": "音乐广场",
+              "description": "一个简易的音乐搜索、下载和播放网站",
+              "url": "https://tools.liumingye.cn/site/230/",
+              "logoUrl": "https://s3.liumingye.cn/files/2026/05/20260502215247835.png"
+            },
+            {
+              "name": "Ceru Music",
+              "description": "跨平台的电脑桌面音乐播放器工具",
+              "url": "https://tools.liumingye.cn/site/313/",
+              "logoUrl": "https://s3.liumingye.cn/files/2026/06/3871125166.png"
+            },
+            {
+              "name": "柠檬音乐",
+              "description": "支持三大平台曲库的安卓听歌软件",
+              "url": "https://tools.liumingye.cn/site/217/",
+              "logoUrl": "https://s3.liumingye.cn/files/2026/04/nmyy.webp"
+            },
+            {
+              "name": "EchoMusic",
+              "description": "酷狗音乐概念版的第三方PC客户端（每日自动领取VIP）",
+              "url": "https://tools.liumingye.cn/site/189/",
+              "logoUrl": "https://s3.liumingye.cn/files/2026/03/EchoMusic.png"
+            },
+            {
+              "name": "闪电音乐",
+              "description": "TV电视端的听歌APP",
+              "url": "https://tools.liumingye.cn/site/188/",
+              "logoUrl": "https://s3.liumingye.cn/files/2026/03/%E9%97%AA%E7%94%B5%E9%9F%B3%E4%B9%90_v6.6.png"
+            },
+            {
+              "name": "MoBiMusic",
+              "description": "支持多种音源、MV观看的安卓听歌软件",
+              "url": "https://tools.liumingye.cn/site/187/",
+              "logoUrl": "https://s3.liumingye.cn/files/2026/03/20260324200123573.png"
+            },
+            {
+              "name": "洛雪音乐",
+              "description": "支持Windows、macOS、Android三端的音乐播放器",
+              "url": "https://tools.liumingye.cn/site/186/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/0Gh207K.png"
+            },
+            {
+              "name": "音狐音乐",
+              "description": "支持五大平台曲库搜索的歌曲APP",
+              "url": "https://tools.liumingye.cn/site/184/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/KmrUNrj.png"
+            },
+            {
+              "name": "Fly音乐-Plus",
+              "description": "支持无损、MV下载的音乐APP",
+              "url": "https://tools.liumingye.cn/site/183/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/Q3KZq8l.png"
+            },
+            {
+              "name": "元力音乐",
+              "description": "支持自定义音源、各大主流歌单导入的免费音乐APP",
+              "url": "https://tools.liumingye.cn/site/177/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/kq72fRW.png"
+            },
+            {
+              "name": "铜钟",
+              "description": "一个纯粹的音乐网站，专注在线听歌",
+              "url": "https://tonzhon.whamon.com/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/Iw7ic4W.png"
+            },
+            {
+              "name": "青听音乐",
+              "description": "免费的音乐APP，支持四大平台曲库",
+              "url": "https://tools.liumingye.cn/site/143/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/iIrMAiq.png"
+            },
+            {
+              "name": "SPlayer",
+              "description": "网易云音乐第三方播放器，支持网页、Windows、Mac、Linux版本",
+              "url": "https://tools.liumingye.cn/site/103/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/DKUU6nr.png"
+            },
+            {
+              "name": "YesPlayMusic",
+              "description": "高颜值的网易云第三方播放器，支持 Windows、macOS、Linux 客户端",
+              "url": "https://tools.liumingye.cn/site/102/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/ky5FdDr.png"
+            },
+            {
+              "name": "Alger Music",
+              "description": "高颜值的网易云音乐第三方播放器",
+              "url": "https://tools.liumingye.cn/site/72/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/QTlENSp.png"
+            },
+            {
+              "name": "MusicFree",
+              "description": "支持安卓、PC的音乐播放器，开源、免费、无广告、可定制化的全网听歌神器",
+              "url": "https://tools.liumingye.cn/site/39/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/NrTtGDz.png"
+            },
+            {
+              "name": "GD音乐台",
+              "description": "支持国内外多个平台曲库的在线听歌网站",
+              "url": "https://music.gdstudio.org/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/yvxC3Py.png"
+            },
+            {
+              "name": "米兔音乐",
+              "description": "提供歌曲在线试听、免费下载的音乐网站",
+              "url": "https://www.qqmp3.vip/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/qmYgFFq.png"
+            },
+            {
+              "name": "布谷音乐",
+              "description": "提供MP3、WAV、Flac等格式的歌曲下载网站",
+              "url": "https://www.buguyy.top/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/yg6ixtf.png"
+            },
+            {
+              "name": "mmPlayer",
+              "description": "网易云音乐第三方在线音乐播放器",
+              "url": "https://netease-music.fe-mm.com/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/JBhcvvD.png"
+            },
+            {
+              "name": "昔枫音乐盒",
+              "description": "以网易云为主的网页版免费在线音乐播放器，支持歌曲免费下载",
+              "url": "https://mu-jie.cc/musicBox/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/6ILsN4k.png"
+            },
+            {
+              "name": "种子音乐",
+              "description": "提供在线听歌、MP3歌曲下载的网站",
+              "url": "https://zz123.com/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/fJdzVKe.png"
+            },
+            {
+              "name": "只音",
+              "description": "可听歌、看短剧/漫画/小说、追剧的安卓APP",
+              "url": "https://tools.liumingye.cn/site/182/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/jbTbddR.png"
+            }
+          ]
+        },
+        {
+          "id": "lossless",
+          "name": "无损音乐",
+          "sourceId": 22,
+          "links": [
+            {
+              "name": "下歌吧",
+              "description": "免费下载MP3与FLAC无损音乐",
+              "url": "https://xiageba.liumingye.cn/",
+              "logoUrl": "https://s3.liumingye.cn/files/2026/06/2677134968.png"
+            },
+            {
+              "name": "musicDownload",
+              "description": "支持国内外10多个平台的歌曲下载器",
+              "url": "https://tools.liumingye.cn/site/327/",
+              "logoUrl": "https://s3.liumingye.cn/files/2026/06/3607318538.png"
+            },
+            {
+              "name": "HiFiTi无损音乐",
+              "description": "无损音乐分享社区",
+              "url": "https://www.hifiti.com/",
+              "logoUrl": "https://s3.liumingye.cn/files/2026/06/1055083978.webp"
+            },
+            {
+              "name": "我爱无损音乐网",
+              "description": "提供无损音乐专辑下载的音乐资源网站",
+              "url": "https://tools.liumingye.cn/site/114/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/AZmmOMw.png"
+            },
+            {
+              "name": "23APE",
+              "description": "提供FLAC、APE、WAV无损音乐下载的网站",
+              "url": "https://tools.liumingye.cn/site/107/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/NZU967U.png"
+            },
+            {
+              "name": "九册无损音乐",
+              "description": "免费下载歌曲及伴奏的无损音乐网站",
+              "url": "https://jcpoo.top/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/FkRk9SX.png"
+            },
+            {
+              "name": "音乐岛",
+              "description": "无损音乐下载mp3歌曲免费下载",
+              "url": "https://www.1mp3.top/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/esomChZ.png"
+            },
+            {
+              "name": "鲸音无损音乐",
+              "description": "以夸克网盘为主的歌曲下载网站",
+              "url": "https://www.jywav.com/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/ZYhf95e.png"
+            },
+            {
+              "name": "开开无损音乐",
+              "description": "主打无损音乐、MP3歌曲下载的资源网站",
+              "url": "https://www.kkws.cc/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/ghv1i8C.png"
+            },
+            {
+              "name": "5song无损音乐网",
+              "description": "无损音乐、MP3歌曲下载的音乐网站",
+              "url": "https://www.5song.xyz/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/5olbiiN.png"
+            },
+            {
+              "name": "极光无损音乐",
+              "description": "以无损音乐下载为主的歌曲下载网站",
+              "url": "https://www.jgwav.cc/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/gFI6OGG.png"
+            },
+            {
+              "name": "爱玩音乐网",
+              "description": "提供歌曲免费下载（无损音乐）、在线试听的音乐网站",
+              "url": "https://www.22a5.com/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/rW5dyPK.png"
+            },
+            {
+              "name": "漫音社",
+              "description": "专注分享二次元音乐资源的网站",
+              "url": "https://www.acgjc.com/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/HEy8lzL.png"
+            }
+          ]
+        },
+        {
+          "id": "radio",
+          "name": "电台",
+          "sourceId": 23,
+          "links": [
+            {
+              "name": "瑞丢网络收音机",
+              "description": "观看电视直播、在线收听广播电台的网站",
+              "url": "https://radio5.cn/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/YjJYnvn.png"
+            },
+            {
+              "name": "Sao.fm",
+              "description": "提供全球主流电台流媒体、音乐电台收听的网站",
+              "url": "https://sao.fm/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/qJEq88o.png"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "reading",
+      "name": "阅读",
+      "description": "电子书、小说与文档资源",
+      "sourceUrl": "https://tools.liumingye.cn/category/book",
+      "subcategories": [
+        {
+          "id": "ebooks",
+          "name": "电子书",
+          "sourceId": 17,
+          "links": [
+            {
+              "name": "安娜的档案",
+              "description": "世界上最大的开源、开放数据图书馆，提供全球各种电子书、文献等内容供用户下载",
+              "url": "https://zh.annas-archive.gl/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/p8byqv8.png"
+            },
+            {
+              "name": "读书派",
+              "description": "提供EPUB、AZW3、MOBI、PDF等格式的免费电子书下载网站",
+              "url": "https://www.dushupai.com/",
+              "logoUrl": "https://s3.liumingye.cn/files/2026/06/27355043.webp"
+            },
+            {
+              "name": "小力盘",
+              "description": "提供电子书下载的资源搜索平台",
+              "url": "https://www.xiaolipan.com/",
+              "logoUrl": "https://s3.liumingye.cn/files/2026/03/2379452513.png"
+            },
+            {
+              "name": "书籍知识库",
+              "description": "书籍、电子书分享的资源网站",
+              "url": "https://www.zhishikoo.com/",
+              "logoUrl": "https://s3.liumingye.cn/files/2026/03/175381908.webp"
+            },
+            {
+              "name": "识典古籍",
+              "description": "古籍在线阅读的网站",
+              "url": "https://www.shidianguji.com/",
+              "logoUrl": "https://s3.liumingye.cn/files/2026/03/1368214721.webp"
+            },
+            {
+              "name": "鹿鸣川",
+              "description": "高质量的电子书资源网站",
+              "url": "https://lunarora.com/",
+              "logoUrl": "https://s3.liumingye.cn/files/2026/03/20260325182739134.png"
+            },
+            {
+              "name": "书格",
+              "description": "自由开放的古籍数字图书馆",
+              "url": "https://www.shuge.org/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/i4HEYTc.png"
+            },
+            {
+              "name": "鸠摩搜索",
+              "description": "电子书、文档搜索引擎",
+              "url": "https://www.jiumodiary.com/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/eHqvqY6.png"
+            },
+            {
+              "name": "飞库文学网",
+              "description": "提供电子书籍在线阅读和下载的网站",
+              "url": "https://www.feiku6.com/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/gcc1E4O.png"
+            },
+            {
+              "name": "电子书之家",
+              "description": "提供全网电子书、小说免费下载的电子书网站",
+              "url": "https://honeypdf.com/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/9m7NvR4.png"
+            },
+            {
+              "name": "可阅文学网",
+              "description": "提供在线阅读文学、诗歌、散文随笔等作品的网站",
+              "url": "https://www.kepub.net/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/6rnuI2h.png"
+            },
+            {
+              "name": "mobi图书网",
+              "description": "专注分享mobi格式电子书的网站",
+              "url": "https://mobitushu.cn/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/UdsWVVg.png"
+            },
+            {
+              "name": "一单书",
+              "description": "分享优质书单并提供免费下载电子书的网站",
+              "url": "https://www.yidanshu.com/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/Ygahbl6.png"
+            },
+            {
+              "name": "SoBooks",
+              "description": "免费电子书（网盘）下载平台",
+              "url": "https://sobooks.cc/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/XNJ4hQ5.png"
+            },
+            {
+              "name": "一起读书",
+              "description": "电子书、小说、有声书资源下载的网站",
+              "url": "https://www.17dushu.cn/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/Ez9SrgJ.png"
+            },
+            {
+              "name": "书海旅人",
+              "description": "免费下载pdf/epub/mobi电子书的网站",
+              "url": "https://bookplusapp.top/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/qPBCOc1.png"
+            },
+            {
+              "name": "SaltyLeo书架",
+              "description": "提供电子书、有声读物下载的网站",
+              "url": "https://tstrs.me/search",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/MoL6bMY.png"
+            }
+          ]
+        },
+        {
+          "id": "novels",
+          "name": "小说",
+          "sourceId": 18,
+          "links": [
+            {
+              "name": "开源阅读",
+              "description": "支持自定义书源的纯净无广告阅读APP",
+              "url": "https://tools.liumingye.cn/site/227/",
+              "logoUrl": "https://s3.liumingye.cn/files/2026/04/20260427185653530.webp"
+            },
+            {
+              "name": "找书神器",
+              "description": "百万免费小说免费在线阅读的网站",
+              "url": "https://mianfei22.com/",
+              "logoUrl": "https://s3.liumingye.cn/files/2026/03/1845766534.webp"
+            },
+            {
+              "name": "owllook",
+              "description": "网络小说搜索引擎",
+              "url": "https://www.owlook.com.cn/",
+              "logoUrl": "https://s3.liumingye.cn/files/2026/03/1734000641.webp"
+            },
+            {
+              "name": "笔趣阁",
+              "description": "提供免费小说在线阅读的小说阅读网站",
+              "url": "https://www.mfxs0.cn/",
+              "logoUrl": "https://s3.liumingye.cn/files/2026/03/2188437872.webp"
+            },
+            {
+              "name": "小说巴士",
+              "description": "海量小说免费在线阅读的网站",
+              "url": "https://www.xiaoshuo84.cc/",
+              "logoUrl": "https://s3.liumingye.cn/files/2026/03/200682551.webp"
+            },
+            {
+              "name": "轻小说机翻机器人",
+              "description": "支持多家轻小说平台内容的AI翻译",
+              "url": "https://n.novelia.cc/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/bEkfmfu.png"
+            },
+            {
+              "name": "幻梦轻小说",
+              "description": "免费日本动漫/SF轻小说在线阅读",
+              "url": "https://www.huanmengacg.com/",
+              "logoUrl": "https://iph.href.lu/72x72?text=%E5%B9%BB"
+            },
+            {
+              "name": "哔哩轻小说",
+              "description": "提供全网轻小说免费在线阅读的网站",
+              "url": "https://www.linovelib.com/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/1hGv3Bw.png"
+            },
+            {
+              "name": "快书网",
+              "description": "支持小说在线阅读、全本下载的免费小说网站",
+              "url": "https://www.kuaishu5.com/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/xCZtUu4.png"
+            },
+            {
+              "name": "金庸武侠网",
+              "description": "在线阅读金庸武侠小说全集的网站",
+              "url": "https://www.jinyongwuxia.com/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/tLzYz1U.png"
+            },
+            {
+              "name": "古龙网",
+              "description": "古龙武侠小说全集在线阅读的网站",
+              "url": "https://www.gulongwang.com/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/wEQUuFa.png"
+            },
+            {
+              "name": "502book",
+              "description": "支持内容在线解析、阅读的小说搜索引擎",
+              "url": "https://502book.com/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/g3JnDeL.png"
+            },
+            {
+              "name": "八零电子书",
+              "description": "TXT小说下载网站",
+              "url": "https://www.txt80.cc/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/rgVxOUo.png"
+            },
+            {
+              "name": "知轩藏书",
+              "description": "提供校对全本TXT小说下载的网站",
+              "url": "https://zxcs.info/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/us9qoDy.png"
+            },
+            {
+              "name": "万本小说",
+              "description": "提供校对版全本Txt小说下载的资源网站",
+              "url": "https://www.10000txt.com/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/W3f4nj0.png"
+            },
+            {
+              "name": "书香阁",
+              "description": "免费在线小说的网站",
+              "url": "https://www.sxgread.com/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/QnkvgOL.png"
+            },
+            {
+              "name": "txt小说网",
+              "description": "全本txt小说下载的网站",
+              "url": "https://www.txtxiaoshuo.com/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/oakGJEV.png"
+            },
+            {
+              "name": "盐选",
+              "description": "提供知乎盐选文章免费阅读的网站",
+              "url": "https://www.yanxuan.org/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/mbBQnZF.png"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "game",
+      "name": "游戏",
+      "description": "经典游戏与网页小游戏",
+      "sourceUrl": "https://tools.liumingye.cn/category/gamepad",
+      "subcategories": [
+        {
+          "id": "online-games",
+          "name": "在线小游戏",
+          "sourceId": 33,
+          "links": [
+            {
+              "name": "谜页集",
+              "description": "现实互动解谜与网页互动游戏入口",
+              "url": "https://miyeji.cn/",
+              "logoUrl": "https://s3.liumingye.cn/files/2026/06/769365399.png"
+            },
+            {
+              "name": "ClassicJoy Games",
+              "description": "可在线畅玩各类经典游戏的网站",
+              "url": "https://classicjoy.games/zh",
+              "logoUrl": "https://s3.liumingye.cn/files/2026/05/3991995121.webp"
+            },
+            {
+              "name": "yikm游戏",
+              "description": "在线玩各类游戏的网站",
+              "url": "https://www.yikm.net/",
+              "logoUrl": "https://s3.liumingye.cn/files/2026/05/3887104272.webp"
+            },
+            {
+              "name": "海拥游戏大全",
+              "description": "fc、GBA、休闲网页游戏在线畅玩的网站",
+              "url": "https://game.haiyong.site/",
+              "logoUrl": "https://s3.liumingye.cn/files/2026/05/2032393519.webp"
+            },
+            {
+              "name": "Freegame",
+              "description": "数十款免费的在线网页游戏平台",
+              "url": "https://www.freegame.com/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/7ECNUI8.png"
+            },
+            {
+              "name": "Flash保存计划",
+              "description": "提供上万款Flash游戏资源的网站",
+              "url": "https://flash.homes/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/6oVluu2.png"
+            },
+            {
+              "name": "在线DOS游戏",
+              "description": "近2000款在线DOS游戏的网站",
+              "url": "https://dos.lol/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/HCn4KK3.png"
+            },
+            {
+              "name": "老游戏在线玩",
+              "description": "提供数千种经典老游戏的网页版资源（支持键盘/手柄设置）的网站",
+              "url": "https://zaixianwan.app/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/HCn4KK3.png"
+            },
+            {
+              "name": "Y8游戏",
+              "description": "提供超9万款的线上游戏网站",
+              "url": "https://zh.y8.com/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/a6denIO.png"
+            },
+            {
+              "name": "CrazyGames",
+              "description": "国外免费小游戏在线平台",
+              "url": "https://www.crazygames.com/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/05B7OPa.png"
+            },
+            {
+              "name": "Poki小游戏",
+              "description": "提供免费的在线小游戏的网站",
+              "url": "https://poki.com/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/ziCmlAr.png"
+            },
+            {
+              "name": "电脑麻将",
+              "description": "HTML5 + JavaScript 游戏「电脑麻将」",
+              "url": "https://tools.liumingye.cn/majiang/",
+              "logoUrl": "https://tool.liumingye.cn/majiang/img/icon.png"
+            },
+            {
+              "name": "合成大西瓜",
+              "description": "控制水果下落位置，碰撞合成",
+              "url": "https://tools.liumingye.cn/watermelon/",
+              "logoUrl": "https://ae01.alicdn.com/kf/Hc7dca8e99fc74c92bd8c648885323b4b8.jpg"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "entertainment",
+      "name": "娱乐",
+      "description": "电视直播、壁纸与轻量娱乐内容",
+      "sourceUrl": "https://tools.liumingye.cn/category/fan",
+      "subcategories": [
+        {
+          "id": "live-tv",
+          "name": "电视直播",
+          "sourceId": 25,
+          "links": [
+            {
+              "name": "WebView TV",
+              "description": "央视、卫视、地方台为主的电视直播APP",
+              "url": "https://tools.liumingye.cn/site/294/",
+              "logoUrl": "https://s3.liumingye.cn/files/2026/05/290346598.png"
+            },
+            {
+              "name": "千寻直播",
+              "description": "支持语音换台",
+              "url": "https://tools.liumingye.cn/site/290/",
+              "logoUrl": "https://s3.liumingye.cn/files/2026/05/2241655210.png"
+            },
+            {
+              "name": "星火电视",
+              "description": "最纯粹的电视节目",
+              "url": "https://tools.liumingye.cn/site/287/",
+              "logoUrl": "https://s3.liumingye.cn/files/2026/05/2954757666.png"
+            },
+            {
+              "name": "电视直播",
+              "description": "可观看央视、卫视、地方频道的电视直播客户端",
+              "url": "https://tools.liumingye.cn/site/283/",
+              "logoUrl": "https://s3.liumingye.cn/files/2026/05/2807579769.png"
+            },
+            {
+              "name": "DTV",
+              "description": "抖音b站/斗鱼/虎牙跨平台轻量化桌面客户端",
+              "url": "https://tools.liumingye.cn/site/280/",
+              "logoUrl": "https://s3.liumingye.cn/files/2026/05/1900604227.png"
+            },
+            {
+              "name": "纯粹直播",
+              "description": "让直播回归“内容本身”",
+              "url": "https://tools.liumingye.cn/site/275/",
+              "logoUrl": "https://s3.liumingye.cn/files/2026/05/2715690689.png"
+            },
+            {
+              "name": "Simple Live",
+              "description": "聚合虎牙/斗鱼/B站/抖音直播平台的APP，支持全平台客户端",
+              "url": "https://tools.liumingye.cn/site/269/",
+              "logoUrl": "https://s3.liumingye.cn/files/2026/05/433123666.png"
+            }
+          ]
+        },
+        {
+          "id": "wallpaper",
+          "name": "壁纸",
+          "sourceId": 26,
+          "links": [
+            {
+              "name": "Wallspic",
+              "description": "免费提供4K手机和PC壁纸的壁纸网站",
+              "url": "https://wallspic.com/cn",
+              "logoUrl": "https://s3.liumingye.cn/files/2026/05/1378515509.webp"
+            },
+            {
+              "name": "哲风壁纸",
+              "description": "4K、8K的电脑和手机壁纸分享社区",
+              "url": "https://haowallpaper.com/",
+              "logoUrl": "https://s3.liumingye.cn/files/2026/03/843609338.webp"
+            },
+            {
+              "name": "ACG壁纸",
+              "description": "ACG免费壁纸",
+              "url": "https://www.acg66.com/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/RSSqmpD.png"
+            },
+            {
+              "name": "彼岸桌面",
+              "description": "提供手机和电脑壁纸的老牌壁纸网站",
+              "url": "https://tools.liumingye.cn/site/129/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/hYcuvQS.png"
+            },
+            {
+              "name": "国漫图库",
+              "description": "国漫女神Ai绘画为主的手机壁纸图库",
+              "url": "https://guomantuku.com/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/rIMJnPL.png"
+            },
+            {
+              "name": "SomeACG壁纸",
+              "description": "专注ACG壁纸的二次元壁纸网站",
+              "url": "https://www.someacg.top/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/MIvKJ6Z.png"
+            },
+            {
+              "name": "壁纸湖",
+              "description": "手机壁纸控的宝藏网站",
+              "url": "https://bizihu.com/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/8dr7Gn4.png"
+            },
+            {
+              "name": "宝藏图库",
+              "description": "提供PC电脑壁纸、手机壁纸的网站",
+              "url": "https://www.baozangtuku.com/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/bA57enl.png"
+            },
+            {
+              "name": "美图123",
+              "description": "提供二次元美女壁纸、头像的资源网站",
+              "url": "https://meitu123.com/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/Pe40Svv.png"
+            },
+            {
+              "name": "在线壁纸",
+              "description": "提供高清电脑桌面壁纸的资源网站",
+              "url": "https://tools.liumingye.cn/wallpaper/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/ycBO3om.png"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "toolbox",
+      "name": "工具箱",
+      "description": "AI 助手与在线效率工具",
+      "sourceUrl": "https://tools.liumingye.cn/category/toolbox",
+      "subcategories": [
+        {
+          "id": "ai-assistant",
+          "name": "AI助手",
+          "sourceId": 42,
+          "links": [
+            {
+              "name": "即梦AI",
+              "description": "一站式AI创作平台",
+              "url": "https://jimeng.jianying.com/ai-tool/home",
+              "logoUrl": "https://s3.liumingye.cn/files/2026/06/1783107858.png"
+            },
+            {
+              "name": "TRAE Work",
+              "description": "智能无限，协作无间",
+              "url": "https://www.trae.cn/work",
+              "logoUrl": "https://s3.liumingye.cn/files/2026/06/946719341.png"
+            },
+            {
+              "name": "豆包Ai",
+              "description": "字节跳动旗下AI智能助手",
+              "url": "https://www.doubao.com/",
+              "logoUrl": "https://s3.liumingye.cn/files/2026/06/4000770999.png"
+            },
+            {
+              "name": "千问Ai",
+              "description": "工作、学习、生活的小助手",
+              "url": "https://www.qianwen.com/",
+              "logoUrl": "https://s3.liumingye.cn/files/2026/06/2203677233.png"
+            },
+            {
+              "name": "OpenCode",
+              "description": "查看网站详情",
+              "url": "https://opencode.ai/zh",
+              "logoUrl": "https://s3.liumingye.cn/files/2026/06/1746906731.png"
+            },
+            {
+              "name": "LibTV",
+              "description": "专业视频创作工具",
+              "url": "https://www.liblib.tv/",
+              "logoUrl": "https://s3.liumingye.cn/files/2026/06/2659836415.png"
+            },
+            {
+              "name": "AniShort-AI短剧",
+              "description": "查看网站详情",
+              "url": "https://anishort.cn/",
+              "logoUrl": "https://s3.liumingye.cn/files/2026/06/2868278182.png"
+            },
+            {
+              "name": "小云雀",
+              "description": "助力灵感马上成片",
+              "url": "https://xyq.jianying.com/",
+              "logoUrl": "https://s3.liumingye.cn/files/2026/06/900902225.png"
+            },
+            {
+              "name": "Kimi AI 官网",
+              "description": "查看网站详情",
+              "url": "https://www.kimi.com/",
+              "logoUrl": "https://s3.liumingye.cn/files/2026/06/2264287517.png"
+            },
+            {
+              "name": "秘塔AI搜索",
+              "description": "查看网站详情",
+              "url": "https://metaso.cn/",
+              "logoUrl": "https://s3.liumingye.cn/files/2026/06/3423409211.png"
+            },
+            {
+              "name": "腾讯元宝",
+              "description": "查看网站详情",
+              "url": "https://yuanbao.tencent.com/",
+              "logoUrl": "https://s3.liumingye.cn/files/2026/06/3673420193.png"
+            },
+            {
+              "name": "DeepSeek",
+              "description": "查看网站详情",
+              "url": "https://chat.deepseek.com/sign_in",
+              "logoUrl": "https://s3.liumingye.cn/files/2026/06/3883374660.png"
+            },
+            {
+              "name": "GenieAI",
+              "description": "查看网站详情",
+              "url": "https://genie.tencent.com/",
+              "logoUrl": "https://s3.liumingye.cn/files/2026/06/3643838175.png"
+            },
+            {
+              "name": "文心一言",
+              "description": "查看网站详情",
+              "url": "https://yiyan.baidu.com/",
+              "logoUrl": "https://s3.liumingye.cn/files/2026/06/994162561.png"
+            }
+          ]
+        },
+        {
+          "id": "online-tools",
+          "name": "在线工具",
+          "sourceId": 34,
+          "links": [
+            {
+              "name": "PDFCraft",
+              "description": "无需上传文件的PDF全能工具箱",
+              "url": "https://pdfcraft.devtoolcafe.com/zh/tools/",
+              "logoUrl": "https://s3.liumingye.cn/files/2026/04/20260428180047407.png"
+            },
+            {
+              "name": "Microsoft 激活脚本（MAS）",
+              "description": "一条命令永久激活win8/10/11",
+              "url": "https://massgrave.dev/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/XnXeQg8.png"
+            },
+            {
+              "name": "MinerU",
+              "description": "免费全能文档解析神器，PDF转换",
+              "url": "https://mineru.net/OpenSourceTools/Extractor",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/6KUUxHn.png"
+            },
+            {
+              "name": "Smallpdf",
+              "description": "PDF工具箱，免费转换、压缩、编辑PDF文档",
+              "url": "https://smallpdf.com/cn",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/3xGtkhy.png"
+            },
+            {
+              "name": "Qwerty Learner",
+              "description": "为键盘工作者设计的单词与肌肉记忆锻炼软件",
+              "url": "https://qwerty.liumingye.cn/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/WlVXmZL.png"
+            },
+            {
+              "name": "Wormhole",
+              "description": "免费的文件在线传输工具",
+              "url": "https://wormhole.app/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/hpWlPCL.png"
+            },
+            {
+              "name": "图片拼接",
+              "description": "多张图片合并成一张的在线拼图工具",
+              "url": "https://kejiweixun.com/tools/merge-images",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/26QDxu8.png"
+            },
+            {
+              "name": "文字转语音",
+              "description": "超长小说一键转换自然流畅的语音文件",
+              "url": "https://easyvoice.ioplus.tech/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/0Kj5AIG.png"
+            },
+            {
+              "name": "马克配音",
+              "description": "在线配音、免费的文本转语音工具",
+              "url": "https://ttsmaker.cn/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/gm0TqgQ.png"
+            },
+            {
+              "name": "图改改",
+              "description": "在线修改图片文字的工具",
+              "url": "https://tugaigai.com/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/SB9VYGP.png"
+            },
+            {
+              "name": "Bigjpg",
+              "description": "智能图片无损放大的工具",
+              "url": "https://bigjpg.com/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/x2Fqq5g.png"
+            },
+            {
+              "name": "Look Scanned",
+              "description": "让照片/文档/文件秒变扫描件的网站",
+              "url": "https://lookscanned.io/scan",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/jM4nkJU.png"
+            },
+            {
+              "name": "云鸽传送",
+              "description": "跨平台文件传输助手",
+              "url": "https://yunge.in/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/SIAZoog.png"
+            },
+            {
+              "name": "Audio Convert",
+              "description": "在线音频格式转换器，支持十余种格式在线转换",
+              "url": "https://audio-convert.com/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/t3eeWyU.png"
+            },
+            {
+              "name": "Removebg",
+              "description": "一键去除图片背景",
+              "url": "https://www.remove.bg/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/7a6wd0i.png"
+            },
+            {
+              "name": "TinyPNG",
+              "description": "智能PNG、JPEG图片在线压缩工具",
+              "url": "https://tinify.cn/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/vJ9D4Fu.png"
+            },
+            {
+              "name": "音乐解锁",
+              "description": "在任何设备上解锁已购的加密音乐！",
+              "url": "https://unlock-music.liumingye.cn/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/7IkMsbr.png"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "software",
+      "name": "软件",
+      "description": "装机软件、软件下载与软件博客",
+      "sourceUrl": "https://tools.liumingye.cn/category/box",
+      "subcategories": [
+        {
+          "id": "essentials",
+          "name": "装机必备",
+          "sourceId": 35,
+          "links": [
+            {
+              "name": "微信",
+              "description": "国民级聊天软件",
+              "url": "https://weixin.qq.com/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/KHbEZLy.png"
+            },
+            {
+              "name": "LocalSend",
+              "description": "跨平台数据传输神器",
+              "url": "https://tools.liumingye.cn/site/297/",
+              "logoUrl": "https://s3.liumingye.cn/files/2026/06/2111057974.png"
+            },
+            {
+              "name": "Steam",
+              "description": "高质量游戏平台",
+              "url": "https://store.steampowered.com/about/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/u9U6rjq.png"
+            },
+            {
+              "name": "Everything",
+              "description": "快速搜索文件和文件夹",
+              "url": "https://www.voidtools.com/zh-cn/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/BKs6YSN.png"
+            },
+            {
+              "name": "谷歌浏览器",
+              "description": "专为您而打造的浏览器",
+              "url": "https://www.google.cn/intl/zh-CN/chrome/",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/huX6FMa.png"
+            },
+            {
+              "name": "Microsoft Office 精简版",
+              "description": "微软Office办公软件",
+              "url": "https://199998.xyz/xb21cn_office/office_xb21cn_2025",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/WjHfElC.png"
+            },
+            {
+              "name": "PotPlayer",
+              "description": "强大的的高清视频播放器",
+              "url": "https://potplayer.daum.net/?lang=zh_CN",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/0IXtDPN.png"
+            },
+            {
+              "name": "Bandizip 专业版",
+              "description": "一款超好用的解压缩软件",
+              "url": "https://423down.lanzouo.com/b0f1mc0cd",
+              "logoUrl": "https://cdn.liumingye.cn/imgur/Hpn5L0a.png"
+            }
+          ]
+        },
+        {
+          "id": "downloads",
+          "name": "软件下载",
+          "sourceId": 40,
+          "links": [
+            {
+              "name": "软件搜搜",
+              "description": "可以搜索软件下载源的网站",
+              "url": "https://hew666.github.io/rjss/",
+              "logoUrl": "https://s3.liumingye.cn/files/2026/05/258708901.png"
+            },
+            {
+              "name": "大眼仔",
+              "description": "工作生活办公技术资源",
+              "url": "https://www.dayanzai.me/",
+              "logoUrl": "https://s3.liumingye.cn/files/2026/05/1305472783.png"
+            },
+            {
+              "name": "zd423",
+              "description": "软件分享平台领跑者",
+              "url": "https://www.423down.com/",
+              "logoUrl": "https://s3.liumingye.cn/files/2026/05/3867711189.png"
+            },
+            {
+              "name": "果壳剥壳",
+              "description": "长期更新的综合科技网站",
+              "url": "https://www.ghpym.com/",
+              "logoUrl": "https://s3.liumingye.cn/files/2026/05/3458874348.png"
+            }
+          ]
+        },
+        {
+          "id": "blogs",
+          "name": "博客",
+          "sourceId": 48,
+          "links": []
+        }
+      ]
+    }
+  ]
+}

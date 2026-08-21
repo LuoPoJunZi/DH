@@ -16,7 +16,7 @@ export function Footer() {
         </div>
         <div className="site-footer__links">
           <Link to="/">首页</Link>
-          <Link to="/navigation">网站导航</Link>
+          <Link to="/tools">在线工具</Link>
           {siteConfig.github ? (
             <a href={siteConfig.github} target="_blank" rel="noreferrer">
               GitHub

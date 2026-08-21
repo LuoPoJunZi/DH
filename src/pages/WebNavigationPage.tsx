@@ -5,7 +5,6 @@ import {
   Cat,
   Clapperboard,
   Cloud,
-  Compass,
   ExternalLink,
   Gamepad2,
   Music2,
@@ -21,7 +20,9 @@ import {
 import { useDeferredValue, useMemo, useState } from 'react';
 import { ExternalImage } from '../components/common/ExternalImage';
 import { Seo } from '../components/common/Seo';
-import { webNavigationCategories, webNavigationLinkCount } from '../config/webNavigation';
+import { WelcomeGreeting } from '../components/common/WelcomeGreeting';
+import { siteConfig } from '../config/site';
+import { webNavigationCategories } from '../config/webNavigation';
 import type { WebNavigationCategoryId } from '../types/web-navigation';
 
 const categoryIcons = {
@@ -44,12 +45,25 @@ function getHostname(url: string) {
 
 export function WebNavigationPage() {
   const [activeCategoryId, setActiveCategoryId] = useState<WebNavigationCategoryId>('ai');
+  const [activeSubcategoryId, setActiveSubcategoryId] = useState<string | null>(null);
   const [query, setQuery] = useState('');
   const deferredQuery = useDeferredValue(query.trim().toLocaleLowerCase());
 
   const visibleGroups = useMemo(() => {
     if (!deferredQuery) {
-      return webNavigationCategories.filter((category) => category.id === activeCategoryId);
+      const category = webNavigationCategories.find((item) => item.id === activeCategoryId);
+      if (!category) return [];
+
+      const selectedSubcategory =
+        category.subcategories?.find((item) => item.id === activeSubcategoryId) ??
+        category.subcategories?.[0];
+
+      return [
+        {
+          ...category,
+          links: selectedSubcategory?.links ?? category.links,
+        },
+      ];
     }
 
     return webNavigationCategories
@@ -60,7 +74,7 @@ export function WebNavigationPage() {
         ),
       }))
       .filter((category) => category.links.length > 0);
-  }, [activeCategoryId, deferredQuery]);
+  }, [activeCategoryId, activeSubcategoryId, deferredQuery]);
 
   const resultCount = visibleGroups.reduce((total, category) => total + category.links.length, 0);
 
@@ -70,18 +84,12 @@ export function WebNavigationPage() {
         title="网站导航"
         description="按 AI、云服务、网络、影视、二次元、音乐、阅读、游戏、娱乐、工具箱和软件分类浏览常用网站。"
         keywords={['网站导航', 'AI 导航', '云服务', '影视导航', '在线工具', '软件官网']}
-        path="/navigation"
+        path="/"
       />
 
       <div className="web-navigation-page">
         <header className="web-navigation-hero container">
-          <div>
-            <p className="eyebrow">
-              <Compass size={15} aria-hidden="true" /> 网站导航 · {webNavigationLinkCount} 个站点
-            </p>
-            <h1>常用网站，一个入口。</h1>
-            <p>按内容类型快速浏览，所有外部链接均在新标签页打开。</p>
-          </div>
+          <WelcomeGreeting siteName={siteConfig.name} className="web-navigation-welcome" />
 
           <div className="web-navigation-search">
             <Search size={19} aria-hidden="true" />
@@ -93,7 +101,7 @@ export function WebNavigationPage() {
               type="search"
               value={query}
               onChange={(event) => setQuery(event.target.value)}
-              placeholder="搜索名称或用途…"
+              placeholder="搜索一下…"
               autoComplete="off"
             />
             {query && (
@@ -115,6 +123,7 @@ export function WebNavigationPage() {
                   aria-pressed={!query && activeCategoryId === category.id}
                   onClick={() => {
                     setActiveCategoryId(category.id);
+                    setActiveSubcategoryId(category.subcategories?.[0]?.id ?? null);
                     setQuery('');
                   }}
                 >
@@ -148,40 +157,74 @@ export function WebNavigationPage() {
                     </a>
                   </header>
 
-                  <div className="web-navigation-links">
-                    {category.links.map((link, index) => (
-                      <a
-                        className="web-navigation-link"
-                        key={link.url}
-                        href={link.url}
-                        target="_blank"
-                        rel="noopener noreferrer nofollow"
-                      >
-                        <span className="web-navigation-link__index">
-                          {String(index + 1).padStart(2, '0')}
-                        </span>
-                        <span className="web-navigation-link__logo">
-                          <ExternalImage
-                            src={link.logoUrl}
-                            alt=""
-                            className="web-navigation-link__logo-image"
-                            fallbackClassName="web-navigation-link__logo-fallback"
-                            fallback={<span>{Array.from(link.name.trim())[0] ?? '?'}</span>}
-                            width={48}
-                            height={48}
-                            decoding="async"
-                            referrerPolicy="no-referrer"
-                          />
-                        </span>
-                        <span className="web-navigation-link__body">
-                          <strong>{link.name}</strong>
-                          <span>{link.description}</span>
-                        </span>
-                        <small>{getHostname(link.url)}</small>
-                        <ArrowUpRight size={17} aria-hidden="true" />
-                      </a>
-                    ))}
-                  </div>
+                  {!deferredQuery && category.subcategories?.length ? (
+                    <nav
+                      className="web-navigation-subcategories"
+                      aria-label={`${category.name}子分类`}
+                    >
+                      {category.subcategories.map((subcategory) => {
+                        const isActive =
+                          subcategory.id ===
+                          (activeSubcategoryId ?? category.subcategories?.[0]?.id);
+
+                        return (
+                          <button
+                            key={subcategory.id}
+                            type="button"
+                            aria-pressed={isActive}
+                            onClick={() => setActiveSubcategoryId(subcategory.id)}
+                          >
+                            <span>{subcategory.name}</span>
+                            <small>{subcategory.links.length}</small>
+                          </button>
+                        );
+                      })}
+                    </nav>
+                  ) : null}
+
+                  {category.links.length ? (
+                    <div
+                      className="web-navigation-links"
+                      key={deferredQuery || activeSubcategoryId || category.id}
+                    >
+                      {category.links.map((link, index) => (
+                        <a
+                          className="web-navigation-link"
+                          key={link.url}
+                          href={link.url}
+                          target="_blank"
+                          rel="noopener noreferrer nofollow"
+                        >
+                          <span className="web-navigation-link__index">
+                            {String(index + 1).padStart(2, '0')}
+                          </span>
+                          <span className="web-navigation-link__logo">
+                            <ExternalImage
+                              src={link.logoUrl}
+                              alt=""
+                              className="web-navigation-link__logo-image"
+                              fallbackClassName="web-navigation-link__logo-fallback"
+                              fallback={<span>{Array.from(link.name.trim())[0] ?? '?'}</span>}
+                              width={48}
+                              height={48}
+                              decoding="async"
+                              referrerPolicy="no-referrer"
+                            />
+                          </span>
+                          <span className="web-navigation-link__body">
+                            <strong>{link.name}</strong>
+                            <span>{link.description}</span>
+                          </span>
+                          <small>{getHostname(link.url)}</small>
+                          <ArrowUpRight size={17} aria-hidden="true" />
+                        </a>
+                      ))}
+                    </div>
+                  ) : (
+                    <div className="web-navigation-subcategory-empty">
+                      参考站当前尚未在这个子分类中收录网站。
+                    </div>
+                  )}
                 </section>
               ))
             ) : (

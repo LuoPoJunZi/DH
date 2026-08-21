@@ -34,7 +34,11 @@ export function HomePage() {
 
   return (
     <>
-      <Seo keywords={['在线工具', '开发工具', '文本工具', '本地处理']} />
+      <Seo
+        title="在线工具"
+        keywords={['在线工具', '开发工具', '文本工具', '本地处理']}
+        path="/tools"
+      />
       <section className="home-hero">
         <div className="home-hero__grid container">
           <div className="home-hero__copy">
@@ -93,8 +97,8 @@ export function HomePage() {
               <sup>{getToolsByCategory(category.id).length}</sup>
             </Link>
           ))}
-          <Link className="category-rail__directory-link" to="/navigation">
-            网站导航 <span aria-hidden="true">↗</span>
+          <Link className="category-rail__directory-link" to="/">
+            返回网站导航 <span aria-hidden="true">↗</span>
           </Link>
         </div>
       </div>

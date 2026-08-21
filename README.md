@@ -5,10 +5,11 @@
 ## 功能特点
 
 - 工具名称、描述、分类与关键词的前端即时搜索；
-- AI、云服务、网络、影视、二次元、音乐、阅读、游戏、娱乐、工具箱和软件十一分类网站导航；
+- AI、云服务、网络、影视、二次元、音乐、阅读、游戏、娱乐、工具箱和软件十一分类网站导航，包含 24 个子分类与 281 个不重复入口；
 - 统一配置驱动的首页、分类、路由、相关工具与 Sitemap；
 - 工具按路由懒加载，降低首页 JavaScript 体积；
 - 跟随系统、浅色与深色三档主题；
+- 网站导航作为首页，并根据访问者浏览器本地时间显示欢迎语；
 - 适配桌面、平板与手机，支持键盘操作；
 - 每个页面独立 SEO 信息；
 - JSON、Base64、URL、时间戳、UUID、字数统计、文本去重、进制转换八个首批工具；
@@ -76,6 +77,16 @@ npm run preview
 ```
 
 生产产物位于 `dist/`。
+
+## 同步网站导航数据
+
+影视、二次元、音乐、阅读、游戏、娱乐、工具箱和软件分类来自刘明野的工具箱公开分类接口。需要同步最新站点时运行：
+
+```bash
+npm run sync:navigation
+```
+
+脚本会更新 `src/config/liumingye-navigation.data.json`，只保存站点文本、HTTPS 链接和外部 Logo URL，不下载任何图片。同步后仍需运行 `npm run lint` 与 `npm run build`。
 
 ## 日常维护方式
 
@@ -168,7 +179,7 @@ https://kang-tools.pages.dev
 
 ```text
 /
-/navigation
+/tools
 /tools/json-formatter
 /category/developer
 ```
@@ -307,7 +318,7 @@ npx wrangler pages deploy dist --project-name kang-tools --branch=preview
 
 ## 配置品牌
 
-网站名称、描述、URL、作者、GitHub 和分类统一位于 `src/config/site.data.json`。正式 Logo、项目截图等图床链接统一位于 `src/config/images.ts`。网站导航链接集中位于 `src/config/webNavigation.ts`，只收录 HTTPS 地址。绑定正式域名、GitHub 仓库或图床资源后只需更新配置并重新构建。
+网站名称、描述、URL、作者、GitHub 和分类统一位于 `src/config/site.data.json`。正式 Logo、项目截图等图床链接统一位于 `src/config/images.ts`。网站导航注册表位于 `src/config/webNavigation.ts`，同步生成的数据位于 `src/config/liumingye-navigation.data.json`，只收录 HTTPS 地址。绑定正式域名、GitHub 仓库或图床资源后只需更新配置并重新构建。
 
 ## 贡献指南
 

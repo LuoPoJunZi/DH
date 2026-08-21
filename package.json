@@ -9,6 +9,7 @@
   },
   "scripts": {
     "generate:seo": "node scripts/generate-seo.mjs",
+    "sync:navigation": "node scripts/sync-web-navigation.mjs",
     "predev": "npm run generate:seo",
     "dev": "vite",
     "prebuild": "npm run generate:seo",

@@ -1,16 +1,36 @@
+# Dependencies
 node_modules/
+
+# Build and test output
 dist/
 .vite/
 coverage/
+*.tsbuildinfo
+
+# Cloudflare and local tooling
 .wrangler/
+.dev.vars
+.playwright-cli/
+output/playwright/
+
+# Environment files
 .env
 .env.*
 !.env.example
 *.local
+
+# Logs
+logs/
 *.log
-.DS_Store
-Thumbs.db
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Editors and operating systems
 .idea/
 .vscode/*
 !.vscode/extensions.json
-
+.DS_Store
+Thumbs.db
+Desktop.ini

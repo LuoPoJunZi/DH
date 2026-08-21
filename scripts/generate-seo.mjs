@@ -10,7 +10,7 @@ const [site, tools] = await Promise.all([
 
 const routes = [
   '/',
-  '/navigation',
+  '/tools',
   ...site.categories.map((category) => `/category/${category.id}`),
   ...tools.map((tool) => tool.path),
 ];

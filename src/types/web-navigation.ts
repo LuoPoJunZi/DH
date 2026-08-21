@@ -18,10 +18,17 @@ export interface WebNavigationLink {
   logoUrl: `https://${string}`;
 }
 
+export interface WebNavigationSubcategory {
+  id: string;
+  name: string;
+  links: WebNavigationLink[];
+}
+
 export interface WebNavigationCategory {
   id: WebNavigationCategoryId;
   name: string;
   description: string;
   sourceUrl: `https://${string}`;
   links: WebNavigationLink[];
+  subcategories?: WebNavigationSubcategory[];
 }

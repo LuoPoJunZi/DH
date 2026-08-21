@@ -53,12 +53,12 @@ export function Header() {
         <div className="site-header__inner container">
           <BrandMark />
           <nav className="desktop-nav" aria-label="主导航">
-            {primaryNavigation.map((item, index) => (
+            {primaryNavigation.map((item) => (
               <span className="desktop-nav__item" key={item.href}>
                 <NavLink to={item.href} end={item.end}>
                   {item.label}
                 </NavLink>
-                {index === 0 && (
+                {item.showToolDirectory && (
                   <button
                     ref={directoryButtonRef}
                     className="directory-trigger"
