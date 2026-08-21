@@ -5,7 +5,6 @@ import {
   Cat,
   Clapperboard,
   Cloud,
-  ExternalLink,
   Gamepad2,
   Music2,
   Network,
@@ -152,9 +151,6 @@ export function WebNavigationPage() {
                       <h2>{category.name}</h2>
                       <span>{category.description}</span>
                     </div>
-                    <a href={category.sourceUrl} target="_blank" rel="noopener noreferrer nofollow">
-                      查看来源分类 <ExternalLink size={14} />
-                    </a>
                   </header>
 
                   {!deferredQuery && category.subcategories?.length ? (
@@ -244,7 +240,8 @@ export function WebNavigationPage() {
             <footer className="web-navigation-notice">
               <ShieldCheck size={17} aria-hidden="true" />
               <p>
-                本页仅提供外部网站入口，不托管其内容。第三方站点的可用性、内容与隐私政策由其运营方负责。
+                城市欢迎语由第三方 IP
+                定位接口提供，本站不保存定位结果。本页仅提供外部网站入口，不托管其内容；第三方站点的可用性、内容与隐私政策由其运营方负责。
               </p>
             </footer>
           </div>

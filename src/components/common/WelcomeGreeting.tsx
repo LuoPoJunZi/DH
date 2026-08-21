@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { visitorLocationConfig } from '../../config/visitorLocation';
 
 interface WelcomeGreetingProps {
   siteName: string;
@@ -31,15 +32,86 @@ function getTimeZoneCity() {
   }
 }
 
+let visitorCityRequest: Promise<string | null> | null = null;
+
+function readLocationField(data: unknown, fields: readonly string[]) {
+  if (!data || typeof data !== 'object') return null;
+
+  const record = data as Record<string, unknown>;
+  for (const field of fields) {
+    const value = record[field];
+    if (typeof value === 'string' && value.trim()) {
+      return value.trim().slice(0, 40);
+    }
+  }
+
+  return null;
+}
+
+async function requestVisitorCity() {
+  try {
+    const cachedCity = window.sessionStorage.getItem(visitorLocationConfig.cacheKey);
+    if (cachedCity) return cachedCity;
+  } catch {
+    // Continue without a cache in privacy-restricted browsing contexts.
+  }
+
+  for (const endpoint of visitorLocationConfig.endpoints) {
+    const controller = new AbortController();
+    const timeout = window.setTimeout(() => controller.abort(), visitorLocationConfig.timeoutMs);
+
+    try {
+      const response = await fetch(endpoint.url, {
+        signal: controller.signal,
+        cache: 'no-store',
+      });
+      if (!response.ok) continue;
+
+      const city = readLocationField(await response.json(), endpoint.fields);
+      if (!city) continue;
+
+      try {
+        window.sessionStorage.setItem(visitorLocationConfig.cacheKey, city);
+      } catch {
+        // The greeting still works when sessionStorage is unavailable.
+      }
+
+      return city;
+    } catch {
+      // Try the next endpoint after a network error or timeout.
+    } finally {
+      window.clearTimeout(timeout);
+    }
+  }
+
+  return null;
+}
+
+function getVisitorCity() {
+  visitorCityRequest ??= requestVisitorCity();
+  return visitorCityRequest;
+}
+
 export function WelcomeGreeting({ siteName, className }: WelcomeGreetingProps) {
   const [now, setNow] = useState(() => new Date());
+  const [visitorCity, setVisitorCity] = useState<string | null>(() => getTimeZoneCity());
 
   useEffect(() => {
     const timer = window.setInterval(() => setNow(new Date()), 1_000);
     return () => window.clearInterval(timer);
   }, []);
 
-  const visitorCity = getTimeZoneCity();
+  useEffect(() => {
+    let isMounted = true;
+
+    void getVisitorCity().then((city) => {
+      if (isMounted && city) setVisitorCity(city);
+    });
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
   return (
     <div className={['welcome-greeting', className].filter(Boolean).join(' ')}>
