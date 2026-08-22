@@ -50,6 +50,7 @@
 ├── AGENTS.md                # AI Agent 开发规范
 ├── CHANGELOG.md
 ├── package.json
+├── vercel.json              # Vercel SPA 深层路由重写
 ├── vite.config.ts
 └── wrangler.toml
 ```
@@ -305,6 +306,162 @@ npx wrangler pages deploy dist --project-name dh --branch=preview
 - [Cloudflare Pages Direct Upload](https://developers.cloudflare.com/pages/get-started/direct-upload/)
 
 更完整的部署恢复与迁移说明见 `docs/DEPLOYMENT.md`。
+
+## Vercel 部署教程
+
+本项目也可以作为纯静态 React + Vite SPA 部署到 Vercel。推荐使用 **GitHub + Vercel Git Integration**：导入一次仓库后，`main` 分支的新提交会自动更新生产环境，其他分支和 Pull Request 会生成独立的 Preview Deployment。
+
+### 1. 部署前准备
+
+确认 GitHub 仓库已经包含以下文件：
+
+- `package.json` 与 `package-lock.json`；
+- `src/`、`public/` 和其他源代码；
+- 根目录的 `vercel.json`；
+- 不包含 `dist/`、`node_modules/`、`.vercel/`、`.env` 或任何密钥。
+
+首次部署前建议在本地运行：
+
+```bash
+npm ci
+npm run format:check
+npm run lint
+npm run build
+```
+
+### 2. SPA 深层路由配置
+
+Vercel 不会默认把未知路径交给浏览器端路由。本仓库根目录已经提供：
+
+```json
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
+}
+```
+
+该规则让 `/tools/json-formatter`、`/category/developer` 等地址在直接打开或刷新时仍返回应用入口，再由 React Router 渲染正确页面。不要删除此文件，也不要在 Vercel Dashboard 中配置冲突的重写规则。
+
+### 3. 导入 GitHub 仓库
+
+1. 登录 [Vercel Dashboard](https://vercel.com/dashboard)；
+2. 选择 **Add New → Project**；
+3. 在 **Import Git Repository** 中连接 GitHub；
+4. 只授权需要部署的仓库，选择 `LuoPoJunZi/DH`；
+5. 点击仓库右侧的 **Import**。
+
+如果列表中没有仓库，打开 GitHub 的 **Settings → Applications → Installed GitHub Apps → Vercel → Configure**，确认 Vercel 已获得该仓库的访问权限。
+
+### 4. 填写构建配置
+
+Vercel 通常会自动识别 Vite。导入页面请确认最终值如下：
+
+| Vercel 配置项    | 本项目填写值    | 说明                                       |
+| ---------------- | --------------- | ------------------------------------------ |
+| Project Name     | `dh` 或可用名称 | 决定默认的 `*.vercel.app` 项目地址         |
+| Framework Preset | `Vite`          | 使用 Vite 的默认静态构建配置               |
+| Root Directory   | `./`            | 项目位于仓库根目录                         |
+| Build Command    | `npm run build` | 包含 SEO 生成、TypeScript 检查和 Vite 构建 |
+| Output Directory | `dist`          | 不要填写 `/dist`、`public` 或仓库根目录    |
+| Install Command  | 保持默认        | Vercel 会根据 `package-lock.json` 使用 npm |
+
+本项目当前不需要环境变量、数据库、Vercel Functions 或 API Key。Node.js 版本可以保持 Vercel 根据 `package.json` 自动选择的受支持版本；如需统一版本，可在 **Project Settings → Build and Deployment → Node.js Version** 中设置，但 `package.json` 的 `engines.node` 会优先于 Dashboard 设置。
+
+### 5. 首次部署与验收
+
+点击 **Deploy**。构建日志应依次出现依赖安装、`npm run build`、`Generated SEO files`、TypeScript 检查和 Vite 构建。成功后 Vercel 会分配一个：
+
+```text
+https://<project-name>.vercel.app
+```
+
+至少检查以下地址：
+
+```text
+/
+/tools
+/tools/json-formatter
+/category/developer
+```
+
+验收内容：
+
+- 首页、Logo、搜索、分类和主题切换正常；
+- 工具页面可以直接打开并刷新，不出现 Vercel 404；
+- JavaScript、CSS、Favicon 和外部 Logo 正常加载；
+- Vercel Deployment 中显示的 Git Commit 与 GitHub 最新提交一致。
+
+### 6. 后续自动部署
+
+- Push 或合并到生产分支 `main`：创建 Production Deployment，并更新生产域名；
+- Push 到其他分支或创建 Pull Request：生成独立 Preview Deployment，不覆盖生产环境；
+- 构建失败：打开项目的 **Deployments**，进入失败记录查看 Build Logs 中的第一个错误；
+- 需要回退：可重新部署历史成功记录，或在 Git 中回退对应提交后重新 Push。
+
+### 7. 绑定自定义域名
+
+1. 打开 Vercel 项目；
+2. 进入 **Settings → Domains**；
+3. 点击 **Add Domain** 并输入域名，例如 `tools.example.com`；
+4. 按 Vercel 当前页面给出的 A、CNAME 或 TXT 记录配置 DNS；
+5. 如果 DNS 托管在 Cloudflare，请在 Cloudflare DNS 页面添加 Vercel 显示的准确记录；
+6. 等待 Vercel 显示域名配置有效并自动签发 HTTPS 证书。
+
+不要照抄其他项目的 DNS 目标；Vercel 可能会为项目生成专用 CNAME。正式域名生效后，将 `src/config/site.data.json` 的 `url` 改为最终 HTTPS 地址并重新 Push，使 canonical、Open Graph、Sitemap 和 `robots.txt` 指向正式域名。
+
+### 8. 可选：使用 Vercel CLI
+
+GitHub 自动部署是推荐的正式维护方式。需要创建临时预览时，可在项目根目录执行：
+
+```bash
+npx vercel
+```
+
+首次运行会要求登录、选择账号并关联项目，随后生成 Preview URL。确认预览无误并确实需要从本地发布生产版本时再执行：
+
+```bash
+npx vercel --prod
+```
+
+CLI 创建的 `.vercel/` 只保存本地项目关联信息，已经加入 `.gitignore`，不要提交到 GitHub。
+
+### 9. 常见问题
+
+#### 首页正常但工具页面刷新后 404
+
+- 确认仓库根目录存在并已提交 `vercel.json`；
+- 确认 Root Directory 为仓库根目录；
+- 检查 Dashboard 是否存在覆盖该文件的冲突路由配置；
+- 修正后重新部署，并直接访问 `/tools/json-formatter` 验证。
+
+#### 构建成功但网站显示 Vercel 404
+
+- Framework Preset 应为 `Vite`；
+- Build Command 应为 `npm run build`；
+- Output Directory 必须是 `dist`；
+- 打开 Build Output，确认 `dist/index.html` 已生成。
+
+#### 构建时报 Node.js 或依赖错误
+
+- 确认 `package-lock.json` 已提交；
+- 本地运行 `npm ci && npm run build` 复现；
+- 在 **Settings → Build and Deployment** 查看 Node.js、Install Command 和 Root Directory；
+- 从 Build Logs 中处理第一个真实错误，不要仅根据最后的退出代码判断。
+
+#### 页面仍然是旧版本
+
+- 确认当前访问的是 Production Domain，而不是旧 Preview URL；
+- 在 Deployments 中核对最新 Production Deployment 的 Commit SHA；
+- 确认提交已经进入生产分支 `main`；
+- 必要时从 Deployments 对最新提交执行 Redeploy。
+
+### 10. Vercel 官方参考
+
+- [Vite on Vercel](https://vercel.com/docs/frameworks/frontend/vite)
+- [Deploying Git Repositories](https://vercel.com/docs/git)
+- [Vercel Project Configuration](https://vercel.com/docs/project-configuration/vercel-json)
+- [Supported Node.js Versions](https://vercel.com/docs/functions/runtimes/node-js/node-js-versions)
+- [Adding and Configuring a Custom Domain](https://vercel.com/docs/domains/working-with-domains/add-a-domain)
 
 ## 如何添加新工具
 

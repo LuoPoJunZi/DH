@@ -7,8 +7,9 @@ dist/
 coverage/
 *.tsbuildinfo
 
-# Cloudflare and local tooling
+# Deployment and local tooling
 .wrangler/
+.vercel/
 .dev.vars
 .playwright-cli/
 output/playwright/
