@@ -9,6 +9,7 @@ interface SiteConfig {
   url: string;
   author: string;
   github: string;
+  blog: string;
   footer: string;
   categories: ToolCategory[];
 }

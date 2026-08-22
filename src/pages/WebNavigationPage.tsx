@@ -1,13 +1,11 @@
 import {
   ArrowUpRight,
+  Blocks,
   BookOpen,
-  Bot,
   Cat,
   Clapperboard,
-  Cloud,
   Gamepad2,
   Music2,
-  Network,
   PackageOpen,
   Palette,
   Search,
@@ -25,9 +23,7 @@ import { webNavigationCategories } from '../config/webNavigation';
 import type { WebNavigationCategoryId } from '../types/web-navigation';
 
 const categoryIcons = {
-  ai: Bot,
-  cloud: Cloud,
-  network: Network,
+  digital: Blocks,
   video: Clapperboard,
   anime: Cat,
   music: Music2,
@@ -43,7 +39,7 @@ function getHostname(url: string) {
 }
 
 export function WebNavigationPage() {
-  const [activeCategoryId, setActiveCategoryId] = useState<WebNavigationCategoryId>('ai');
+  const [activeCategoryId, setActiveCategoryId] = useState<WebNavigationCategoryId>('digital');
   const [activeSubcategoryId, setActiveSubcategoryId] = useState<string | null>(null);
   const [query, setQuery] = useState('');
   const deferredQuery = useDeferredValue(query.trim().toLocaleLowerCase());
@@ -81,7 +77,7 @@ export function WebNavigationPage() {
     <>
       <Seo
         title="网站导航"
-        description="按 AI、云服务、网络、影视、二次元、音乐、阅读、游戏、娱乐、工具箱和软件分类浏览常用网站。"
+        description="按数字服务、影视、二次元、音乐、阅读、游戏、娱乐、工具箱和软件分类浏览常用网站。"
         keywords={['网站导航', 'AI 导航', '云服务', '影视导航', '在线工具', '软件官网']}
         path="/"
       />

@@ -1,5 +1,4 @@
 import { LockKeyhole } from 'lucide-react';
-import { Link } from 'react-router-dom';
 import { siteConfig } from '../../config/site';
 
 export function Footer() {
@@ -15,13 +14,9 @@ export function Footer() {
           数据仅在浏览器本地处理
         </div>
         <div className="site-footer__links">
-          <Link to="/">首页</Link>
-          <Link to="/tools">在线工具</Link>
-          {siteConfig.github ? (
-            <a href={siteConfig.github} target="_blank" rel="noreferrer">
-              GitHub
-            </a>
-          ) : null}
+          <a href={siteConfig.blog} target="_blank" rel="noopener noreferrer">
+            个人博客
+          </a>
         </div>
       </div>
     </footer>

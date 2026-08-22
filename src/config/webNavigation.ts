@@ -10,8 +10,14 @@ type WebNavigationLinkSource = Omit<WebNavigationLink, 'logoUrl'> & {
   logoUrl?: `https://${string}`;
 };
 
-type CoreNavigationCategorySource = Omit<WebNavigationCategory, 'links' | 'subcategories'> & {
+interface CoreNavigationSubcategorySource {
+  id: string;
+  name: string;
   links: WebNavigationLinkSource[];
+}
+
+type CoreNavigationCategorySource = Omit<WebNavigationCategory, 'links' | 'subcategories'> & {
+  subcategories: CoreNavigationSubcategorySource[];
 };
 
 interface ImportedNavigationLink {
@@ -56,139 +62,242 @@ function uniqueLinks(links: WebNavigationLink[]) {
 
 const coreNavigationCategorySources: CoreNavigationCategorySource[] = [
   {
-    id: 'ai',
-    name: 'AI',
-    description: '常用对话、代码与多模态 AI 助手',
-    sourceUrl: 'https://dh.luopojunzi.com/',
-    links: [
+    id: 'digital',
+    name: '数字服务',
+    description: 'AI、云平台、域名与网络工具',
+    sourceUrl: 'https://blog.luopojunzi.com/p/Website/',
+    subcategories: [
       {
-        name: 'ChatGPT',
-        description: '通用对话、写作与多模态 AI 助手',
-        url: 'https://chatgpt.com/',
+        id: 'ai-assistants',
+        name: 'AI 助手',
+        links: [
+          {
+            name: 'ChatGPT',
+            description: '通用对话、写作与多模态 AI 助手',
+            url: 'https://chatgpt.com/',
+          },
+          {
+            name: 'Claude',
+            description: '擅长代码与长文档处理的 AI 助手',
+            url: 'https://claude.ai/',
+          },
+          {
+            name: 'Gemini',
+            description: 'Google 推出的多模态 AI 助手',
+            url: 'https://gemini.google.com/',
+          },
+          {
+            name: 'Grok',
+            description: 'xAI 推出的对话与代码 AI 助手',
+            url: 'https://grok.com/',
+          },
+          {
+            name: 'Microsoft Copilot',
+            description: '微软推出的通用 AI 助手',
+            url: 'https://copilot.microsoft.com/',
+          },
+        ],
       },
       {
-        name: 'Claude',
-        description: '擅长代码与长文档处理的 AI 助手',
-        url: 'https://claude.ai/',
+        id: 'cloud-platforms',
+        name: '云与开发',
+        links: [
+          {
+            name: 'Cloudflare',
+            description: 'CDN、DNS 与安全服务控制台',
+            url: 'https://dash.cloudflare.com/',
+          },
+          {
+            name: 'GitHub',
+            description: '代码托管与开源协作社区',
+            url: 'https://github.com/',
+          },
+          {
+            name: 'CloudCone',
+            description: '云服务器与实例管理平台',
+            url: 'https://app.cloudcone.com/?ref=11880',
+          },
+          {
+            name: 'RackNerd',
+            description: 'VPS 与云端主机服务平台',
+            url: 'https://my.racknerd.com/aff.php?aff=12190',
+          },
+          {
+            name: 'RareCloud',
+            description: '云端主机与网络服务平台',
+            url: 'https://rarecloud.io/clients/aff.php?aff=585',
+          },
+          {
+            name: 'Alice云',
+            description: 'Alice 云服务控制台',
+            url: 'https://console.alice.sh/dashboard',
+          },
+        ],
       },
       {
-        name: 'Gemini',
-        description: 'Google 推出的多模态 AI 助手',
-        url: 'https://gemini.google.com/',
+        id: 'domain-services',
+        name: '域名服务',
+        links: [
+          {
+            name: 'Porkbun',
+            description: '域名注册与管理平台',
+            url: 'https://porkbun.com/',
+          },
+          {
+            name: 'Spaceship',
+            description: '域名注册与云服务平台',
+            url: 'https://www.spaceship.com/',
+          },
+          {
+            name: 'TLD-List',
+            description: '比较不同注册商的顶级域名价格',
+            url: 'https://zh-hans.tld-list.com/',
+          },
+        ],
       },
       {
-        name: 'Grok',
-        description: 'xAI 推出的对话与代码 AI 助手',
-        url: 'https://grok.com/',
-      },
-    ],
-  },
-  {
-    id: 'cloud',
-    name: '云服务',
-    description: '代码托管、域名与云端主机平台',
-    sourceUrl: 'https://dh.luopojunzi.com/',
-    links: [
-      {
-        name: 'Cloudflare',
-        description: 'CDN、DNS 与安全服务控制台',
-        url: 'https://dash.cloudflare.com/',
-      },
-      {
-        name: 'GitHub',
-        description: '代码托管与开源协作社区',
-        url: 'https://github.com/',
-      },
-      {
-        name: 'Porkbun',
-        description: '域名注册与管理平台',
-        url: 'https://porkbun.com/',
-      },
-      {
-        name: 'Spaceship',
-        description: '域名注册与云服务平台',
-        url: 'https://www.spaceship.com/',
-      },
-      {
-        name: 'CloudCone',
-        description: '云服务器与实例管理平台',
-        url: 'https://app.cloudcone.com/?ref=11880',
-      },
-      {
-        name: 'RackNerd',
-        description: 'VPS 与云端主机服务平台',
-        url: 'https://my.racknerd.com/aff.php?aff=12190',
-      },
-      {
-        name: 'RareCloud',
-        description: '云端主机与网络服务平台',
-        url: 'https://rarecloud.io/clients/aff.php?aff=585',
-      },
-      {
-        name: 'Alice云',
-        description: 'Alice 云服务控制台',
-        url: 'https://console.alice.sh/dashboard',
-      },
-    ],
-  },
-  {
-    id: 'network',
-    name: '网络',
-    description: '个人站点、网络检测与代理工具',
-    sourceUrl: 'https://dh.luopojunzi.com/',
-    links: [
-      {
-        name: '个人博客',
-        description: '落魄君子的个人博客',
-        url: 'https://blog.luopojunzi.com/',
-      },
-      {
-        name: '落魄鸡窝',
-        description: '落魄君子的社区站点',
-        url: 'https://komari.luopojunzi.com/',
-      },
-      {
-        name: 'IT-PING',
-        description: '多节点网站 Ping 与网络质量测试',
-        url: 'https://www.itdog.cn/ping/',
+        id: 'network-checks',
+        name: '网络检测',
+        links: [
+          {
+            name: 'ITDOG',
+            description: '多节点 Ping、路由与网站质量测试',
+            url: 'https://www.itdog.cn/ping/',
+          },
+          {
+            name: 'Speedtest',
+            description: '网络速度与延迟测试',
+            url: 'https://www.speedtest.net/',
+          },
+          {
+            name: 'Fast.com',
+            description: 'Netflix 提供的简洁网络测速工具',
+            url: 'https://fast.com/',
+          },
+          {
+            name: 'IP.SB',
+            description: '快速查看当前公网 IP 与网络信息',
+            url: 'https://ip.sb/',
+          },
+          {
+            name: 'Scamalytics',
+            description: '查询 IP 欺诈风险与代理评分',
+            url: 'https://scamalytics.com/ip',
+          },
+          {
+            name: 'Whoer',
+            description: '检查 IP、DNS 与浏览器网络信息',
+            url: 'https://whoer.net/',
+          },
+          {
+            name: 'IPData',
+            description: 'IP 地理位置与威胁情报查询',
+            url: 'https://ipdata.co/',
+          },
+          {
+            name: 'IP123',
+            description: '查看全球 IP 归属与网络信息',
+            url: 'https://ip123.in/',
+          },
+          {
+            name: 'IPinfo',
+            description: '查询 IP 运营商、位置与网络详情',
+            url: 'https://ipinfo.io/',
+          },
+          {
+            name: 'IP.SKK',
+            description: '查看当前 IP、DNS 与连接信息',
+            url: 'https://ip.skk.moe/',
+          },
+          {
+            name: 'IPHub',
+            description: '检测 IP 是否属于代理或 VPN 网络',
+            url: 'https://iphub.info/',
+          },
+          {
+            name: 'Ping0',
+            description: '高精度查询 IP 地址归属地',
+            url: 'https://ip.ping0.cc/',
+          },
+          {
+            name: 'DNSPod 工具箱',
+            description: '域名 DNS、解析与网络检测工具',
+            url: 'https://tool.dnspod.cn/',
+          },
+        ],
       },
       {
-        name: 'Speedtest',
-        description: '网络速度与延迟测试',
-        url: 'https://www.speedtest.net/',
+        id: 'network-clients',
+        name: '网络客户端',
+        links: [
+          {
+            name: 'v2rayN',
+            description: 'Windows 网络代理客户端发布页',
+            url: 'https://github.com/2dust/v2rayN/releases/',
+          },
+          {
+            name: 'NekoBox',
+            description: 'Android 网络代理客户端项目',
+            url: 'https://github.com/MatsuriDayo/NekoBoxForAndroid',
+          },
+          {
+            name: 'sing-box',
+            description: '跨平台通用代理工具文档',
+            url: 'https://sing-box.sagernet.org/',
+          },
+          {
+            name: 'Shadowrocket',
+            description: 'iOS 网络代理客户端 App Store 页面',
+            url: 'https://apps.apple.com/app/shadowrocket/id932747118',
+          },
+          {
+            name: 'Clash Verge Rev',
+            description: '跨平台 Clash 桌面客户端项目',
+            url: 'https://github.com/clash-verge-rev/clash-verge-rev',
+          },
+          {
+            name: 'Hiddify',
+            description: '基于多种协议的跨平台网络客户端',
+            url: 'https://github.com/hiddify/hiddify-app',
+          },
+        ],
       },
       {
-        name: 'v2rayN',
-        description: 'Windows 网络代理客户端发布页',
-        url: 'https://github.com/2dust/v2rayN/releases/',
-      },
-      {
-        name: 'NekoBox',
-        description: 'Android 网络代理客户端项目',
-        url: 'https://github.com/MatsuriDayo/NekoBoxForAndroid',
-      },
-      {
-        name: 'sing-box',
-        description: '跨平台通用代理工具文档',
-        url: 'https://sing-box.sagernet.org/',
-      },
-      {
-        name: 'Shadowrocket',
-        description: 'iOS 网络代理客户端 App Store 页面',
-        url: 'https://apps.apple.com/app/shadowrocket/id932747118',
+        id: 'personal-sites',
+        name: '个人站点',
+        links: [
+          {
+            name: '个人博客',
+            description: '落魄君子的个人博客',
+            url: 'https://blog.luopojunzi.com/',
+          },
+          {
+            name: '落魄鸡窝',
+            description: '落魄君子的社区站点',
+            url: 'https://komari.luopojunzi.com/',
+          },
+        ],
       },
     ],
   },
 ];
 
 const coreNavigationCategories: WebNavigationCategory[] = coreNavigationCategorySources.map(
-  (category) => ({
-    ...category,
-    links: category.links.map((link) => ({
-      ...link,
-      logoUrl: link.logoUrl ?? getWebsiteLogoUrl(link.url),
-    })),
-  }),
+  (category) => {
+    const subcategories = category.subcategories.map((subcategory) => ({
+      ...subcategory,
+      links: subcategory.links.map((link) => ({
+        ...link,
+        logoUrl: link.logoUrl ?? getWebsiteLogoUrl(link.url),
+      })),
+    }));
+
+    return {
+      ...category,
+      links: uniqueLinks(subcategories.flatMap((subcategory) => subcategory.links)),
+      subcategories,
+    };
+  },
 );
 
 const importedNavigationCategories: WebNavigationCategory[] = (

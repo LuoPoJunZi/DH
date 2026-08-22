@@ -5,7 +5,7 @@
 ## 功能特点
 
 - 工具名称、描述、分类与关键词的前端即时搜索；
-- AI、云服务、网络、影视、二次元、音乐、阅读、游戏、娱乐、工具箱和软件十一分类网站导航，包含 24 个子分类与 281 个不重复入口；
+- 数字服务、影视、二次元、音乐、阅读、游戏、娱乐、工具箱和软件九分类网站导航，包含 30 个子分类与 296 个不重复入口；
 - 统一配置驱动的首页、分类、路由、相关工具与 Sitemap；
 - 工具按路由懒加载，降低首页 JavaScript 体积；
 - 跟随系统、浅色与深色三档主题；
@@ -345,35 +345,42 @@ Vercel 不会默认把未知路径交给浏览器端路由。本仓库根目录�
 ### 3. 导入 GitHub 仓库
 
 1. 登录 [Vercel Dashboard](https://vercel.com/dashboard)；
-2. 选择 **Add New → Project**；
-3. 在 **Import Git Repository** 中连接 GitHub；
-4. 只授权需要部署的仓库，选择 `LuoPoJunZi/DH`；
-5. 点击仓库右侧的 **Import**。
+2. 首次进入 Overview 时，在 **Deploy your first project** 区域找到 **New repository detected**；
+3. 确认检测到的仓库是 `LuoPoJunZi/DH`，点击卡片中的 **Import**；
+4. 如果没有出现推荐卡片，选择 **Import Project**，连接 GitHub 后再选择该仓库；
+5. 不要选择 Chatbot、FastAPI、Next.js 等模板，它们与本项目无关。
 
 如果列表中没有仓库，打开 GitHub 的 **Settings → Applications → Installed GitHub Apps → Vercel → Configure**，确认 Vercel 已获得该仓库的访问权限。
 
 ### 4. 填写构建配置
 
-Vercel 通常会自动识别 Vite。导入页面请确认最终值如下：
+进入 **New Project** 页面后，Vercel 会自动识别 Vite。请确认最终值如下：
 
-| Vercel 配置项    | 本项目填写值    | 说明                                       |
-| ---------------- | --------------- | ------------------------------------------ |
-| Project Name     | `dh` 或可用名称 | 决定默认的 `*.vercel.app` 项目地址         |
-| Framework Preset | `Vite`          | 使用 Vite 的默认静态构建配置               |
-| Root Directory   | `./`            | 项目位于仓库根目录                         |
-| Build Command    | `npm run build` | 包含 SEO 生成、TypeScript 检查和 Vite 构建 |
-| Output Directory | `dist`          | 不要填写 `/dist`、`public` 或仓库根目录    |
-| Install Command  | 保持默认        | Vercel 会根据 `package-lock.json` 使用 npm |
+| Vercel 配置项      | 本项目填写值    | 说明                                          |
+| ------------------ | --------------- | --------------------------------------------- |
+| Vercel Team        | 个人 Hobby 团队 | 使用当前账号即可                              |
+| Project Name       | `dh`            | 使用小写；正式别名由 Vercel 自动分配          |
+| Application Preset | `Vite`          | Vercel 已能自动识别，不要选择 Next.js         |
+| Root Directory     | `./`            | 项目位于仓库根目录，不需要点击 Edit           |
+| Build Command      | `npm run build` | 点击铅笔启用覆盖，明确填写此值                |
+| Output Directory   | `dist`          | 点击铅笔启用覆盖，只填写 `dist`               |
+| Install Command    | 保持默认        | 不启用覆盖；根据 `package-lock.json` 使用 npm |
 
-本项目当前不需要环境变量、数据库、Vercel Functions 或 API Key。Node.js 版本可以保持 Vercel 根据 `package.json` 自动选择的受支持版本；如需统一版本，可在 **Project Settings → Build and Deployment → Node.js Version** 中设置，但 `package.json` 的 `engines.node` 会优先于 Dashboard 设置。
+展开 **Build and Output Settings** 后再核对后三项。**Environment Variables** 保持折叠且不添加内容；本项目不需要数据库、Vercel Functions、API Key 或其他环境变量。
+
+部署完成后，Overview 中显示 Node.js `24.x` 属于正常结果。Vercel 会结合当前受支持版本和 `package.json` 的 `engines.node` 自动选择版本，本项目已经在该版本构建成功，无需改成 22.x。
 
 ### 5. 首次部署与验收
 
-点击 **Deploy**。构建日志应依次出现依赖安装、`npm run build`、`Generated SEO files`、TypeScript 检查和 Vite 构建。成功后 Vercel 会分配一个：
+点击 **Deploy**。构建日志应依次出现依赖安装、`npm run build`、`Generated SEO files`、TypeScript 检查和 Vite 构建。出现 **Congratulations!** 即表示首次生产部署完成；页面上的 **Install Coding Agent Plugin** 是可选推广项，不需要安装。
+
+本项目当前的稳定生产别名是：
 
 ```text
-https://<project-name>.vercel.app
+https://dh-pied.vercel.app
 ```
+
+Overview 中还会显示类似 `dh-ier85n074-luopojunzis-projects.vercel.app` 的带哈希 Deployment URL。该地址固定指向某一次构建；日常访问和分享应使用不带构建哈希的生产别名 `dh-pied.vercel.app`。
 
 至少检查以下地址：
 
@@ -389,9 +396,22 @@ https://<project-name>.vercel.app
 - 首页、Logo、搜索、分类和主题切换正常；
 - 工具页面可以直接打开并刷新，不出现 Vercel 404；
 - JavaScript、CSS、Favicon 和外部 Logo 正常加载；
-- Vercel Deployment 中显示的 Git Commit 与 GitHub 最新提交一致。
+- Production Deployment 状态为 `Ready`；
+- Source 显示 `main`，Git Commit 与 GitHub 最新提交一致。
 
-### 6. 后续自动部署
+Vercel 自动生成的站点预览图可能显示 `San Jose`，因为截图请求来自 Vercel 的服务器；真实访客打开页面时仍会根据访客 IP 显示城市。
+
+### 6. 理解 Overview 状态和后续自动部署
+
+首次部署后的 Overview 可能显示以下状态，它们都属于正常情况：
+
+- **Function Invocations = 0**：本项目是纯静态网站，没有使用 Vercel Functions；
+- **No Active Branches**：目前只有 `main` 生产分支，没有额外的 Preview 分支；
+- **Production Checklist 1/5**：其他项目是可选建议，不影响网站运行；
+- **Analytics / Speed Insights 未启用**：两者均非必需。考虑到项目的轻量与隐私定位，在明确需要访问统计前保持关闭；
+- **Fluid Compute、Function CPU、Function Region**：只影响 Functions，本项目无需调整。
+
+GitHub 自动部署规则如下：
 
 - Push 或合并到生产分支 `main`：创建 Production Deployment，并更新生产域名；
 - Push 到其他分支或创建 Pull Request：生成独立 Preview Deployment，不覆盖生产环境；
@@ -408,6 +428,8 @@ https://<project-name>.vercel.app
 6. 等待 Vercel 显示域名配置有效并自动签发 HTTPS 证书。
 
 不要照抄其他项目的 DNS 目标；Vercel 可能会为项目生成专用 CNAME。正式域名生效后，将 `src/config/site.data.json` 的 `url` 改为最终 HTTPS 地址并重新 Push，使 canonical、Open Graph、Sitemap 和 `robots.txt` 指向正式域名。
+
+如果不绑定自定义域名，则应把上述 `url` 设置为 `https://dh-pied.vercel.app`，不要继续保留其他平台的临时地址。
 
 ### 8. 可选：使用 Vercel CLI
 
@@ -459,6 +481,8 @@ CLI 创建的 `.vercel/` 只保存本地项目关联信息，已经加入 `.giti
 
 - [Vite on Vercel](https://vercel.com/docs/frameworks/frontend/vite)
 - [Deploying Git Repositories](https://vercel.com/docs/git)
+- [Accessing Deployments through Generated URLs](https://vercel.com/docs/deployments/generated-urls)
+- [Deployments Overview](https://vercel.com/docs/deployments/overview)
 - [Vercel Project Configuration](https://vercel.com/docs/project-configuration/vercel-json)
 - [Supported Node.js Versions](https://vercel.com/docs/functions/runtimes/node-js/node-js-versions)
 - [Adding and Configuring a Custom Domain](https://vercel.com/docs/domains/working-with-domains/add-a-domain)
@@ -475,7 +499,7 @@ CLI 创建的 `.vercel/` 只保存本地项目关联信息，已经加入 `.giti
 
 ## 配置品牌
 
-网站名称、描述、URL、作者、GitHub 和分类统一位于 `src/config/site.data.json`。正式 Logo、项目截图等图床链接统一位于 `src/config/images.ts`。网站导航注册表位于 `src/config/webNavigation.ts`，同步生成的数据位于 `src/config/liumingye-navigation.data.json`，只收录 HTTPS 地址。绑定正式域名、GitHub 仓库或图床资源后只需更新配置并重新构建。
+网站名称、描述、URL、作者、GitHub、个人博客和分类统一位于 `src/config/site.data.json`。正式 Logo、项目截图等图床链接统一位于 `src/config/images.ts`。网站导航注册表位于 `src/config/webNavigation.ts`，同步生成的数据位于 `src/config/liumingye-navigation.data.json`，只收录 HTTPS 地址。绑定正式域名、GitHub 仓库或图床资源后只需更新配置并重新构建。
 
 欢迎语的定位接口集中配置在 `src/config/visitorLocation.ts`。请求由访客浏览器直接发起，城市仅在当前浏览器会话中缓存，本站没有后端，也不会保存定位结果；接口不可用时回退到浏览器时区城市。
 

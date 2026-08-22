@@ -1,7 +1,5 @@
 export type WebNavigationCategoryId =
-  | 'ai'
-  | 'cloud'
-  | 'network'
+  | 'digital'
   | 'video'
   | 'anime'
   | 'music'
