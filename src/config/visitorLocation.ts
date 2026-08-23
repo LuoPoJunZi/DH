@@ -4,7 +4,7 @@ interface VisitorLocationEndpoint {
 }
 
 export const visitorLocationConfig = {
-  cacheKey: 'kang-visitor-city',
+  cacheKey: 'luopo-visitor-city',
   timeoutMs: 3_000,
   endpoints: [
     {

@@ -1,6 +1,6 @@
 # 部署与恢复指南
 
-本文记录如何从 GitHub 仓库重新建立 KANG 在线工具的 Cloudflare Pages 持续部署。项目是纯静态 Vite SPA，不需要数据库、CMS、Cloudflare Workers 或常驻服务器。
+本文记录如何从 GitHub 仓库重新建立 LUOPO Tools 的 Cloudflare Pages 持续部署。项目是纯静态 Vite SPA，不需要数据库、CMS、Cloudflare Workers 或常驻服务器。
 
 ## 1. GitHub 仓库准备
 
@@ -77,7 +77,7 @@ Cloudflare Pages 在构建产物不存在顶层 `404.html` 时，默认按 SPA �
 
 ```bash
 npm run build
-npx wrangler pages deploy dist --project-name kang-tools
+npx wrangler pages deploy dist --project-name dh
 ```
 
 正式流程仍以 GitHub 集成为准。

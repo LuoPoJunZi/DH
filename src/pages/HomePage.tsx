@@ -75,7 +75,7 @@ export function HomePage() {
             </div>
           </div>
           <div className="home-hero__index" aria-hidden="true">
-            <span className="home-hero__index-k">K</span>
+            <span className="home-hero__index-letter">L</span>
             <div>
               <span>LOCAL</span>
               <span>FAST</span>
@@ -169,7 +169,7 @@ export function HomePage() {
               <div className="home-note__grid">
                 <h2>处理发生在你的浏览器里。</h2>
                 <p>
-                  KANG Tools 是一个纯静态工具站。首批工具无需账户、没有上传步骤，也不依赖后台服务。
+                  LUOPO Tools 是一个纯静态工具站。首批工具无需账户、没有上传步骤，也不依赖后台服务。
                   页面从 GitHub 持续部署到 Cloudflare Pages，保持简单、透明且足够快。
                 </p>
               </div>

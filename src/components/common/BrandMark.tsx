@@ -7,7 +7,7 @@ export function BrandMark() {
     <Link className="brand" to="/" aria-label={`${siteConfig.name}首页`}>
       <span className="brand__mark" aria-hidden="true">
         <img
-          src={imageConfig.logo}
+          src={imageConfig.logo || imageConfig.logoFallback}
           alt=""
           loading="eager"
           decoding="async"

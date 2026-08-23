@@ -1,6 +1,10 @@
-# KANG 在线工具
+# LUOPO Tools
 
 一个简洁、快速、注重隐私的在线工具集合。所有首批工具都直接在浏览器中运行，输入内容不会上传到服务器。项目面向长期扩展设计，可直接部署到 Cloudflare Pages。
+
+正式地址：[https://tool.luopojunzi.com/](https://tool.luopojunzi.com/)
+
+GitHub：[https://github.com/LuoPoJunZi](https://github.com/LuoPoJunZi)
 
 ## 功能特点
 

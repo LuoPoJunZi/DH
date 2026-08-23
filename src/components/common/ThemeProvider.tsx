@@ -6,7 +6,7 @@ import {
   type ThemePreference,
 } from '../../hooks/useTheme';
 
-const STORAGE_KEY = 'kang-theme';
+const STORAGE_KEY = 'luopo-theme';
 
 function getStoredPreference(): ThemePreference {
   const stored = localStorage.getItem(STORAGE_KEY);

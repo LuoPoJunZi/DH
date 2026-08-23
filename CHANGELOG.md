@@ -13,6 +13,8 @@
 
 ### Changed
 
+- 站点品牌统一为“LUOPO Tools”，并将 SEO、Sitemap 与 Manifest 指向正式域名
+- Footer 增加项目所有者的 GitHub 主页入口
 - 首页欢迎语改用三级 IP 定位接口获取城市，并提供会话缓存、超时与浏览器时区回退。
 - 网站导航调整为根路径首页，原工具首页移动到 `/tools`，旧 `/navigation` 自动跳转到首页。
 - Header 使用项目所有者提供的图床 Logo，并保留本地 Favicon 加载回退

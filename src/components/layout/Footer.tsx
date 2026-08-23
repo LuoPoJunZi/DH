@@ -17,6 +17,9 @@ export function Footer() {
           <a href={siteConfig.blog} target="_blank" rel="noopener noreferrer">
             个人博客
           </a>
+          <a href={siteConfig.github} target="_blank" rel="noopener noreferrer">
+            GitHub
+          </a>
         </div>
       </div>
     </footer>

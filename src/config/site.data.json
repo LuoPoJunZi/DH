@@ -1,11 +1,11 @@
 {
-  "name": "KANG 在线工具",
-  "shortName": "KANG Tools",
+  "name": "LUOPO Tools",
+  "shortName": "LUOPO Tools",
   "description": "简洁、快速、注重隐私的浏览器本地工具集合。",
   "tagline": "把常用工具，放在手边。",
-  "url": "https://kang-tools.pages.dev",
-  "author": "KANG",
-  "github": "",
+  "url": "https://tool.luopojunzi.com",
+  "author": "LUOPO",
+  "github": "https://github.com/LuoPoJunZi",
   "blog": "https://blog.luopojunzi.com/",
   "footer": "为日常工作打造的轻量工具集",
   "categories": [

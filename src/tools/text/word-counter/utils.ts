@@ -27,4 +27,4 @@ export function countText(value: string): TextStatistics {
 
 export const wordCounterSample = `把常用工具，放在手边。
 
-KANG Tools is a fast and privacy-first toolbox. 所有输入内容都只在浏览器本地处理。`;
+LUOPO Tools is a fast and privacy-first toolbox. 所有输入内容都只在浏览器本地处理。`;

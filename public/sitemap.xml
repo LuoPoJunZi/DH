@@ -1,82 +1,82 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://kang-tools.pages.dev/</loc>
+    <loc>https://tool.luopojunzi.com/</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://kang-tools.pages.dev/tools</loc>
+    <loc>https://tool.luopojunzi.com/tools</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://kang-tools.pages.dev/category/developer</loc>
+    <loc>https://tool.luopojunzi.com/category/developer</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://kang-tools.pages.dev/category/text</loc>
+    <loc>https://tool.luopojunzi.com/category/text</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://kang-tools.pages.dev/category/converter</loc>
+    <loc>https://tool.luopojunzi.com/category/converter</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://kang-tools.pages.dev/category/image</loc>
+    <loc>https://tool.luopojunzi.com/category/image</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://kang-tools.pages.dev/category/network</loc>
+    <loc>https://tool.luopojunzi.com/category/network</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://kang-tools.pages.dev/category/other</loc>
+    <loc>https://tool.luopojunzi.com/category/other</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://kang-tools.pages.dev/tools/json-formatter</loc>
+    <loc>https://tool.luopojunzi.com/tools/json-formatter</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://kang-tools.pages.dev/tools/base64</loc>
+    <loc>https://tool.luopojunzi.com/tools/base64</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://kang-tools.pages.dev/tools/url-codec</loc>
+    <loc>https://tool.luopojunzi.com/tools/url-codec</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://kang-tools.pages.dev/tools/timestamp</loc>
+    <loc>https://tool.luopojunzi.com/tools/timestamp</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://kang-tools.pages.dev/tools/uuid-generator</loc>
+    <loc>https://tool.luopojunzi.com/tools/uuid-generator</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://kang-tools.pages.dev/tools/word-counter</loc>
+    <loc>https://tool.luopojunzi.com/tools/word-counter</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://kang-tools.pages.dev/tools/text-deduplicator</loc>
+    <loc>https://tool.luopojunzi.com/tools/text-deduplicator</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://kang-tools.pages.dev/tools/radix-converter</loc>
+    <loc>https://tool.luopojunzi.com/tools/radix-converter</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>

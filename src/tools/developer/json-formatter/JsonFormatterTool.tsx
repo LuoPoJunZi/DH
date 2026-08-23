@@ -72,7 +72,7 @@ export default function JsonFormatterTool() {
           hint={`${input.length.toLocaleString()} 字符`}
           value={input}
           onChange={(event) => setInput(event.target.value)}
-          placeholder='粘贴 JSON，例如 { "name": "KANG" }'
+          placeholder='粘贴 JSON，例如 { "name": "LUOPO" }'
           spellCheck={false}
         />
         <TextAreaField

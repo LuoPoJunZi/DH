@@ -37,7 +37,7 @@ export function processJson(source: string, action: JsonAction): JsonResult {
 }
 
 export const jsonSample = `{
-  "project": "KANG Tools",
+  "project": "LUOPO Tools",
   "static": true,
   "features": ["fast", "private", "useful"],
   "toolCount": 8

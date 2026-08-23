@@ -2,7 +2,7 @@
 
 ## 1. 项目目标
 
-KANG 在线工具是一个部署到 Cloudflare Pages 的静态在线工具箱。工具优先在浏览器本地运行，强调速度、隐私、可访问性与长期可维护性。每次修改应以未来会增长到数十或上百个工具为前提。
+LUOPO Tools 是一个部署到 Cloudflare Pages 的静态在线工具箱。工具优先在浏览器本地运行，强调速度、隐私、可访问性与长期可维护性。每次修改应以未来会增长到数十或上百个工具为前提。
 
 项目性质：**Pure Static Website / GitHub Repository / Cloudflare Pages Deployment**。GitHub 仓库是网站代码、配置与内容的 Source of Truth，维护流程固定为本地编辑与测试 → Git Commit → Push GitHub → Cloudflare Pages 自动构建部署。
 
