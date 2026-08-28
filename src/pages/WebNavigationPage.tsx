@@ -14,12 +14,12 @@ import {
   X,
   type LucideIcon,
 } from 'lucide-react';
-import { useDeferredValue, useMemo, useState } from 'react';
+import { useDeferredValue, useEffect, useMemo, useRef, useState } from 'react';
 import { ExternalImage } from '../components/common/ExternalImage';
 import { Seo } from '../components/common/Seo';
 import { WelcomeGreeting } from '../components/common/WelcomeGreeting';
 import { siteConfig } from '../config/site';
-import { webNavigationCategories } from '../config/webNavigation';
+import { webNavigationCategories, webNavigationLinkCount } from '../config/webNavigation';
 import type { WebNavigationCategoryId } from '../types/web-navigation';
 
 const categoryIcons = {
@@ -43,6 +43,23 @@ export function WebNavigationPage() {
   const [activeSubcategoryId, setActiveSubcategoryId] = useState<string | null>(null);
   const [query, setQuery] = useState('');
   const deferredQuery = useDeferredValue(query.trim().toLocaleLowerCase());
+  const searchRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    const focusSearch = (event: KeyboardEvent) => {
+      const target = event.target;
+      const isEditing =
+        target instanceof HTMLElement && ['INPUT', 'TEXTAREA', 'SELECT'].includes(target.tagName);
+
+      if (event.key === '/' && !isEditing && !event.metaKey && !event.ctrlKey && !event.altKey) {
+        event.preventDefault();
+        searchRef.current?.focus();
+      }
+    };
+
+    window.addEventListener('keydown', focusSearch);
+    return () => window.removeEventListener('keydown', focusSearch);
+  }, []);
 
   const visibleGroups = useMemo(() => {
     if (!deferredQuery) {
@@ -83,31 +100,36 @@ export function WebNavigationPage() {
       />
 
       <div className="web-navigation-page">
-        <header className="web-navigation-hero container">
+        <header className="web-navigation-hero container container--wide">
           <WelcomeGreeting siteName={siteConfig.name} className="web-navigation-welcome" />
 
-          <div className="web-navigation-search">
-            <Search size={19} aria-hidden="true" />
-            <label className="sr-only" htmlFor="website-search">
-              搜索网站
-            </label>
-            <input
-              id="website-search"
-              type="search"
-              value={query}
-              onChange={(event) => setQuery(event.target.value)}
-              placeholder="搜索一下…"
-              autoComplete="off"
-            />
-            {query && (
-              <button type="button" aria-label="清空网站搜索" onClick={() => setQuery('')}>
-                <X size={16} />
-              </button>
-            )}
+          <div className="web-navigation-search-row">
+            <div className="web-navigation-search">
+              <Search size={19} aria-hidden="true" />
+              <label className="sr-only" htmlFor="website-search">
+                搜索网站
+              </label>
+              <input
+                ref={searchRef}
+                id="website-search"
+                type="search"
+                value={query}
+                onChange={(event) => setQuery(event.target.value)}
+                placeholder={`搜索 ${webNavigationLinkCount} 个网站、用途或关键词…`}
+                autoComplete="off"
+              />
+              {query ? (
+                <button type="button" aria-label="清空网站搜索" onClick={() => setQuery('')}>
+                  <X size={16} />
+                </button>
+              ) : (
+                <kbd aria-hidden="true">/</kbd>
+              )}
+            </div>
           </div>
         </header>
 
-        <div className="web-navigation-shell container">
+        <div className="web-navigation-shell container container--wide">
           <aside className="web-navigation-sidebar" aria-label="网站分类">
             {webNavigationCategories.map((category) => {
               const Icon = categoryIcons[category.id];
@@ -236,8 +258,8 @@ export function WebNavigationPage() {
             <footer className="web-navigation-notice">
               <ShieldCheck size={17} aria-hidden="true" />
               <p>
-                城市欢迎语由第三方 IP
-                定位接口提供，本站不保存定位结果。本页仅提供外部网站入口，不托管其内容；第三方站点的可用性、内容与隐私政策由其运营方负责。
+                城市与天气由第三方 IP
+                定位和天气接口提供，本站不保存定位结果。本页仅提供外部网站入口，不托管其内容；第三方站点的可用性、内容与隐私政策由其运营方负责。
               </p>
             </footer>
           </div>

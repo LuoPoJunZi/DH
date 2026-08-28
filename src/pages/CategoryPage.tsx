@@ -13,7 +13,7 @@ export function CategoryPage() {
   const categoryTools = getToolsByCategory(category.id);
 
   return (
-    <div className="page-container container">
+    <div className="page-container page-container--directory container container--wide">
       <Seo
         title={category.name}
         description={`${category.description}，在浏览器中即时完成。`}

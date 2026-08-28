@@ -4,7 +4,7 @@ import { siteConfig } from '../../config/site';
 export function Footer() {
   return (
     <footer className="site-footer">
-      <div className="container site-footer__inner">
+      <div className="container container--wide site-footer__inner">
         <div>
           <p className="site-footer__brand">{siteConfig.shortName}</p>
           <p>{siteConfig.footer}</p>

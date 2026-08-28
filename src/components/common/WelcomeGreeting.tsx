@@ -1,9 +1,28 @@
+import {
+  Cloud,
+  CloudDrizzle,
+  CloudFog,
+  CloudLightning,
+  CloudRain,
+  CloudSnow,
+  CloudSun,
+  Moon,
+  Sun,
+  type LucideIcon,
+} from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { visitorLocationConfig } from '../../config/visitorLocation';
+import { weatherConfig } from '../../config/weather';
+import { type CurrentWeather, useCityWeather } from '../../hooks/useCityWeather';
 
 interface WelcomeGreetingProps {
   siteName: string;
   className?: string;
+}
+
+interface WeatherPresentation {
+  label: string;
+  icon: LucideIcon;
 }
 
 function pad(value: number) {
@@ -20,6 +39,23 @@ function getGreeting(hour: number) {
   if (hour < 12) return '上午好';
   if (hour < 18) return '下午好';
   return '晚上好';
+}
+
+function getWeatherPresentation(weather: CurrentWeather): WeatherPresentation {
+  const { weatherCode, isDay } = weather;
+  if (weatherCode === 0) return { label: isDay ? '晴朗' : '晴夜', icon: isDay ? Sun : Moon };
+  if (weatherCode <= 2) return { label: '少云', icon: CloudSun };
+  if (weatherCode === 3) return { label: '阴天', icon: Cloud };
+  if (weatherCode === 45 || weatherCode === 48) return { label: '有雾', icon: CloudFog };
+  if (weatherCode >= 51 && weatherCode <= 57) return { label: '毛毛雨', icon: CloudDrizzle };
+  if ((weatherCode >= 61 && weatherCode <= 67) || (weatherCode >= 80 && weatherCode <= 82)) {
+    return { label: '有雨', icon: CloudRain };
+  }
+  if ((weatherCode >= 71 && weatherCode <= 77) || (weatherCode >= 85 && weatherCode <= 86)) {
+    return { label: '有雪', icon: CloudSnow };
+  }
+  if (weatherCode >= 95) return { label: '雷雨', icon: CloudLightning };
+  return { label: '多云', icon: Cloud };
 }
 
 function getTimeZoneCity() {
@@ -95,6 +131,11 @@ function getVisitorCity() {
 export function WelcomeGreeting({ siteName, className }: WelcomeGreetingProps) {
   const [now, setNow] = useState(() => new Date());
   const [visitorCity, setVisitorCity] = useState<string | null>(() => getTimeZoneCity());
+  const [weatherCity, setWeatherCity] = useState<string | null>(null);
+  const { weather, isLoading: isWeatherLoading } = useCityWeather(weatherCity);
+  const locationName = visitorCity ?? siteName;
+  const weatherPresentation = weather ? getWeatherPresentation(weather) : null;
+  const WeatherIcon = weatherPresentation?.icon ?? Cloud;
 
   useEffect(() => {
     const timer = window.setInterval(() => setNow(new Date()), 1_000);
@@ -105,7 +146,14 @@ export function WelcomeGreeting({ siteName, className }: WelcomeGreetingProps) {
     let isMounted = true;
 
     void getVisitorCity().then((city) => {
-      if (isMounted && city) setVisitorCity(city);
+      if (!isMounted) return;
+
+      if (city) {
+        setVisitorCity(city);
+        setWeatherCity(city);
+      } else {
+        setWeatherCity(getTimeZoneCity());
+      }
     });
 
     return () => {
@@ -115,13 +163,46 @@ export function WelcomeGreeting({ siteName, className }: WelcomeGreetingProps) {
 
   return (
     <div className={['welcome-greeting', className].filter(Boolean).join(' ')}>
-      <time className="welcome-greeting__clock" dateTime={now.toISOString()}>
-        {formatDateTime(now)}
-      </time>
-      <h1 className="welcome-greeting__title">
-        {getGreeting(now.getHours())}，
-        {visitorCity ? `欢迎来自 ${visitorCity} 的朋友` : `欢迎来到 ${siteName}`}
-      </h1>
+      <div className="welcome-greeting__composition">
+        <div className="welcome-greeting__message">
+          <time className="welcome-greeting__clock" dateTime={now.toISOString()}>
+            {formatDateTime(now)}
+          </time>
+          <h1 className="welcome-greeting__title">{getGreeting(now.getHours())}，欢迎回来。</h1>
+        </div>
+
+        <div className="welcome-greeting__location">
+          <div className="welcome-greeting__location-copy">
+            <span>{visitorCity ? '欢迎来自' : '欢迎来到'}</span>
+            <strong>{locationName}</strong>
+            <small>{visitorCity ? '的朋友' : '网站导航'}</small>
+          </div>
+
+          {weather && weatherPresentation ? (
+            <div
+              className="welcome-greeting__weather"
+              aria-label={`${weatherPresentation.label}，${Math.round(weather.temperature)} 摄氏度，体感 ${Math.round(weather.apparentTemperature)} 摄氏度，风速 ${Math.round(weather.windSpeed)} 公里每小时`}
+            >
+              <span className="welcome-greeting__weather-icon">
+                <WeatherIcon size={26} aria-hidden="true" />
+              </span>
+              <strong>{Math.round(weather.temperature)}°</strong>
+              <span className="welcome-greeting__weather-detail">
+                <b>{weatherPresentation.label}</b>
+                <small>
+                  体感 {Math.round(weather.apparentTemperature)}° · 风速{' '}
+                  {Math.round(weather.windSpeed)} km/h
+                </small>
+              </span>
+              <a href={weatherConfig.sourceUrl} target="_blank" rel="noopener noreferrer nofollow">
+                Open-Meteo
+              </a>
+            </div>
+          ) : weatherCity === null || isWeatherLoading ? (
+            <span className="welcome-greeting__weather-loading">正在获取当地天气…</span>
+          ) : null}
+        </div>
+      </div>
     </div>
   );
 }

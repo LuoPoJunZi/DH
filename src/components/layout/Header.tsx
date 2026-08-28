@@ -27,7 +27,7 @@ export function Header() {
 
   return (
     <header className="site-header">
-      <div className="site-header__inner container">
+      <div className="site-header__inner container container--wide">
         <BrandMark />
         <nav className="desktop-nav" aria-label="主导航">
           {primaryNavigation.map((item) => (
@@ -51,7 +51,11 @@ export function Header() {
         </div>
       </div>
       {menuOpen && (
-        <nav id="mobile-navigation" className="mobile-nav container" aria-label="移动端导航">
+        <nav
+          id="mobile-navigation"
+          className="mobile-nav container container--wide"
+          aria-label="移动端导航"
+        >
           <div className="mobile-nav__primary">
             {primaryNavigation.map((item) => (
               <NavLink key={item.href} to={item.href} end={item.end}>
