@@ -2,6 +2,7 @@
   "name": "luopo-tools",
   "private": true,
   "version": "0.1.0",
+  "license": "MIT",
   "type": "module",
   "description": "A fast, privacy-first collection of browser-based online tools.",
   "engines": {
