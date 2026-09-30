@@ -10,14 +10,14 @@ import {
   Sun,
   type LucideIcon,
 } from 'lucide-react';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, type ReactNode } from 'react';
 import { visitorLocationConfig } from '../../config/visitorLocation';
-import { weatherConfig } from '../../config/weather';
 import { type CurrentWeather, useCityWeather } from '../../hooks/useCityWeather';
 
 interface WelcomeGreetingProps {
   siteName: string;
   className?: string;
+  children?: ReactNode;
 }
 
 interface WeatherPresentation {
@@ -128,7 +128,7 @@ function getVisitorCity() {
   return visitorCityRequest;
 }
 
-export function WelcomeGreeting({ siteName, className }: WelcomeGreetingProps) {
+export function WelcomeGreeting({ siteName, className, children }: WelcomeGreetingProps) {
   const [now, setNow] = useState(() => new Date());
   const [visitorCity, setVisitorCity] = useState<string | null>(() => getTimeZoneCity());
   const [weatherCity, setWeatherCity] = useState<string | null>(null);
@@ -169,6 +169,7 @@ export function WelcomeGreeting({ siteName, className }: WelcomeGreetingProps) {
             {formatDateTime(now)}
           </time>
           <h1 className="welcome-greeting__title">{getGreeting(now.getHours())}，欢迎回来。</h1>
+          {children}
         </div>
 
         <div className="welcome-greeting__location">
@@ -194,9 +195,6 @@ export function WelcomeGreeting({ siteName, className }: WelcomeGreetingProps) {
                   {Math.round(weather.windSpeed)} km/h
                 </small>
               </span>
-              <a href={weatherConfig.sourceUrl} target="_blank" rel="noopener noreferrer nofollow">
-                Open-Meteo
-              </a>
             </div>
           ) : weatherCity === null || isWeatherLoading ? (
             <span className="welcome-greeting__weather-loading">正在获取当地天气…</span>

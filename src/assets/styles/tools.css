@@ -1,11 +1,11 @@
 .tool-page__header {
-  padding-bottom: 48px;
+  padding-bottom: 24px;
 }
 
 .tool-workspace {
   overflow: hidden;
   background: var(--surface);
-  border: 1px solid var(--line-strong);
+  border: 1px solid var(--line);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-sm);
 }
@@ -92,7 +92,7 @@
 .field__label,
 .select-field > span {
   color: var(--ink);
-  font-size: 0.76rem;
+  font-size: 0.8125rem;
   font-weight: 720;
   letter-spacing: 0.02em;
 }
@@ -190,7 +190,7 @@
 }
 
 .select-field--inline select {
-  height: 36px;
+  height: 40px;
 }
 
 .field-error {
@@ -218,7 +218,7 @@
 
 .mode-switch button {
   min-width: 110px;
-  min-height: 36px;
+  min-height: 40px;
   padding-inline: 14px;
   color: var(--ink-muted);
   background: transparent;
@@ -242,7 +242,7 @@
   place-items: center;
   color: var(--accent);
   background: var(--surface-raised);
-  border: 1px solid var(--line-strong);
+  border: 1px solid var(--line);
   border-radius: 50%;
   transition:
     background-color 160ms ease,
@@ -292,7 +292,7 @@
 
 .result-table__row > span {
   color: var(--ink-muted);
-  font-size: 0.76rem;
+  font-size: 0.8125rem;
   font-weight: 650;
 }
 
@@ -303,7 +303,7 @@
 }
 
 .result-table__row .button {
-  min-height: 36px;
+  min-height: 40px;
   padding-block: 7px;
 }
 
@@ -488,15 +488,15 @@
 .tool-details {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 90px;
-  padding-block: 100px;
+  gap: 32px;
+  padding-block: 40px;
   border-bottom: 1px solid var(--line);
 }
 
 .steps-list,
 .feature-list {
   padding: 0;
-  margin: 34px 0 0;
+  margin: 20px 0 0;
   list-style: none;
 }
 
@@ -543,7 +543,7 @@
 }
 
 .related-tools {
-  padding-top: 100px;
+  padding-top: 40px;
 }
 
 .tool-loading {
@@ -643,11 +643,11 @@
   }
   .tool-details {
     grid-template-columns: 1fr;
-    gap: 64px;
-    padding-block: 76px;
+    gap: 32px;
+    padding-block: 32px;
   }
   .related-tools {
-    padding-top: 76px;
+    padding-top: 32px;
   }
 }
 

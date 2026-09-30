@@ -19,6 +19,7 @@ import { ExternalImage } from '../components/common/ExternalImage';
 import { Seo } from '../components/common/Seo';
 import { WelcomeGreeting } from '../components/common/WelcomeGreeting';
 import { siteConfig } from '../config/site';
+import { weatherConfig } from '../config/weather';
 import { webNavigationCategories, webNavigationLinkCount } from '../config/webNavigation';
 import type { WebNavigationCategoryId } from '../types/web-navigation';
 
@@ -101,32 +102,32 @@ export function WebNavigationPage() {
 
       <div className="web-navigation-page">
         <header className="web-navigation-hero container container--wide">
-          <WelcomeGreeting siteName={siteConfig.name} className="web-navigation-welcome" />
-
-          <div className="web-navigation-search-row">
-            <div className="web-navigation-search">
-              <Search size={19} aria-hidden="true" />
-              <label className="sr-only" htmlFor="website-search">
-                搜索网站
-              </label>
-              <input
-                ref={searchRef}
-                id="website-search"
-                type="search"
-                value={query}
-                onChange={(event) => setQuery(event.target.value)}
-                placeholder={`搜索 ${webNavigationLinkCount} 个网站、用途或关键词…`}
-                autoComplete="off"
-              />
-              {query ? (
-                <button type="button" aria-label="清空网站搜索" onClick={() => setQuery('')}>
-                  <X size={16} />
-                </button>
-              ) : (
-                <kbd aria-hidden="true">/</kbd>
-              )}
+          <WelcomeGreeting siteName={siteConfig.name} className="web-navigation-welcome">
+            <div className="web-navigation-search-row">
+              <div className="web-navigation-search">
+                <Search size={19} aria-hidden="true" />
+                <label className="sr-only" htmlFor="website-search">
+                  搜索网站
+                </label>
+                <input
+                  ref={searchRef}
+                  id="website-search"
+                  type="search"
+                  value={query}
+                  onChange={(event) => setQuery(event.target.value)}
+                  placeholder={`搜索 ${webNavigationLinkCount} 个网站、用途或关键词…`}
+                  autoComplete="off"
+                />
+                {query ? (
+                  <button type="button" aria-label="清空网站搜索" onClick={() => setQuery('')}>
+                    <X size={16} />
+                  </button>
+                ) : (
+                  <kbd aria-hidden="true">/</kbd>
+                )}
+              </div>
             </div>
-          </div>
+          </WelcomeGreeting>
         </header>
 
         <div className="web-navigation-shell container container--wide">
@@ -163,55 +164,54 @@ export function WebNavigationPage() {
             {visibleGroups.length ? (
               visibleGroups.map((category) => (
                 <section className="web-navigation-group" key={category.id}>
-                  <header className="web-navigation-group__header">
-                    <div>
-                      <p>{String(category.links.length).padStart(2, '0')} / DIRECTORY</p>
-                      <h2>{category.name}</h2>
-                      <span>{category.description}</span>
-                    </div>
-                  </header>
+                  <div className="web-navigation-group__toolbar">
+                    <header className="web-navigation-group__header">
+                      <div>
+                        <h2>{category.name}</h2>
+                        <span>{category.description}</span>
+                      </div>
+                    </header>
 
-                  {!deferredQuery && category.subcategories?.length ? (
-                    <nav
-                      className="web-navigation-subcategories"
-                      aria-label={`${category.name}子分类`}
-                    >
-                      {category.subcategories.map((subcategory) => {
-                        const isActive =
-                          subcategory.id ===
-                          (activeSubcategoryId ?? category.subcategories?.[0]?.id);
+                    {!deferredQuery && category.subcategories?.length ? (
+                      <nav
+                        className="web-navigation-subcategories"
+                        aria-label={`${category.name}子分类`}
+                      >
+                        {category.subcategories.map((subcategory) => {
+                          const isActive =
+                            subcategory.id ===
+                            (activeSubcategoryId ?? category.subcategories?.[0]?.id);
 
-                        return (
-                          <button
-                            key={subcategory.id}
-                            type="button"
-                            aria-pressed={isActive}
-                            onClick={() => setActiveSubcategoryId(subcategory.id)}
-                          >
-                            <span>{subcategory.name}</span>
-                            <small>{subcategory.links.length}</small>
-                          </button>
-                        );
-                      })}
-                    </nav>
-                  ) : null}
+                          return (
+                            <button
+                              key={subcategory.id}
+                              type="button"
+                              aria-pressed={isActive}
+                              onClick={() => setActiveSubcategoryId(subcategory.id)}
+                            >
+                              <span>{subcategory.name}</span>
+                              <small>{subcategory.links.length}</small>
+                            </button>
+                          );
+                        })}
+                      </nav>
+                    ) : null}
+                  </div>
 
                   {category.links.length ? (
                     <div
                       className="web-navigation-links"
                       key={deferredQuery || activeSubcategoryId || category.id}
                     >
-                      {category.links.map((link, index) => (
+                      {category.links.map((link) => (
                         <a
                           className="web-navigation-link"
                           key={link.url}
                           href={link.url}
                           target="_blank"
                           rel="noopener noreferrer nofollow"
+                          title={`${link.name} · ${getHostname(link.url)} — ${link.description}`}
                         >
-                          <span className="web-navigation-link__index">
-                            {String(index + 1).padStart(2, '0')}
-                          </span>
                           <span className="web-navigation-link__logo">
                             <ExternalImage
                               src={link.logoUrl}
@@ -229,7 +229,6 @@ export function WebNavigationPage() {
                             <strong>{link.name}</strong>
                             <span>{link.description}</span>
                           </span>
-                          <small>{getHostname(link.url)}</small>
                           <ArrowUpRight size={17} aria-hidden="true" />
                         </a>
                       ))}
@@ -258,8 +257,15 @@ export function WebNavigationPage() {
             <footer className="web-navigation-notice">
               <ShieldCheck size={17} aria-hidden="true" />
               <p>
-                城市与天气由第三方 IP
-                定位和天气接口提供，本站不保存定位结果。本页仅提供外部网站入口，不托管其内容；第三方站点的可用性、内容与隐私政策由其运营方负责。
+                城市由第三方 IP 定位接口提供，天气来自{' '}
+                <a
+                  href={weatherConfig.sourceUrl}
+                  target="_blank"
+                  rel="noopener noreferrer nofollow"
+                >
+                  Open-Meteo
+                </a>
+                ，本站不保存定位结果。页面仅提供外部网站入口；内容、可用性与隐私政策由第三方负责。
               </p>
             </footer>
           </div>
