@@ -42,6 +42,10 @@ interface ImportedNavigationCategory {
   subcategories: ImportedNavigationSubcategory[];
 }
 
+interface NavigationSubcategoryCustomization extends WebNavigationSubcategory {
+  prependLinks: boolean;
+}
+
 const faviconEndpoint = 'https://www.google.com/s2/favicons';
 
 function getWebsiteLogoUrl(url: `https://${string}`): `https://${string}` {
@@ -181,16 +185,6 @@ const coreNavigationCategorySources: CoreNavigationCategorySource[] = [
             url: 'https://ip.sb/',
           },
           {
-            name: 'Scamalytics',
-            description: '查询 IP 欺诈风险与代理评分',
-            url: 'https://scamalytics.com/ip',
-          },
-          {
-            name: 'Whoer',
-            description: '检查 IP、DNS 与浏览器网络信息',
-            url: 'https://whoer.net/',
-          },
-          {
             name: 'IPData',
             description: 'IP 地理位置与威胁情报查询',
             url: 'https://ipdata.co/',
@@ -204,21 +198,6 @@ const coreNavigationCategorySources: CoreNavigationCategorySource[] = [
             name: 'IPinfo',
             description: '查询 IP 运营商、位置与网络详情',
             url: 'https://ipinfo.io/',
-          },
-          {
-            name: 'IP.SKK',
-            description: '查看当前 IP、DNS 与连接信息',
-            url: 'https://ip.skk.moe/',
-          },
-          {
-            name: 'IPHub',
-            description: '检测 IP 是否属于代理或 VPN 网络',
-            url: 'https://iphub.info/',
-          },
-          {
-            name: 'Ping0',
-            description: '高精度查询 IP 地址归属地',
-            url: 'https://ip.ping0.cc/',
           },
           {
             name: 'DNSPod 工具箱',
@@ -339,23 +318,29 @@ function applyNavigationCustomization(category: WebNavigationCategory): WebNavig
     existingSubcategories.splice(overseasAiIndex + 1, 0, importedAiSubcategory);
   }
 
-  const customSubcategories: WebNavigationSubcategory[] = (customization?.subcategories ?? []).map(
-    (subcategory) => ({
-      id: subcategory.id,
-      name: subcategory.name,
-      links: subcategory.links.map((link) => {
-        const url = asHttpsUrl(link.url);
-        return { ...link, url, logoUrl: getWebsiteLogoUrl(url) };
-      }),
+  const customSubcategories: NavigationSubcategoryCustomization[] = (
+    customization?.subcategories ?? []
+  ).map((subcategory) => ({
+    id: subcategory.id,
+    name: subcategory.name,
+    prependLinks: 'prependLinks' in subcategory && subcategory.prependLinks === true,
+    links: subcategory.links.map((link) => {
+      const url = asHttpsUrl(link.url);
+      return { ...link, url, logoUrl: getWebsiteLogoUrl(url) };
     }),
-  );
+  }));
 
   const subcategories = existingSubcategories.map((subcategory) => {
     const customSubcategory = customSubcategories.find((item) => item.id === subcategory.id);
+    const customLinks = customSubcategory?.links ?? [];
     return {
       ...subcategory,
       name: customSubcategory?.name ?? subcategory.name,
-      links: uniqueLinks([...subcategory.links, ...(customSubcategory?.links ?? [])]),
+      links: uniqueLinks(
+        customSubcategory?.prependLinks
+          ? [...customLinks, ...subcategory.links]
+          : [...subcategory.links, ...customLinks],
+      ),
     };
   });
 

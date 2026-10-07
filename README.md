@@ -91,7 +91,7 @@ npm run preview
 npm run sync:navigation
 ```
 
-脚本会更新 `src/config/liumingye-navigation.data.json`，只保存站点文本、HTTPS 链接和外部 Logo URL，不下载任何图片。本地分类名称、描述与新增入口统一维护在 `src/config/webNavigation.custom.data.json`，不会被同步覆盖；`webNavigation.ts` 会将原有两组 AI 入口统一放到“数字空间”，保留“海外 AI”和“国内 AI”两个子分类。同步后仍需运行 `npm run lint` 与 `npm run build`。
+脚本会更新 `src/config/liumingye-navigation.data.json`，只保存站点文本、HTTPS 链接和外部 Logo URL，不下载任何图片。本地分类名称、描述与新增入口统一维护在 `src/config/webNavigation.custom.data.json`，不会被同步覆盖；子分类可设置 `prependLinks: true`，按配置顺序将新增入口放到已有链接前面；`webNavigation.ts` 会将原有两组 AI 入口统一放到“数字空间”，保留“海外 AI”和“国内 AI”两个子分类。同步后仍需运行 `npm run lint` 与 `npm run build`。
 
 ## 日常维护方式
 

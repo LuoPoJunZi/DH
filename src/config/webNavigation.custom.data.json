@@ -35,6 +35,43 @@
             "url": "https://vercel.com/"
           }
         ]
+      },
+      {
+        "id": "network-checks",
+        "name": "网络检测",
+        "prependLinks": true,
+        "links": [
+          {
+            "name": "IPLark",
+            "description": "查询 IP 归属地、质量与代理信息",
+            "url": "https://iplark.com/"
+          },
+          {
+            "name": "IPSuper",
+            "description": "聚合多源 IP 风险、属性与网络信息",
+            "url": "https://ipsuper.com/"
+          },
+          {
+            "name": "IPLense",
+            "description": "查询 IP 位置、网络属性与纯净度",
+            "url": "https://iplense.cc/zh/"
+          },
+          {
+            "name": "IPPure",
+            "description": "检测 IP 纯净度、风险与网络泄露",
+            "url": "https://ippure.com/"
+          },
+          {
+            "name": "Net.Coffee",
+            "description": "查询当前 IP、网络连通性与分流出口",
+            "url": "https://ip.net.coffee/"
+          }
+        ]
+      },
+      {
+        "id": "network-clients",
+        "name": "代理工具",
+        "links": []
       }
     ]
   },
