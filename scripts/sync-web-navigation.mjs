@@ -83,12 +83,11 @@ const categoryDefinitions = [
   {
     id: 'software',
     name: '软件',
-    description: '装机软件、软件下载与软件博客',
+    description: '装机软件与软件下载',
     sourceUrl: `${sourceOrigin}/category/box`,
     subcategories: [
       ['essentials', '装机必备', 35],
       ['downloads', '软件下载', 40],
-      ['blogs', '博客', 48],
     ],
   },
 ];

@@ -22,6 +22,18 @@ export function Footer() {
           </a>
         </div>
       </div>
+      <nav className="container container--wide site-footer__friends" aria-label="友情链接">
+        <span className="site-footer__friends-label">友情链接</span>
+        <ul className="site-footer__friends-list">
+          {siteConfig.friendLinks.map((link) => (
+            <li key={link.url}>
+              <a href={link.url} target="_blank" rel="noopener noreferrer nofollow">
+                {link.name}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
     </footer>
   );
 }

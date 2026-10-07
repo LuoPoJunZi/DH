@@ -45,5 +45,31 @@
       "shortName": "其他",
       "description": "实用但暂未归入其他分类的工具"
     }
+  ],
+  "friendLinks": [
+    {
+      "name": "刘明野的工具箱",
+      "url": "https://tools.liumingye.cn/"
+    },
+    {
+      "name": "观影导航",
+      "url": "https://www.qhdh.top/"
+    },
+    {
+      "name": "fu365 主页",
+      "url": "https://www.fu365.com/"
+    },
+    {
+      "name": "轻主页",
+      "url": "https://www.qzhuye.com/"
+    },
+    {
+      "name": "菠萝音乐",
+      "url": "https://blmp3.xyz/"
+    },
+    {
+      "name": "黑山音乐",
+      "url": "https://hsmp3.xyz/"
+    }
   ]
 }

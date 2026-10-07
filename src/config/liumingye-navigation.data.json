@@ -1731,7 +1731,7 @@
     {
       "id": "software",
       "name": "软件",
-      "description": "装机软件、软件下载与软件博客",
+      "description": "装机软件与软件下载",
       "sourceUrl": "https://tools.liumingye.cn/category/box",
       "subcategories": [
         {
@@ -1819,12 +1819,6 @@
               "logoUrl": "https://s3.liumingye.cn/files/2026/05/3458874348.png"
             }
           ]
-        },
-        {
-          "id": "blogs",
-          "name": "博客",
-          "sourceId": 48,
-          "links": []
         }
       ]
     }
