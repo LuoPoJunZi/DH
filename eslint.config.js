@@ -5,7 +5,16 @@ import reactRefresh from 'eslint-plugin-react-refresh';
 import tseslint from 'typescript-eslint';
 
 export default tseslint.config(
-  { ignores: ['dist', 'node_modules', 'public/sitemap.xml', 'public/robots.txt'] },
+  {
+    ignores: [
+      'dist',
+      'node_modules',
+      'output/playwright/**',
+      '.playwright-cli/**',
+      'public/sitemap.xml',
+      'public/robots.txt',
+    ],
+  },
   js.configs.recommended,
   ...tseslint.configs.recommendedTypeChecked,
   {

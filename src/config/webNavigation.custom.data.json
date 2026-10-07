@@ -1,0 +1,215 @@
+[
+  {
+    "id": "digital",
+    "name": "数字空间",
+    "description": "AI、云平台、域名与网络工具",
+    "subcategories": [
+      {
+        "id": "ai-assistants",
+        "name": "海外 AI",
+        "links": [
+          {
+            "name": "Perplexity",
+            "description": "AI 搜索与资料检索助手",
+            "url": "https://www.perplexity.ai/"
+          },
+          {
+            "name": "Hugging Face",
+            "description": "开源模型、数据集与 AI 应用社区",
+            "url": "https://huggingface.co/"
+          }
+        ]
+      },
+      {
+        "id": "ai-assistant",
+        "name": "国内 AI",
+        "links": []
+      },
+      {
+        "id": "cloud-platforms",
+        "name": "云与开发",
+        "links": [
+          {
+            "name": "Vercel",
+            "description": "网站托管、预览与自动部署平台",
+            "url": "https://vercel.com/"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "video",
+    "name": "光影剧场",
+    "description": "影视检索、在线播放、影评与多端客户端",
+    "subcategories": [
+      {
+        "id": "reviews",
+        "name": "影评选片",
+        "links": [
+          {
+            "name": "豆瓣电影",
+            "description": "电影评分、影评与选片参考",
+            "url": "https://movie.douban.com/"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "anime",
+    "name": "次元世界",
+    "description": "动画、漫画、番剧资讯与动漫社区",
+    "subcategories": [
+      {
+        "id": "community",
+        "name": "动漫社区",
+        "links": [
+          {
+            "name": "Bangumi 番组计划",
+            "description": "番剧条目、评分与观看记录",
+            "url": "https://bgm.tv/"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "music",
+    "name": "音乐漫游",
+    "description": "官方听歌、音乐资源与网络电台",
+    "subcategories": [
+      {
+        "id": "listen",
+        "name": "听歌",
+        "links": [
+          {
+            "name": "网易云音乐",
+            "description": "官方在线听歌、歌单与音乐社区",
+            "url": "https://music.163.com/"
+          },
+          {
+            "name": "QQ 音乐",
+            "description": "官方在线听歌、歌单与音乐榜单",
+            "url": "https://y.qq.com/"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "reading",
+    "name": "阅读书房",
+    "description": "电子书、小说、在线阅读与书评",
+    "subcategories": [
+      {
+        "id": "reading-platforms",
+        "name": "阅读平台",
+        "links": [
+          {
+            "name": "微信读书",
+            "description": "在线阅读、书单与阅读记录",
+            "url": "https://weread.qq.com/"
+          },
+          {
+            "name": "豆瓣读书",
+            "description": "图书评分、书评与选书参考",
+            "url": "https://book.douban.com/"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "game",
+    "name": "游戏天地",
+    "description": "经典游戏、网页小游戏与独立游戏",
+    "subcategories": [
+      {
+        "id": "indie-games",
+        "name": "独立游戏",
+        "links": [
+          {
+            "name": "itch.io",
+            "description": "发现、体验与下载独立游戏",
+            "url": "https://itch.io/"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "entertainment",
+    "name": "闲趣生活",
+    "description": "电视直播、壁纸与趣味互动",
+    "subcategories": [
+      {
+        "id": "interactive",
+        "name": "趣味互动",
+        "links": [
+          {
+            "name": "Neal.fun",
+            "description": "轻松有趣的互动实验与小游戏",
+            "url": "https://neal.fun/"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "toolbox",
+    "name": "效率工坊",
+    "description": "图片、文档、绘图与在线效率工具",
+    "subcategories": [
+      {
+        "id": "online-tools",
+        "name": "在线工具",
+        "links": [
+          {
+            "name": "Squoosh",
+            "description": "在浏览器本地压缩与转换图片",
+            "url": "https://squoosh.app/"
+          },
+          {
+            "name": "Photopea",
+            "description": "在线修图与 PSD 文件编辑",
+            "url": "https://www.photopea.com/"
+          },
+          {
+            "name": "Excalidraw",
+            "description": "手绘风格的绘图与协作白板",
+            "url": "https://excalidraw.com/"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "software",
+    "name": "应用仓库",
+    "description": "装机软件、效率应用与软件下载",
+    "subcategories": [
+      {
+        "id": "essentials",
+        "name": "装机必备",
+        "links": [
+          {
+            "name": "VS Code",
+            "description": "代码编辑器与官方安装包",
+            "url": "https://code.visualstudio.com/"
+          },
+          {
+            "name": "7-Zip",
+            "description": "开源文件压缩与解压工具",
+            "url": "https://www.7-zip.org/"
+          },
+          {
+            "name": "Obsidian",
+            "description": "Markdown 笔记与知识管理应用",
+            "url": "https://obsidian.md/"
+          }
+        ]
+      }
+    ]
+  }
+]

@@ -5,6 +5,7 @@ import type {
   WebNavigationSubcategory,
 } from '../types/web-navigation';
 import liumingyeNavigationData from './liumingye-navigation.data.json';
+import customNavigationData from './webNavigation.custom.data.json';
 
 type WebNavigationLinkSource = Omit<WebNavigationLink, 'logoUrl'> & {
   logoUrl?: `https://${string}`;
@@ -324,10 +325,59 @@ const importedNavigationCategories: WebNavigationCategory[] = (
   };
 });
 
+const importedAiSubcategory = importedNavigationCategories
+  .find((category) => category.id === 'toolbox')
+  ?.subcategories?.find((subcategory) => subcategory.id === 'ai-assistant');
+
+function applyNavigationCustomization(category: WebNavigationCategory): WebNavigationCategory {
+  const customization = customNavigationData.find((item) => item.id === category.id);
+  const existingSubcategories = (category.subcategories ?? []).filter(
+    (subcategory) => category.id !== 'toolbox' || subcategory.id !== 'ai-assistant',
+  );
+  if (category.id === 'digital' && importedAiSubcategory) {
+    const overseasAiIndex = existingSubcategories.findIndex((item) => item.id === 'ai-assistants');
+    existingSubcategories.splice(overseasAiIndex + 1, 0, importedAiSubcategory);
+  }
+
+  const customSubcategories: WebNavigationSubcategory[] = (customization?.subcategories ?? []).map(
+    (subcategory) => ({
+      id: subcategory.id,
+      name: subcategory.name,
+      links: subcategory.links.map((link) => {
+        const url = asHttpsUrl(link.url);
+        return { ...link, url, logoUrl: getWebsiteLogoUrl(url) };
+      }),
+    }),
+  );
+
+  const subcategories = existingSubcategories.map((subcategory) => {
+    const customSubcategory = customSubcategories.find((item) => item.id === subcategory.id);
+    return {
+      ...subcategory,
+      name: customSubcategory?.name ?? subcategory.name,
+      links: uniqueLinks([...subcategory.links, ...(customSubcategory?.links ?? [])]),
+    };
+  });
+
+  subcategories.push(
+    ...customSubcategories.filter(
+      (subcategory) => !existingSubcategories.some((item) => item.id === subcategory.id),
+    ),
+  );
+
+  return {
+    ...category,
+    name: customization?.name ?? category.name,
+    description: customization?.description ?? category.description,
+    links: uniqueLinks(subcategories.flatMap((subcategory) => subcategory.links)),
+    subcategories,
+  };
+}
+
 export const webNavigationCategories: WebNavigationCategory[] = [
   ...coreNavigationCategories,
   ...importedNavigationCategories,
-];
+].map(applyNavigationCustomization);
 
 export const webNavigationLinkCount = webNavigationCategories.reduce(
   (total, category) => total + category.links.length,

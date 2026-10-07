@@ -95,7 +95,7 @@ export function WebNavigationPage() {
     <>
       <Seo
         title="网站导航"
-        description="按数字服务、影视、二次元、音乐、阅读、游戏、娱乐、工具箱和软件分类浏览常用网站。"
+        description={`按${webNavigationCategories.map((category) => category.name).join('、')}分类浏览常用网站。`}
         keywords={['网站导航', 'AI 导航', '云服务', '影视导航', '在线工具', '软件官网']}
         path="/"
       />
