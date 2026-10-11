@@ -173,31 +173,6 @@
   color: var(--accent);
 }
 
-.site-footer__friends {
-  margin-top: 4px;
-}
-
-.site-footer__friends-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0 20px;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.site-footer__friends-list a {
-  display: inline-flex;
-  min-width: 40px;
-  min-height: 40px;
-  align-items: center;
-  transition: color 160ms ease;
-}
-
-.site-footer__friends-list a:hover {
-  color: var(--accent);
-}
-
 .page-container,
 .tool-page {
   padding-top: 24px;
