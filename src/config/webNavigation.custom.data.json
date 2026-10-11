@@ -2,7 +2,7 @@
   {
     "id": "digital",
     "name": "数字空间",
-    "description": "AI、云平台、域名与网络工具",
+    "description": "AI、云开发、域名、网络工具、邮箱与社区",
     "subcategories": [
       {
         "id": "ai-assistants",
@@ -17,13 +17,44 @@
             "name": "Hugging Face",
             "description": "开源模型、数据集与 AI 应用社区",
             "url": "https://huggingface.co/"
+          },
+          {
+            "name": "Genspark",
+            "description": "AI 搜索、写作与多任务工作空间",
+            "url": "https://www.genspark.ai/"
+          },
+          {
+            "name": "Jules",
+            "description": "Google 的代码任务与 GitHub 协作助手",
+            "url": "https://jules.google.com/"
+          },
+          {
+            "name": "v0",
+            "description": "通过 AI 生成和迭代网页应用",
+            "url": "https://v0.app/"
           }
         ]
       },
       {
         "id": "ai-assistant",
         "name": "国内 AI",
-        "links": []
+        "links": [
+          {
+            "name": "魔搭社区",
+            "description": "开源模型、数据集与模型体验社区",
+            "url": "https://www.modelscope.cn/"
+          },
+          {
+            "name": "智谱开放平台",
+            "description": "GLM 模型体验、API 与开发文档",
+            "url": "https://bigmodel.cn/"
+          },
+          {
+            "name": "硅基流动",
+            "description": "多种大模型 API 与推理服务平台",
+            "url": "https://cloud.siliconflow.cn/"
+          }
+        ]
       },
       {
         "id": "cloud-platforms",
@@ -33,6 +64,21 @@
             "name": "Vercel",
             "description": "网站托管、预览与自动部署平台",
             "url": "https://vercel.com/"
+          },
+          {
+            "name": "Netlify",
+            "description": "网站托管、预览与持续部署平台",
+            "url": "https://www.netlify.com/"
+          },
+          {
+            "name": "Render",
+            "description": "应用、静态网站与数据库托管平台",
+            "url": "https://render.com/"
+          },
+          {
+            "name": "Railway",
+            "description": "应用部署与云端项目管理平台",
+            "url": "https://railway.com/"
           }
         ]
       },
@@ -65,6 +111,26 @@
             "name": "Net.Coffee",
             "description": "查询当前 IP、网络连通性与分流出口",
             "url": "https://ip.net.coffee/"
+          },
+          {
+            "name": "BrowserScan",
+            "description": "浏览器指纹、IP 与网络泄漏检测",
+            "url": "https://www.browserscan.net/zh"
+          },
+          {
+            "name": "Google Dig",
+            "description": "在线查询域名的 DNS 解析记录",
+            "url": "https://toolbox.googleapps.com/apps/dig/"
+          },
+          {
+            "name": "PageSpeed Insights",
+            "description": "分析网页加载性能与优化建议",
+            "url": "https://pagespeed.web.dev/"
+          },
+          {
+            "name": "DNS Leak Test",
+            "description": "检测当前网络使用的 DNS 服务器",
+            "url": "https://dnsleaktest.com/"
           }
         ]
       },
@@ -72,6 +138,69 @@
         "id": "network-clients",
         "name": "代理工具",
         "links": []
+      },
+      {
+        "id": "domain-services",
+        "name": "域名服务",
+        "links": [
+          {
+            "name": "Namecheap",
+            "description": "域名注册、转入与 DNS 管理",
+            "url": "https://www.namecheap.com/"
+          },
+          {
+            "name": "NameSilo",
+            "description": "域名注册、转入与管理服务",
+            "url": "https://www.namesilo.com/"
+          },
+          {
+            "name": "deSEC",
+            "description": "支持 DNSSEC 的 DNS 托管服务",
+            "url": "https://desec.io/"
+          }
+        ]
+      },
+      {
+        "id": "email-services",
+        "name": "邮箱服务",
+        "links": [
+          {
+            "name": "Gmail",
+            "description": "Google 网页邮箱与邮件管理",
+            "url": "https://mail.google.com/"
+          },
+          {
+            "name": "Outlook",
+            "description": "微软网页邮箱与日历服务",
+            "url": "https://outlook.live.com/mail/"
+          },
+          {
+            "name": "Proton Mail",
+            "description": "注重隐私的加密邮箱服务",
+            "url": "https://proton.me/mail"
+          }
+        ]
+      },
+      {
+        "id": "tech-communities",
+        "name": "技术社区",
+        "links": [
+          {
+            "name": "NodeSeek",
+            "description": "服务器、网络与开发经验交流社区",
+            "url": "https://www.nodeseek.com/"
+          },
+          {
+            "name": "LINUX DO",
+            "description": "技术、开源与日常交流社区",
+            "url": "https://linux.do/"
+          },
+          {
+            "name": "NodeLoc",
+            "description": "服务器、网络与技术话题交流社区",
+            "url": "https://www.nodeloc.com/"
+          }
+        ]
       }
     ]
   },
@@ -88,6 +217,17 @@
             "name": "豆瓣电影",
             "description": "电影评分、影评与选片参考",
             "url": "https://movie.douban.com/"
+          }
+        ]
+      },
+      {
+        "id": "watch",
+        "name": "在线看",
+        "links": [
+          {
+            "name": "YouTube",
+            "description": "视频观看、创作者频道与知识分享",
+            "url": "https://www.youtube.com/"
           }
         ]
       }
@@ -216,6 +356,46 @@
             "name": "Excalidraw",
             "description": "手绘风格的绘图与协作白板",
             "url": "https://excalidraw.com/"
+          },
+          {
+            "name": "BeJSON",
+            "description": "JSON、编码转换与开发辅助工具集",
+            "url": "https://www.bejson.com/"
+          },
+          {
+            "name": "1024Tools",
+            "description": "编码、格式转换与开发辅助工具集",
+            "url": "https://1024tools.com/"
+          },
+          {
+            "name": "Hoppscotch",
+            "description": "在线调试 HTTP、WebSocket 与 API 请求",
+            "url": "https://hoppscotch.io/"
+          },
+          {
+            "name": "Convertio",
+            "description": "在线转换文档、图片与音视频格式",
+            "url": "https://convertio.co/zh/"
+          },
+          {
+            "name": "Vocal Remover",
+            "description": "分离音频中的人声与伴奏",
+            "url": "https://vocalremover.org/"
+          },
+          {
+            "name": "草料二维码",
+            "description": "生成、管理与美化二维码",
+            "url": "https://cli.im/"
+          },
+          {
+            "name": "Iconify",
+            "description": "搜索和查看开源图标集",
+            "url": "https://icon-sets.iconify.design/"
+          },
+          {
+            "name": "Uiverse",
+            "description": "浏览可复用的 CSS 与 Tailwind 界面元素",
+            "url": "https://uiverse.io/elements"
           }
         ]
       }
@@ -224,7 +404,7 @@
   {
     "id": "software",
     "name": "应用仓库",
-    "description": "装机软件、效率应用与软件下载",
+    "description": "装机软件、效率应用与开源项目",
     "subcategories": [
       {
         "id": "essentials",
@@ -244,6 +424,57 @@
             "name": "Obsidian",
             "description": "Markdown 笔记与知识管理应用",
             "url": "https://obsidian.md/"
+          },
+          {
+            "name": "Cherry Studio",
+            "description": "支持多模型的桌面 AI 工作站",
+            "url": "https://www.cherryai.com.cn/"
+          },
+          {
+            "name": "Termora",
+            "description": "SSH、SFTP 与终端管理工具",
+            "url": "https://www.termora.app/downloads"
+          },
+          {
+            "name": "PixPin",
+            "description": "截图、贴图、文字识别与录屏工具",
+            "url": "https://pixpin.cn/"
+          },
+          {
+            "name": "Zen Browser",
+            "description": "基于 Firefox 的浏览器与工作区管理",
+            "url": "https://zen-browser.app/"
+          },
+          {
+            "name": "Netcatty",
+            "description": "集成 SSH、SFTP 与终端的桌面工作区",
+            "url": "https://github.com/binaricat/Netcatty"
+          }
+        ]
+      },
+      {
+        "id": "open-source-projects",
+        "name": "开源项目",
+        "links": [
+          {
+            "name": "Komari",
+            "description": "轻量服务器监控与状态面板",
+            "url": "https://github.com/komari-monitor/komari"
+          },
+          {
+            "name": "Uptime Kuma",
+            "description": "可自行部署的站点与服务可用性监控",
+            "url": "https://github.com/louislam/uptime-kuma"
+          },
+          {
+            "name": "Sink",
+            "description": "基于 Cloudflare 的短链接管理项目",
+            "url": "https://github.com/miantiao-me/sink"
+          },
+          {
+            "name": "CloudFlare ImgBed",
+            "description": "基于 Cloudflare 的图片与文件托管项目",
+            "url": "https://github.com/MarSeventh/CloudFlare-ImgBed"
           }
         ]
       }

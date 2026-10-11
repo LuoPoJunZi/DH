@@ -8,12 +8,13 @@
   --surface-raised: #ffffff;
   --surface-muted: #edf1f7;
   --ink: #202b40;
-  --ink-muted: #59677d;
-  --ink-faint: #69768b;
+  --ink-muted: #38475b;
+  --ink-faint: #3d4d63;
   --line: #e1e7f0;
   --line-strong: #bdc9da;
   --accent: #2159d1;
   --accent-strong: #1746aa;
+  --accent-contrast: #fff;
   --accent-soft: #e9f0ff;
   --success: #287552;
   --danger: #b63a39;
@@ -23,9 +24,29 @@
   --radius-sm: 10px;
   --radius-md: 12px;
   --radius-lg: 12px;
+  --radius-xl: 20px;
+  --radius-pill: 999px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --wallpaper-scrim: color-mix(in srgb, var(--page) 78%, transparent);
+  --glass-surface: color-mix(in srgb, var(--surface) 88%, transparent);
+  --glass-line: color-mix(in srgb, var(--line) 80%, var(--surface));
+  --navigation-card-surface: color-mix(in srgb, var(--surface) 60%, transparent);
+  --navigation-card-hover: color-mix(in srgb, var(--surface) 76%, transparent);
+  --navigation-card-blur: 3px;
+  --navigation-widget-surface: color-mix(in srgb, var(--surface) 76%, transparent);
+  --navigation-widget-blur: 4px;
+  --navigation-widget-up: color-mix(in srgb, var(--danger) 60%, var(--ink));
+  --navigation-widget-down: color-mix(in srgb, var(--success) 60%, var(--ink));
+  --shadow-glass: 0 8px 28px -12px rgba(30, 55, 90, 0.18);
   --container: 1200px;
-  --container-wide: 2240px;
-  --header-height: 60px;
+  --container-wide: 1280px;
+  --header-height: 88px;
+  --footer-height: 64px;
 }
 
 :root[data-theme='dark'] {
@@ -40,10 +61,17 @@
   --line-strong: #52647e;
   --accent: #75a0ff;
   --accent-strong: #a1bdff;
+  --accent-contrast: #11151d;
   --accent-soft: #232e48;
   --success: #73c69e;
   --danger: #f08a83;
   --danger-soft: #422522;
+  --wallpaper-scrim: color-mix(in srgb, var(--page) 84%, transparent);
+  --glass-surface: color-mix(in srgb, var(--surface) 92%, transparent);
+  --navigation-card-surface: color-mix(in srgb, var(--surface) 70%, transparent);
+  --navigation-widget-surface: color-mix(in srgb, var(--surface) 82%, transparent);
+  --navigation-card-hover: color-mix(in srgb, var(--surface) 82%, transparent);
+  --shadow-glass: 0 8px 28px -12px rgba(0, 0, 0, 0.5);
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.18), 0 8px 24px rgba(0, 0, 0, 0.12);
   --shadow-md: 0 2px 4px rgba(0, 0, 0, 0.2), 0 20px 54px rgba(0, 0, 0, 0.2);
 }

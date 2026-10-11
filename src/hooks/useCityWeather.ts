@@ -1,145 +1,116 @@
 import { useEffect, useState } from 'react';
 import { weatherConfig } from '../config/weather';
+import type { CurrentWeather } from '../types/navigation-widgets';
+import { fetchExternalData } from '../utils/externalData';
+import { isCurrentWeather, parseWeatherData } from '../utils/navigationWidgetData';
 
-export interface CurrentWeather {
-  temperature: number;
-  apparentTemperature: number;
-  weatherCode: number;
-  windSpeed: number;
-  isDay: boolean;
-}
-
-interface CachedWeather {
-  city: string;
-  savedAt: number;
-  value: CurrentWeather;
-}
-
-function isCurrentWeather(value: unknown): value is CurrentWeather {
-  if (!value || typeof value !== 'object') return false;
-  const record = value as Record<string, unknown>;
-  return (
-    typeof record.temperature === 'number' &&
-    typeof record.apparentTemperature === 'number' &&
-    typeof record.weatherCode === 'number' &&
-    typeof record.windSpeed === 'number' &&
-    typeof record.isDay === 'boolean'
-  );
-}
+export type { CurrentWeather } from '../types/navigation-widgets';
 
 function readCachedWeather(city: string) {
   try {
     const value = window.sessionStorage.getItem(weatherConfig.cacheKey);
     if (!value) return null;
-
-    const cached = JSON.parse(value) as Partial<CachedWeather>;
+    const cached: unknown = JSON.parse(value);
+    if (!cached || typeof cached !== 'object') return null;
+    const data = cached as Record<string, unknown>;
     if (
-      cached.city !== city ||
-      typeof cached.savedAt !== 'number' ||
-      Date.now() - cached.savedAt > weatherConfig.cacheDurationMs ||
-      !isCurrentWeather(cached.value)
-    ) {
+      data.city !== city ||
+      typeof data.savedAt !== 'number' ||
+      !Number.isFinite(data.savedAt) ||
+      data.savedAt > Date.now() ||
+      Date.now() - data.savedAt > weatherConfig.cacheDurationMs ||
+      !isCurrentWeather(data.value)
+    )
       return null;
-    }
-
-    return cached.value;
+    return data.value;
   } catch {
     return null;
   }
 }
 
-async function fetchJson(url: string) {
-  const controller = new AbortController();
-  const timeout = window.setTimeout(() => controller.abort(), weatherConfig.timeoutMs);
-
-  try {
-    const response = await fetch(url, {
-      signal: controller.signal,
-      cache: 'no-store',
-    });
-    return response.ok ? ((await response.json()) as unknown) : null;
-  } catch {
-    return null;
-  } finally {
-    window.clearTimeout(timeout);
-  }
-}
-
-async function requestCityWeather(city: string) {
-  const cachedWeather = readCachedWeather(city);
-  if (cachedWeather) return cachedWeather;
-
+async function requestCityWeather(city: string, signal: AbortSignal, refresh: boolean) {
+  const cached = refresh ? null : readCachedWeather(city);
+  if (cached) return cached;
   const geocodingQuery = new URLSearchParams({
     name: city,
     count: '1',
     language: 'zh',
     format: 'json',
   });
-  const geocodingData = (await fetchJson(
-    `${weatherConfig.geocodingEndpoint}?${geocodingQuery}`,
-  )) as { results?: Array<{ latitude?: unknown; longitude?: unknown }> } | null;
-  const location = geocodingData?.results?.[0];
-  const latitude = Number(location?.latitude);
-  const longitude = Number(location?.longitude);
-  if (!Number.isFinite(latitude) || !Number.isFinite(longitude)) return null;
+  const geocodingData = await fetchExternalData(
+    weatherConfig.geocodingEndpoint + '?' + geocodingQuery.toString(),
+    weatherConfig.timeoutMs,
+    { signal },
+  );
+  if (!geocodingData || typeof geocodingData !== 'object') return null;
+  const results = (geocodingData as Record<string, unknown>).results;
+  const first: unknown = Array.isArray(results) ? results[0] : null;
+  if (!first || typeof first !== 'object') return null;
+  const location = first as Record<string, unknown>;
+  const { latitude, longitude } = location;
+  if (
+    typeof latitude !== 'number' ||
+    !Number.isFinite(latitude) ||
+    Math.abs(latitude) > 90 ||
+    typeof longitude !== 'number' ||
+    !Number.isFinite(longitude) ||
+    Math.abs(longitude) > 180
+  )
+    return null;
 
+  const coordinates = { latitude: String(latitude), longitude: String(longitude) };
   const forecastQuery = new URLSearchParams({
-    latitude: String(latitude),
-    longitude: String(longitude),
+    ...coordinates,
     current: weatherConfig.currentFields.join(','),
+    daily: weatherConfig.dailyFields.join(','),
+    forecast_days: String(weatherConfig.forecastDays),
     timezone: 'auto',
   });
-  const forecastData = (await fetchJson(`${weatherConfig.forecastEndpoint}?${forecastQuery}`)) as {
-    current?: Record<string, unknown>;
-  } | null;
-  const current = forecastData?.current;
-  if (!current) return null;
-
-  const weather = {
-    temperature: Number(current.temperature_2m),
-    apparentTemperature: Number(current.apparent_temperature),
-    weatherCode: Number(current.weather_code),
-    windSpeed: Number(current.wind_speed_10m),
-    isDay: Number(current.is_day) === 1,
-  } satisfies CurrentWeather;
-  if (!isCurrentWeather(weather)) return null;
-
+  const airQuery = new URLSearchParams({ ...coordinates, current: 'us_aqi' });
+  const [forecast, air] = await Promise.all([
+    fetchExternalData(
+      weatherConfig.forecastEndpoint + '?' + forecastQuery.toString(),
+      weatherConfig.timeoutMs,
+      { signal },
+    ),
+    fetchExternalData(
+      weatherConfig.airQualityEndpoint + '?' + airQuery.toString(),
+      weatherConfig.timeoutMs,
+      {
+        signal,
+      },
+    ),
+  ]);
+  const weather = parseWeatherData(forecast, air);
+  if (!weather || signal.aborted) return null;
   try {
-    const cached = { city, savedAt: Date.now(), value: weather } satisfies CachedWeather;
-    window.sessionStorage.setItem(weatherConfig.cacheKey, JSON.stringify(cached));
+    window.sessionStorage.setItem(
+      weatherConfig.cacheKey,
+      JSON.stringify({ city, savedAt: Date.now(), value: weather }),
+    );
   } catch {
-    // Weather remains available in privacy-restricted browsing contexts.
+    // The live weather remains usable when session storage is unavailable.
   }
-
   return weather;
 }
 
-export function useCityWeather(city: string | null) {
+export function useCityWeather(city: string | null, refreshKey = 0) {
   const [weather, setWeather] = useState<CurrentWeather | null>(null);
   const [isLoading, setIsLoading] = useState(Boolean(city));
 
   useEffect(() => {
-    let isMounted = true;
-
-    if (!city) {
-      setWeather(null);
-      setIsLoading(false);
-      return () => {
-        isMounted = false;
-      };
+    const controller = new AbortController();
+    setWeather(null);
+    setIsLoading(Boolean(city));
+    if (city) {
+      void requestCityWeather(city, controller.signal, refreshKey > 0).then((result) => {
+        if (controller.signal.aborted) return;
+        setWeather(result);
+        setIsLoading(false);
+      });
     }
-
-    setIsLoading(true);
-    void requestCityWeather(city).then((result) => {
-      if (!isMounted) return;
-      setWeather(result);
-      setIsLoading(false);
-    });
-
-    return () => {
-      isMounted = false;
-    };
-  }, [city]);
+    return () => controller.abort();
+  }, [city, refreshKey]);
 
   return { weather, isLoading };
 }

@@ -1,8 +1,10 @@
 export const weatherConfig = {
   geocodingEndpoint: 'https://geocoding-api.open-meteo.com/v1/search',
   forecastEndpoint: 'https://api.open-meteo.com/v1/forecast',
+  airQualityEndpoint: 'https://air-quality-api.open-meteo.com/v1/air-quality',
+  airQualitySourceUrl: 'https://atmosphere.copernicus.eu/',
   sourceUrl: 'https://open-meteo.com/',
-  cacheKey: 'luopo-city-weather-v1',
+  cacheKey: 'luopo-city-weather-v2',
   cacheDurationMs: 20 * 60 * 1_000,
   timeoutMs: 4_000,
   currentFields: [
@@ -11,5 +13,8 @@ export const weatherConfig = {
     'weather_code',
     'wind_speed_10m',
     'is_day',
+    'relative_humidity_2m',
   ],
+  dailyFields: ['weather_code', 'temperature_2m_max', 'temperature_2m_min', 'uv_index_max'],
+  forecastDays: 5,
 } as const;

@@ -1,11 +1,11 @@
 import { Menu, X } from 'lucide-react';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, type ReactNode } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import { primaryNavigation } from '../../config/navigation';
 import { BrandMark } from '../common/BrandMark';
 import { ThemeToggle } from '../common/ThemeToggle';
 
-export function Header() {
+export function Header({ search }: { search?: ReactNode }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const location = useLocation();
 
@@ -26,9 +26,10 @@ export function Header() {
   }, [menuOpen]);
 
   return (
-    <header className="site-header">
+    <header className={search ? 'site-header site-header--with-search' : 'site-header'}>
       <div className="site-header__inner container container--wide">
         <BrandMark />
+        {search && <div className="site-header__search">{search}</div>}
         <nav className="desktop-nav" aria-label="主导航">
           {primaryNavigation.map((item) => (
             <NavLink key={item.href} to={item.href} end={item.end}>

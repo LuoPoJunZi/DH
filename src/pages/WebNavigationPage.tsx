@@ -9,18 +9,17 @@ import {
   PackageOpen,
   Palette,
   Search,
-  ShieldCheck,
   Wrench,
-  X,
   type LucideIcon,
 } from 'lucide-react';
-import { useDeferredValue, useEffect, useMemo, useRef, useState } from 'react';
+import { useDeferredValue, useMemo, useState } from 'react';
+import { useOutletContext } from 'react-router-dom';
 import { ExternalImage } from '../components/common/ExternalImage';
 import { Seo } from '../components/common/Seo';
-import { WelcomeGreeting } from '../components/common/WelcomeGreeting';
+import { NavigationWidgets } from '../components/navigation/NavigationWidgets';
 import { siteConfig } from '../config/site';
-import { weatherConfig } from '../config/weather';
-import { webNavigationCategories, webNavigationLinkCount } from '../config/webNavigation';
+import { webNavigationCategories } from '../config/webNavigation';
+import type { NavigationOutletContext } from '../layouts/AppLayout';
 import type { WebNavigationCategoryId } from '../types/web-navigation';
 
 const categoryIcons = {
@@ -42,26 +41,8 @@ function getHostname(url: string) {
 export function WebNavigationPage() {
   const [activeCategoryId, setActiveCategoryId] = useState<WebNavigationCategoryId>('digital');
   const [activeSubcategoryId, setActiveSubcategoryId] = useState<string | null>(null);
-  const [query, setQuery] = useState('');
+  const { query, setQuery } = useOutletContext<NavigationOutletContext>();
   const deferredQuery = useDeferredValue(query.trim().toLocaleLowerCase());
-  const searchRef = useRef<HTMLInputElement>(null);
-
-  useEffect(() => {
-    const focusSearch = (event: KeyboardEvent) => {
-      const target = event.target;
-      const isEditing =
-        target instanceof HTMLElement && ['INPUT', 'TEXTAREA', 'SELECT'].includes(target.tagName);
-
-      if (event.key === '/' && !isEditing && !event.metaKey && !event.ctrlKey && !event.altKey) {
-        event.preventDefault();
-        searchRef.current?.focus();
-      }
-    };
-
-    window.addEventListener('keydown', focusSearch);
-    return () => window.removeEventListener('keydown', focusSearch);
-  }, []);
-
   const visibleGroups = useMemo(() => {
     if (!deferredQuery) {
       const category = webNavigationCategories.find((item) => item.id === activeCategoryId);
@@ -101,34 +82,9 @@ export function WebNavigationPage() {
       />
 
       <div className="web-navigation-page">
-        <header className="web-navigation-hero container container--wide">
-          <WelcomeGreeting siteName={siteConfig.name} className="web-navigation-welcome">
-            <div className="web-navigation-search-row">
-              <div className="web-navigation-search">
-                <Search size={19} aria-hidden="true" />
-                <label className="sr-only" htmlFor="website-search">
-                  搜索网站
-                </label>
-                <input
-                  ref={searchRef}
-                  id="website-search"
-                  type="search"
-                  value={query}
-                  onChange={(event) => setQuery(event.target.value)}
-                  placeholder={`搜索 ${webNavigationLinkCount} 个网站、用途或关键词…`}
-                  autoComplete="off"
-                />
-                {query ? (
-                  <button type="button" aria-label="清空网站搜索" onClick={() => setQuery('')}>
-                    <X size={16} />
-                  </button>
-                ) : (
-                  <kbd aria-hidden="true">/</kbd>
-                )}
-              </div>
-            </div>
-          </WelcomeGreeting>
-        </header>
+        <h1 className="sr-only">{siteConfig.name} 网站导航</h1>
+
+        <NavigationWidgets />
 
         <div className="web-navigation-shell container container--wide">
           <aside className="web-navigation-sidebar" aria-label="网站分类">
@@ -243,7 +199,7 @@ export function WebNavigationPage() {
             ) : (
               <div className="web-navigation-empty">
                 <Search size={25} aria-hidden="true" />
-                <p>换一个更短的关键词，或从左侧分类重新浏览。</p>
+                <p>换一个更短的关键词，或从上方分类重新浏览。</p>
                 <button
                   type="button"
                   className="button button--secondary"
@@ -253,21 +209,6 @@ export function WebNavigationPage() {
                 </button>
               </div>
             )}
-
-            <footer className="web-navigation-notice">
-              <ShieldCheck size={17} aria-hidden="true" />
-              <p>
-                城市由第三方 IP 定位接口提供，天气来自{' '}
-                <a
-                  href={weatherConfig.sourceUrl}
-                  target="_blank"
-                  rel="noopener noreferrer nofollow"
-                >
-                  Open-Meteo
-                </a>
-                ，本站不保存定位结果。页面仅提供外部网站入口；内容、可用性与隐私政策由第三方负责。
-              </p>
-            </footer>
           </div>
         </div>
       </div>

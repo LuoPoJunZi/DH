@@ -9,12 +9,14 @@ GitHub：[https://github.com/LuoPoJunZi](https://github.com/LuoPoJunZi)
 ## 功能特点
 
 - 工具名称、描述、分类与关键词的前端即时搜索；
-- 数字空间、光影剧场、次元世界、音乐漫游、阅读书房、游戏天地、闲趣生活、效率工坊和应用仓库九分类网站导航，包含 34 个子分类与 313 个不重复入口；
+- 数字空间、光影剧场、次元世界、音乐漫游、阅读书房、游戏天地、闲趣生活、效率工坊和应用仓库九分类网站导航，包含 37 个子分类与 353 个不重复入口；
 - 统一配置驱动的首页、分类、路由、相关工具与 Sitemap；
 - 工具按路由懒加载，降低首页 JavaScript 体积；
 - 跟随系统、浅色与深色三档主题；
-- 网站导航作为首页，并根据访问者浏览器本地时间和 IP 定位城市显示欢迎语；
-- 适配桌面、平板与手机，支持键盘操作；
+- 网站导航作为首页，采用磨砂悬浮搜索栏、胶囊分类导航与圆角卡片；
+- 首页包含本地时钟与农历日期、当地天气与五天预报、纳指 / 上证 / BTC / ETH 行情卡片；
+- 全站使用按屏幕尺寸切换的远程背景图，配合浅深主题遮罩与固定磨砂页脚，图片失败时回退到主题底色；
+- 适配桌面、平板与手机，支持键盘操作和 `/`、Ctrl/⌘ K 搜索快捷键；
 - 每个页面独立 SEO 信息；
 - JSON、Base64、URL、时间戳、UUID、字数统计、文本去重、进制转换八个首批工具；
 - Cloudflare Pages 默认 SPA fallback，深层路由可直接访问和刷新。
@@ -503,7 +505,7 @@ CLI 创建的 `.vercel/` 只保存本地项目关联信息，已经加入 `.giti
 
 ## 配置品牌
 
-网站名称、描述、URL、作者、GitHub、个人博客和工具分类统一位于 `src/config/site.data.json`。正式 Logo、项目截图等图床链接统一位于 `src/config/images.ts`。网站导航注册表位于 `src/config/webNavigation.ts`，同步生成的数据位于 `src/config/liumingye-navigation.data.json`，本地分类名称与新增链接位于 `src/config/webNavigation.custom.data.json`，只收录 HTTPS 地址。绑定正式域名、GitHub 仓库或图床资源后只需更新配置并重新构建。
+网站名称、描述、URL、作者、GitHub、个人博客和工具分类统一位于 `src/config/site.data.json`。正式 Logo、项目截图和桌面 / 手机背景图链接统一位于 `src/config/images.ts`。背景图使用项目所有者指定的远程接口，由浏览器直接加载，不下载到仓库。网站导航注册表位于 `src/config/webNavigation.ts`，同步生成的数据位于 `src/config/liumingye-navigation.data.json`，本地分类名称与新增链接位于 `src/config/webNavigation.custom.data.json`，只收录 HTTPS 地址。绑定正式域名、GitHub 仓库或图床资源后只需更新配置并重新构建。
 
 欢迎语的定位接口集中配置在 `src/config/visitorLocation.ts`。请求由访客浏览器直接发起，城市仅在当前浏览器会话中缓存，本站没有后端，也不会保存定位结果；接口不可用时回退到浏览器时区城市。
 

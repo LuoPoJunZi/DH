@@ -7,6 +7,7 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: calc(var(--header-height) + 24px);
+  scroll-padding-bottom: calc(var(--footer-height) + var(--space-6) + env(safe-area-inset-bottom));
 }
 
 body {
