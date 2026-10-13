@@ -62,7 +62,7 @@ Header 只保留“首页”和“在线工具”两个主入口，工具分类�
 - 统一工具页面、面包屑、隐私说明、使用方法和相关工具；
 - 全局主题三态切换与首屏防闪烁；
 - 八个完全在浏览器本地运行的代表性工具；
-- 九分类、34 个子分类、397 个不重复入口的网站导航，全站站点搜索和移动端横向分类栏；
+- 九分类、34 个子分类、377 个不重复入口的网站导航，全站站点搜索和移动端横向分类栏；
 - 基于路由的页面标题、description、keywords、canonical、Open Graph 与 Twitter Card；
 - 构建前从工具配置生成 Sitemap 和 robots.txt。
 
@@ -202,6 +202,14 @@ Header 只保留“首页”和“在线工具”两个主入口，工具分类�
 - 六个原有客户端继续保留，更新平台说明和官方下载地址；代理入口统一维护在本地自定义配置，来源同步不会覆盖。
 - 数字空间仍为六组，共 118 个入口；邮箱十个入口、AI 合并、代理独立分类和网络检测前五位顺序保持，全站共 397 个入口与 34 个子分类。
 - 只收录官方 HTTPS 入口，不下载软件、图片或第三方代码，不新增依赖。
+
+## 2026-10-14：精简代理工具
+
+- 按项目所有者要求将代理工具从 43 项精简为 23 项，参考公开关注度、维护状态、平台覆盖和用途重合情况，优先保留常用客户端。
+- 移除 Throne、Clash Nyanpasu、GUI.for.Clash、GUI.for.SingBox、Singcast、Sparkle、v2rayA、clash-for-linux-install、Potatso、Nikki、PassWall、dae、MetaCubeXD、sing-box Dashboard、s-ui、subconverter、clash2singbox、Mihomo、Xray-core，精简重复桌面界面、独立面板、裸内核和偏开发或安装的辅助入口。
+- 按项目所有者要求移除 Cloudflare WARP 入口。
+- 保留桌面、Android、苹果设备和鸿蒙客户端，以及 OpenClash、PassWall 2、ShellCrash、Sub-Store 与 sing-box 官方入口；保留条目的网址、说明和顺序不变。
+- 数字空间共 98 个入口，全站共 377 个入口与 34 个子分类；其他分类及网络检测前五位顺序保持。
 
 ## 后续开发计划
 

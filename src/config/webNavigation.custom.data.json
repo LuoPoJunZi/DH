@@ -174,51 +174,6 @@
             "url": "https://github.com/KaringX/clashmi/releases"
           },
           {
-            "name": "Throne",
-            "description": "Windows/macOS/Linux · sing-box 桌面节点管理",
-            "url": "https://github.com/throneproj/Throne/releases"
-          },
-          {
-            "name": "Clash Nyanpasu",
-            "description": "Windows/macOS/Linux · Clash 桌面配置管理",
-            "url": "https://github.com/libnyanpasu/clash-nyanpasu/releases"
-          },
-          {
-            "name": "GUI.for.Clash",
-            "description": "Windows/macOS/Linux · Mihomo 图形客户端",
-            "url": "https://github.com/GUI-for-Cores/GUI.for.Clash/releases"
-          },
-          {
-            "name": "GUI.for.SingBox",
-            "description": "Windows/macOS/Linux · sing-box 图形客户端",
-            "url": "https://github.com/GUI-for-Cores/GUI.for.SingBox/releases"
-          },
-          {
-            "name": "Singcast",
-            "description": "桌面/Android · sing-box 客户端与多格式订阅导入",
-            "url": "https://github.com/mapleafgo/singcast/releases"
-          },
-          {
-            "name": "Sparkle",
-            "description": "Windows/macOS/Linux · Mihomo 桌面客户端",
-            "url": "https://github.com/xishang0128/sparkle/releases"
-          },
-          {
-            "name": "v2rayA",
-            "description": "Windows/macOS/Linux · 网页界面的节点与路由管理",
-            "url": "https://github.com/v2rayA/v2rayA/releases"
-          },
-          {
-            "name": "Cloudflare WARP",
-            "description": "桌面/手机 · Cloudflare 网络连接客户端",
-            "url": "https://one.one.one.one/"
-          },
-          {
-            "name": "clash-for-linux-install",
-            "description": "Linux · Mihomo 代理环境安装与终端管理",
-            "url": "https://github.com/nelvko/clash-for-linux-install"
-          },
-          {
             "name": "v2rayNG",
             "description": "Android · Xray 节点、二维码与订阅管理",
             "url": "https://github.com/2dust/v2rayNG/releases"
@@ -269,11 +224,6 @@
             "url": "https://apps.apple.com/us/app/v2box-v2ray-client/id6446814690"
           },
           {
-            "name": "Potatso",
-            "description": "iOS · 代理节点与手机网络配置管理",
-            "url": "https://apps.apple.com/us/app/potatso/id1239860606"
-          },
-          {
             "name": "ClashBox",
             "description": "HarmonyOS NEXT · 鸿蒙原生 Mihomo 客户端",
             "url": "https://github.com/xiaobaigroup/ClashBox/releases"
@@ -282,16 +232,6 @@
             "name": "OpenClash",
             "description": "OpenWrt · Mihomo 订阅、配置与路由分流",
             "url": "https://github.com/vernesong/OpenClash/releases"
-          },
-          {
-            "name": "Nikki",
-            "description": "OpenWrt · Mihomo 透明代理与 LuCI 管理",
-            "url": "https://github.com/nikkinikki-org/OpenWrt-nikki/releases"
-          },
-          {
-            "name": "PassWall",
-            "description": "OpenWrt · 节点、分流与代理组件管理",
-            "url": "https://github.com/Openwrt-Passwall/openwrt-passwall/releases"
           },
           {
             "name": "PassWall 2",
@@ -304,54 +244,14 @@
             "url": "https://github.com/juewuy/ShellCrash"
           },
           {
-            "name": "dae",
-            "description": "Linux · 基于 eBPF 的透明代理工具",
-            "url": "https://github.com/daeuniverse/dae/releases"
-          },
-          {
-            "name": "MetaCubeXD",
-            "description": "网页面板 · Mihomo 节点、策略与运行状态管理",
-            "url": "https://github.com/MetaCubeX/metacubexd"
-          },
-          {
-            "name": "sing-box Dashboard",
-            "description": "网页面板 · sing-box 配置与运行状态管理",
-            "url": "https://github.com/SagerNet/sing-box-dashboard"
-          },
-          {
-            "name": "s-ui",
-            "description": "服务端面板 · sing-box 用户与代理配置管理",
-            "url": "https://github.com/alireza0/s-ui/releases"
-          },
-          {
             "name": "Sub-Store",
             "description": "订阅工具 · 多订阅整理、筛选与输出管理",
             "url": "https://github.com/sub-store-org/Sub-Store"
           },
           {
-            "name": "subconverter",
-            "description": "订阅工具 · 代理订阅格式转换与自建部署",
-            "url": "https://github.com/tindy2013/subconverter/releases"
-          },
-          {
-            "name": "clash2singbox",
-            "description": "配置工具 · 将 Clash 配置转换为 sing-box 配置",
-            "url": "https://github.com/xmdhs/clash2singbox"
-          },
-          {
             "name": "sing-box",
             "description": "跨平台 · 官方代理工具链、客户端与配置文档",
             "url": "https://sing-box.sagernet.org/"
-          },
-          {
-            "name": "Mihomo",
-            "description": "代理内核 · Clash 配置、规则分流与客户端集成",
-            "url": "https://github.com/MetaCubeX/mihomo/releases"
-          },
-          {
-            "name": "Xray-core",
-            "description": "代理内核 · 多协议代理核心与开发组件",
-            "url": "https://github.com/XTLS/Xray-core/releases"
           }
         ]
       },
