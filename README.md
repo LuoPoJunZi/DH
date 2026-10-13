@@ -9,7 +9,7 @@ GitHub：[https://github.com/LuoPoJunZi](https://github.com/LuoPoJunZi)
 ## 功能特点
 
 - 工具名称、描述、分类与关键词的前端即时搜索；
-- 数字空间、光影剧场、次元世界、音乐漫游、阅读书房、游戏天地、闲趣生活、效率工坊和应用仓库九分类网站导航，包含 37 个子分类与 353 个不重复入口；
+- 数字空间、光影剧场、次元世界、音乐漫游、阅读书房、游戏天地、闲趣生活、效率工坊和应用仓库九分类网站导航，包含 34 个子分类与 397 个不重复入口；
 - 统一配置驱动的首页、分类、路由、相关工具与 Sitemap；
 - 工具按路由懒加载，降低首页 JavaScript 体积；
 - 跟随系统、浅色与深色三档主题；
@@ -93,7 +93,7 @@ npm run preview
 npm run sync:navigation
 ```
 
-脚本会更新 `src/config/liumingye-navigation.data.json`，只保存站点文本、HTTPS 链接和外部 Logo URL，不下载任何图片。本地分类名称、描述与新增入口统一维护在 `src/config/webNavigation.custom.data.json`，不会被同步覆盖；子分类可设置 `prependLinks: true`，按配置顺序将新增入口放到已有链接前面；`webNavigation.ts` 会将原有两组 AI 入口统一放到“数字空间”，保留“海外 AI”和“国内 AI”两个子分类。同步后仍需运行 `npm run lint` 与 `npm run build`。
+脚本会更新 `src/config/liumingye-navigation.data.json`，只保存站点文本、HTTPS 链接和外部 Logo URL，不下载任何图片。本地分类名称、描述与新增入口统一维护在 `src/config/webNavigation.custom.data.json`，不会被同步覆盖；子分类可设置 `prependLinks: true`，按配置顺序将新增入口放到已有链接前面；`webNavigation.ts` 会将原有两组 AI 入口统一放到“数字空间”，国内与海外 AI 统一展示为“AI 助手”；数字空间通过本地 `subcategoryGroups` 整理为六组，网络检测和代理工具独立展示，不会被来源同步覆盖。同步后仍需运行 `npm run lint` 与 `npm run build`。
 
 ## 日常维护方式
 

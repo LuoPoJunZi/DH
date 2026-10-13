@@ -46,6 +46,12 @@ interface NavigationSubcategoryCustomization extends WebNavigationSubcategory {
   prependLinks: boolean;
 }
 
+interface NavigationSubcategoryGroup {
+  id: string;
+  name: string;
+  subcategoryIds: readonly string[];
+}
+
 const faviconEndpoint = 'https://www.google.com/s2/favicons';
 
 function getWebsiteLogoUrl(url: `https://${string}`): `https://${string}` {
@@ -63,6 +69,32 @@ function asHttpsUrl(url: string): `https://${string}` {
 
 function uniqueLinks(links: WebNavigationLink[]) {
   return Array.from(new Map(links.map((link) => [link.url, link])).values());
+}
+
+function groupNavigationSubcategories(
+  subcategories: WebNavigationSubcategory[],
+  groups: readonly NavigationSubcategoryGroup[],
+): WebNavigationSubcategory[] {
+  if (!groups.length) return subcategories;
+
+  const subcategoryById = new Map(
+    subcategories.map((subcategory) => [subcategory.id, subcategory]),
+  );
+  const groupedIds = new Set(groups.flatMap((group) => group.subcategoryIds));
+  const groupedSubcategories = groups
+    .filter((group) => group.subcategoryIds.some((id) => subcategoryById.has(id)))
+    .map((group) => ({
+      id: group.id,
+      name: group.name,
+      links: uniqueLinks(
+        group.subcategoryIds.flatMap((id) => subcategoryById.get(id)?.links ?? []),
+      ),
+    }));
+
+  return [
+    ...groupedSubcategories,
+    ...subcategories.filter((subcategory) => !groupedIds.has(subcategory.id)),
+  ];
 }
 
 const coreNavigationCategorySources: CoreNavigationCategorySource[] = [
@@ -209,38 +241,7 @@ const coreNavigationCategorySources: CoreNavigationCategorySource[] = [
       {
         id: 'network-clients',
         name: '网络客户端',
-        links: [
-          {
-            name: 'v2rayN',
-            description: 'Windows 网络代理客户端发布页',
-            url: 'https://github.com/2dust/v2rayN/releases/',
-          },
-          {
-            name: 'NekoBox',
-            description: 'Android 网络代理客户端项目',
-            url: 'https://github.com/MatsuriDayo/NekoBoxForAndroid',
-          },
-          {
-            name: 'sing-box',
-            description: '跨平台通用代理工具文档',
-            url: 'https://sing-box.sagernet.org/',
-          },
-          {
-            name: 'Shadowrocket',
-            description: 'iOS 网络代理客户端 App Store 页面',
-            url: 'https://apps.apple.com/app/shadowrocket/id932747118',
-          },
-          {
-            name: 'Clash Verge Rev',
-            description: '跨平台 Clash 桌面客户端项目',
-            url: 'https://github.com/clash-verge-rev/clash-verge-rev',
-          },
-          {
-            name: 'Hiddify',
-            description: '基于多种协议的跨平台网络客户端',
-            url: 'https://github.com/hiddify/hiddify-app',
-          },
-        ],
+        links: [],
       },
       {
         id: 'personal-sites',
@@ -350,12 +351,19 @@ function applyNavigationCustomization(category: WebNavigationCategory): WebNavig
     ),
   );
 
+  const visibleSubcategories = groupNavigationSubcategories(
+    subcategories,
+    customization && 'subcategoryGroups' in customization
+      ? (customization.subcategoryGroups ?? [])
+      : [],
+  );
+
   return {
     ...category,
     name: customization?.name ?? category.name,
     description: customization?.description ?? category.description,
-    links: uniqueLinks(subcategories.flatMap((subcategory) => subcategory.links)),
-    subcategories,
+    links: uniqueLinks(visibleSubcategories.flatMap((subcategory) => subcategory.links)),
+    subcategories: visibleSubcategories,
   };
 }
 
