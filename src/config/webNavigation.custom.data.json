@@ -411,6 +411,11 @@
             "name": "YouTube",
             "description": "视频观看、创作者频道与知识分享",
             "url": "https://www.youtube.com/"
+          },
+          {
+            "name": "哔哩哔哩",
+            "description": "视频观看、知识分享与创作者社区",
+            "url": "https://www.bilibili.com/"
           }
         ]
       }
@@ -437,7 +442,7 @@
   {
     "id": "music",
     "name": "音乐漫游",
-    "description": "官方听歌、音乐资源与网络电台",
+    "description": "官方听歌、音乐资源、网络电台与播客",
     "subcategories": [
       {
         "id": "listen",
@@ -452,6 +457,22 @@
             "name": "QQ 音乐",
             "description": "官方在线听歌、歌单与音乐榜单",
             "url": "https://y.qq.com/"
+          },
+          {
+            "name": "Spotify",
+            "description": "在线收听音乐、歌单与播客",
+            "url": "https://open.spotify.com/"
+          }
+        ]
+      },
+      {
+        "id": "radio",
+        "name": "电台播客",
+        "links": [
+          {
+            "name": "小宇宙",
+            "description": "发现中文播客、订阅节目与收听单集",
+            "url": "https://www.xiaoyuzhoufm.com/"
           }
         ]
       }
@@ -475,6 +496,22 @@
             "name": "豆瓣读书",
             "description": "图书评分、书评与选书参考",
             "url": "https://book.douban.com/"
+          },
+          {
+            "name": "国家图书馆",
+            "description": "检索图书、古籍、期刊与公开课资源",
+            "url": "https://www.nlc.cn/"
+          }
+        ]
+      },
+      {
+        "id": "ebooks",
+        "name": "电子书",
+        "links": [
+          {
+            "name": "古腾堡计划",
+            "description": "Project Gutenberg · 免费经典电子书与在线阅读",
+            "url": "https://www.gutenberg.org/"
           }
         ]
       }
@@ -483,16 +520,26 @@
   {
     "id": "game",
     "name": "游戏天地",
-    "description": "经典游戏、网页小游戏与独立游戏",
+    "description": "经典游戏、网页小游戏与正版游戏平台",
     "subcategories": [
       {
         "id": "indie-games",
-        "name": "独立游戏",
+        "name": "游戏平台",
         "links": [
           {
             "name": "itch.io",
             "description": "发现、体验与下载独立游戏",
             "url": "https://itch.io/"
+          },
+          {
+            "name": "Epic Games",
+            "description": "正版游戏商城与免费游戏活动",
+            "url": "https://store.epicgames.com/zh-CN/"
+          },
+          {
+            "name": "GOG",
+            "description": "经典游戏与无 DRM 游戏商城",
+            "url": "https://www.gog.com/"
           }
         ]
       }
@@ -511,6 +558,17 @@
             "name": "Neal.fun",
             "description": "轻松有趣的互动实验与小游戏",
             "url": "https://neal.fun/"
+          }
+        ]
+      },
+      {
+        "id": "wallpaper",
+        "name": "壁纸",
+        "links": [
+          {
+            "name": "Unsplash",
+            "description": "摄影图片、桌面壁纸与设计素材",
+            "url": "https://unsplash.com/"
           }
         ]
       }
@@ -579,6 +637,26 @@
             "name": "Uiverse",
             "description": "浏览可复用的 CSS 与 Tailwind 界面元素",
             "url": "https://uiverse.io/elements"
+          },
+          {
+            "name": "DeepL",
+            "description": "文本与文档翻译，支持多种语言",
+            "url": "https://www.deepl.com/translator"
+          },
+          {
+            "name": "Canva 可画",
+            "description": "在线设计海报、PPT、封面与简历",
+            "url": "https://www.canva.cn/"
+          },
+          {
+            "name": "draw.io",
+            "description": "免费绘制流程图、架构图与网络图",
+            "url": "https://app.diagrams.net/"
+          },
+          {
+            "name": "Notion",
+            "description": "在线笔记、知识库与项目管理",
+            "url": "https://www.notion.com/"
           }
         ]
       }
@@ -632,6 +710,16 @@
             "name": "Netcatty",
             "description": "集成 SSH、SFTP 与终端的桌面工作区",
             "url": "https://github.com/binaricat/Netcatty"
+          },
+          {
+            "name": "Microsoft PowerToys",
+            "description": "微软 Windows 效率工具与桌面增强功能",
+            "url": "https://learn.microsoft.com/zh-cn/windows/powertoys/"
+          },
+          {
+            "name": "Bitwarden",
+            "description": "开源密码管理、自动填充与跨设备同步",
+            "url": "https://bitwarden.com/"
           }
         ]
       },
