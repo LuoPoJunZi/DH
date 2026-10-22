@@ -319,6 +319,12 @@ function applyNavigationCustomization(category: WebNavigationCategory): WebNavig
     existingSubcategories.splice(overseasAiIndex + 1, 0, importedAiSubcategory);
   }
 
+  const existingLinksByUrl = new Map(
+    existingSubcategories.flatMap((subcategory) =>
+      subcategory.links.map((link) => [link.url, link] as const),
+    ),
+  );
+
   const customSubcategories: NavigationSubcategoryCustomization[] = (
     customization?.subcategories ?? []
   ).map((subcategory) => ({
@@ -327,7 +333,11 @@ function applyNavigationCustomization(category: WebNavigationCategory): WebNavig
     prependLinks: 'prependLinks' in subcategory && subcategory.prependLinks === true,
     links: subcategory.links.map((link) => {
       const url = asHttpsUrl(link.url);
-      return { ...link, url, logoUrl: getWebsiteLogoUrl(url) };
+      return {
+        ...link,
+        url,
+        logoUrl: existingLinksByUrl.get(url)?.logoUrl ?? getWebsiteLogoUrl(url),
+      };
     }),
   }));
 

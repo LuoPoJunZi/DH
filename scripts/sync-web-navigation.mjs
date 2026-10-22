@@ -95,7 +95,7 @@ const categoryDefinitions = [
 function cleanText(value, fallback) {
   if (typeof value !== 'string') return fallback;
   const cleaned = value.replace(/\s+/g, ' ').trim();
-  return cleaned || fallback;
+  return cleaned && cleaned !== '查看网站详情' ? cleaned : fallback;
 }
 
 function getHttpsUrl(value) {
@@ -143,7 +143,7 @@ async function fetchSubcategory([id, name, sourceId]) {
 
     return {
       name: cleanText(site.title, '未命名站点'),
-      description: cleanText(site.text, '查看网站详情'),
+      description: cleanText(site.text, `${name}资源入口，便于浏览与使用`),
       url,
       logoUrl: getLogoUrl(site.logo, url),
     };

@@ -53,6 +53,76 @@
             "name": "硅基流动",
             "description": "多种大模型 API 与推理服务平台",
             "url": "https://cloud.siliconflow.cn/"
+          },
+          {
+            "name": "即梦 AI",
+            "description": "图像与视频生成，辅助视觉内容创作",
+            "url": "https://jimeng.jianying.com/ai-tool/home"
+          },
+          {
+            "name": "TRAE Work",
+            "description": "编程与任务协作，辅助项目开发",
+            "url": "https://www.trae.cn/work"
+          },
+          {
+            "name": "豆包 AI",
+            "description": "对话问答与内容创作，辅助日常学习",
+            "url": "https://www.doubao.com/"
+          },
+          {
+            "name": "千问 AI",
+            "description": "智能问答与文档处理，辅助工作学习",
+            "url": "https://www.qianwen.com/"
+          },
+          {
+            "name": "OpenCode",
+            "description": "开源编程助手，支持终端代码协作",
+            "url": "https://opencode.ai/zh"
+          },
+          {
+            "name": "LibTV",
+            "description": "视频创作与剪辑，辅助内容制作",
+            "url": "https://www.liblib.tv/"
+          },
+          {
+            "name": "AniShort",
+            "description": "AI 短剧创作，辅助分镜与视频生成",
+            "url": "https://anishort.cn/"
+          },
+          {
+            "name": "小云雀",
+            "description": "智能生成图像视频，辅助内容创作",
+            "url": "https://xyq.jianying.com/"
+          },
+          {
+            "name": "Kimi",
+            "description": "长文档阅读与分析，辅助资料整理",
+            "url": "https://www.kimi.com/"
+          },
+          {
+            "name": "秘塔 AI 搜索",
+            "description": "联网搜索与来源引用，辅助资料检索",
+            "url": "https://metaso.cn/"
+          },
+          {
+            "name": "腾讯元宝",
+            "description": "联网问答与文档分析，辅助日常办公",
+            "url": "https://yuanbao.tencent.com/"
+          },
+          {
+            "name": "DeepSeek",
+            "description": "推理问答与代码生成，辅助学习开发",
+            "url": "https://chat.deepseek.com/sign_in"
+          },
+          {
+            "name": "Genie AI",
+            "description": "对话生成网页应用，辅助原型开发",
+            "url": "https://genie.tencent.com/"
+          },
+          {
+            "name": "文心一言",
+            "description": "智能问答与文字创作，辅助办公学习",
+            "url": "https://yiyan.baidu.com/"
           }
         ]
       },
@@ -306,11 +376,6 @@
             "url": "https://mail.163.com/"
           },
           {
-            "name": "网易 126 邮箱",
-            "description": "网易 126 网页邮箱与邮件管理",
-            "url": "https://mail.126.com/"
-          },
-          {
             "name": "iCloud Mail",
             "description": "Apple 账户的网页邮箱与邮件同步",
             "url": "https://www.icloud.com/mail/"
@@ -416,6 +481,68 @@
             "name": "哔哩哔哩",
             "description": "视频观看、知识分享与创作者社区",
             "url": "https://www.bilibili.com/"
+          }
+        ]
+      },
+      {
+        "id": "android",
+        "name": "Android",
+        "links": [
+          {
+            "name": "螃蟹视频",
+            "description": "安卓影视客户端，便于手机追剧",
+            "url": "https://tools.liumingye.cn/site/453/"
+          },
+          {
+            "name": "小橙子",
+            "description": "移动端影视播放，适合日常追剧",
+            "url": "https://tools.liumingye.cn/site/448/"
+          },
+          {
+            "name": "顾我追剧",
+            "description": "安卓追剧应用，集中浏览影视内容",
+            "url": "https://tools.liumingye.cn/site/443/"
+          },
+          {
+            "name": "咕噜咕噜",
+            "description": "手机影视播放器，便于浏览剧集",
+            "url": "https://tools.liumingye.cn/site/438/"
+          },
+          {
+            "name": "小苹果影视",
+            "description": "安卓影视入口，适合手机观看剧集",
+            "url": "https://tools.liumingye.cn/site/429/"
+          },
+          {
+            "name": "大师兄影视",
+            "description": "手机追剧客户端，集中浏览影视",
+            "url": "https://tools.liumingye.cn/site/424/"
+          },
+          {
+            "name": "快追影视",
+            "description": "移动端追剧工具，便于查找剧集",
+            "url": "https://tools.liumingye.cn/site/412/"
+          },
+          {
+            "name": "地瓜影院",
+            "description": "安卓影视播放，集中浏览电影剧集",
+            "url": "https://tools.liumingye.cn/site/403/"
+          },
+          {
+            "name": "爱看影视",
+            "description": "手机影视客户端，便于日常追剧",
+            "url": "https://tools.liumingye.cn/site/398/"
+          }
+        ]
+      },
+      {
+        "id": "tv",
+        "name": "TV",
+        "links": [
+          {
+            "name": "趣看秒播",
+            "description": "电视端影视播放，适合大屏追剧",
+            "url": "https://tools.liumingye.cn/site/406/"
           }
         ]
       }
