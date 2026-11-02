@@ -506,6 +506,10 @@ CLI 创建的 `.vercel/` 只保存本地项目关联信息，已经加入 `.giti
 
 ## 配置品牌
 
+页头和页脚使用项目所有者提供的头像 `public/brand/logo-avatar-128.png`，通过 `src/config/images.ts` 统一引用；图片加载失败时回退到同套头像的 96 像素站点图标。
+
+浏览器标签页图标使用 `public/favicon.ico` 和 `public/favicon-16x16.png`、`favicon-32x32.png`、`favicon-96x96.png`；苹果主屏幕图标使用 `public/apple-touch-icon.png`。应用快捷方式的普通与可裁切图标放在 `public/icons/`，由 `public/site.webmanifest` 引用。以上文件来自项目所有者提供的图标包，已从临时文件夹移至正式目录，替换时同步检查 `index.html` 与 Manifest 中的尺寸和路径。
+
 网站名称、描述、URL、作者、GitHub、个人博客和工具分类统一位于 `src/config/site.data.json`。正式 Logo、项目截图和桌面 / 手机背景图链接统一位于 `src/config/images.ts`。背景图使用项目所有者指定的远程接口，由浏览器直接加载，不下载到仓库。网站导航注册表位于 `src/config/webNavigation.ts`，同步生成的数据位于 `src/config/liumingye-navigation.data.json`，本地分类名称与新增链接位于 `src/config/webNavigation.custom.data.json`，只收录 HTTPS 地址。绑定正式域名、GitHub 仓库或图床资源后只需更新配置并重新构建。
 
 欢迎语的定位接口集中配置在 `src/config/visitorLocation.ts`。请求由访客浏览器直接发起，城市仅在当前浏览器会话中缓存，本站没有后端，也不会保存定位结果；接口不可用时回退到浏览器时区城市。

@@ -1,58 +1,3 @@
-.category-rail {
-  background: var(--glass-surface);
-  border-bottom: 1px solid var(--glass-line);
-  backdrop-filter: blur(var(--navigation-widget-blur));
-}
-
-.category-rail__inner {
-  display: flex;
-  min-height: 52px;
-  align-items: center;
-  gap: 32px;
-  overflow-x: auto;
-  scrollbar-width: none;
-}
-
-.category-rail__inner::-webkit-scrollbar {
-  display: none;
-}
-
-.category-rail__label {
-  flex-shrink: 0;
-  color: var(--ink-faint);
-  white-space: nowrap;
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-}
-
-.category-rail a {
-  display: inline-flex;
-  min-height: 40px;
-  align-items: center;
-  flex: none;
-  font-size: 0.83rem;
-  font-weight: 650;
-}
-
-.category-rail a:hover {
-  color: var(--accent);
-}
-
-.category-rail sup {
-  margin-left: 4px;
-  color: var(--ink-faint);
-  font-family: var(--font-mono);
-  font-size: 0.62rem;
-}
-
-.category-rail__directory-link {
-  padding-left: 28px;
-  margin-left: auto;
-  border-left: 1px solid var(--line);
-}
-
 .home-content {
   padding-top: 24px;
 }
@@ -75,7 +20,6 @@
 
 .section-heading h1,
 .section-heading h2,
-.home-note h2,
 .tool-details h2 {
   margin-bottom: 0;
   font-size: clamp(1.25rem, 2vw, 1.5rem);
@@ -218,26 +162,7 @@
   text-align: center;
 }
 
-.home-note {
-  padding: var(--space-6);
-  border-block: 1px solid var(--line);
-}
-
-.home-note__grid {
-  display: grid;
-  grid-template-columns: minmax(0, 1.1fr) minmax(300px, 0.9fr);
-  gap: 32px;
-  align-items: start;
-}
-
-.home-note__grid > p {
-  margin-bottom: 0;
-  color: var(--ink-muted);
-  font-size: 0.95rem;
-}
-
 .home-content .section-heading,
-.home-note,
 .page-container--directory .page-header,
 .page-container--directory .empty-state {
   background: var(--navigation-widget-surface);
@@ -293,15 +218,6 @@
 }
 
 @media (max-width: 760px) {
-  .category-rail__inner {
-    min-height: 56px;
-    gap: 26px;
-  }
-  .category-rail__directory-link {
-    padding-left: 0;
-    margin-left: 0;
-    border-left: 0;
-  }
   .home-content {
     padding-top: 20px;
   }
@@ -316,13 +232,6 @@
   }
   .section-heading > p {
     display: none;
-  }
-  .home-note {
-    padding: var(--space-4);
-  }
-  .home-note__grid {
-    grid-template-columns: 1fr;
-    gap: 24px;
   }
 }
 
