@@ -14,12 +14,12 @@
     "predev": "npm run generate:seo",
     "dev": "vite",
     "prebuild": "npm run generate:seo",
-    "build": "tsc -b && tsc -p server/tsconfig.json && tsc -p functions/tsconfig.json && vite build",
+    "build": "tsc -b && tsc -p addr/server/tsconfig.json && tsc -p functions/tsconfig.json && vite build",
     "preview": "vite preview",
     "lint": "eslint . --max-warnings=0",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "test:address": "node scripts/address-generator/test.mjs"
+    "test:address": "node addr/scripts/test.mjs"
   },
   "dependencies": {
     "lucide-react": "^0.468.0",

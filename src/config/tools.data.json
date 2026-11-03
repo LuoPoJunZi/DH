@@ -155,9 +155,9 @@
     "id": "address-generator",
     "name": "地址生成",
     "shortName": "地址生成",
-    "description": "在线获取开放地图中已有的门牌地址",
+    "description": "在线选取多国家地图门牌，支持住宅与商业筛选",
     "category": "other",
-    "path": "/tools/address-generator",
+    "path": "/addr",
     "icon": "map-pin",
     "keywords": [
       "地址生成",
@@ -171,17 +171,17 @@
     "featured": false,
     "seo": {
       "title": "多国家在线地址生成器",
-      "description": "按国家、地区在线获取开放地图已有门牌地址，美国复用原 worker.js 的反向取址流程；支持复制、收藏、备注、导出和 Google Maps 一键查询。"
+      "description": "在线选取 OpenStreetMap 已有门牌，支持住宅、商业、多国家格式、收藏、备注、导出和 Google Maps 查询。"
     },
     "usage": [
-      "选择国家、州省或参考城市。",
-      "点击生成，在线获取地图已有地址；缺少数据时按提示重试或换地区。",
-      "复制字段、保存地址、导出记录，或在 Google Maps 查询。"
+      "选择国家、地区和住宅、商业或不限类型。",
+      "点击生成，从在线地图门牌候选中选择地址。",
+      "复制、保存、导出，或一键在 Google Maps 查询。"
     ],
     "features": [
-      "按州获取美国地址，支持多国家和地区",
-      "开放地图原始对象和 Google Maps 查询入口",
-      "收藏、备注、JSON / CSV / TXT 导出"
+      "30 个国家/地区与本地地址格式",
+      "住宅、商业与美国免州销售税筛选",
+      "收藏、备注、导出和 Google Maps 查询"
     ],
     "processing": "online"
   }

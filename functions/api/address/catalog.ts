@@ -1,4 +1,4 @@
-import { addressService } from '../../../server/address/service';
-import type { AddressContext } from '../../../server/address/runtime';
+import { addressService } from '../../../addr/server/service';
+import type { AddressContext } from '../../../addr/server/runtime';
 export const onRequest = (context: AddressContext): Promise<Response> =>
   addressService.catalog(context);

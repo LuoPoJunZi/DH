@@ -1,4 +1,4 @@
-import { addressLinks } from '../../../config/address-generator';
+import { addressLinks } from './links';
 import { COUNTRY_CODES, type AddressRecord, type CountryCode } from './types';
 export const MAX_BATCH_SIZE = 5;
 export const DATA_NOTICE =
@@ -54,6 +54,37 @@ export function isAddressRecord(value: unknown): value is AddressRecord {
         typeof value[field] === 'string' &&
         value[field].length <= (field === 'fullAddress' ? 2000 : 500),
     )
+  )
+    return false;
+  if (
+    (value.provider !== undefined &&
+      (typeof value.provider !== 'string' || !['photon', 'overpass'].includes(value.provider))) ||
+    (value.addressType !== undefined &&
+      (typeof value.addressType !== 'string' ||
+        !['residential', 'commercial', 'public', 'unspecified'].includes(value.addressType))) ||
+    ['category', 'placeName'].some(
+      (k) => value[k] !== undefined && (typeof value[k] !== 'string' || value[k].length > 240),
+    )
+  )
+    return false;
+  const taxFree = value.taxFree;
+  if (
+    taxFree !== undefined &&
+    (!isObject(taxFree) ||
+      !['code', 'name', 'note'].every(
+        (k) => typeof taxFree[k] === 'string' && taxFree[k].length <= 240,
+      ))
+  )
+    return false;
+  const localized = value.localized;
+  if (
+    localized !== undefined &&
+    (!isObject(localized) ||
+      !['en', 'zh'].every(
+        (k) =>
+          localized[k] === undefined ||
+          (typeof localized[k] === 'string' && localized[k].length <= 2000),
+      ))
   )
     return false;
   const record = value as unknown as AddressRecord;

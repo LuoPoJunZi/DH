@@ -1,4 +1,4 @@
-import type { CountryCode, CountryOption } from '../../src/tools/other/address-generator/types';
+import type { CountryCode, CountryOption } from '../shared/types';
 export interface CitySeed {
   id: string;
   name: string;
@@ -188,6 +188,38 @@ export const COUNTRY_SEEDS: readonly CountrySeed[] = [
   country('VN', '越南', 'Vietnam', [
     ['HCM', 'Ho Chi Minh City', 'vn-hcm', 'Ho Chi Minh City', 10.8231, 106.6297],
     ['HN', 'Hanoi', 'vn-hanoi', 'Hanoi', 21.0285, 105.8542],
+  ]),
+  country('BR', '巴西', 'Brazil', [
+    ['SP', 'São Paulo', 'br-sao-paulo', 'São Paulo', -23.5505, -46.6333],
+    ['RJ', 'Rio de Janeiro', 'br-rio', 'Rio de Janeiro', -22.9068, -43.1729],
+  ]),
+  country('RU', '俄罗斯', 'Russia', [
+    ['MOW', 'Moscow', 'ru-moscow', 'Moscow', 55.7558, 37.6173],
+    ['SPE', 'Saint Petersburg', 'ru-spb', 'Saint Petersburg', 59.9343, 30.3351],
+  ]),
+  country('ZA', '南非', 'South Africa', [
+    ['WC', 'Western Cape', 'za-cape-town', 'Cape Town', -33.9249, 18.4241],
+    ['GP', 'Gauteng', 'za-johannesburg', 'Johannesburg', -26.2041, 28.0473],
+  ]),
+  country('MX', '墨西哥', 'Mexico', [
+    ['CMX', 'Mexico City', 'mx-mexico-city', 'Mexico City', 19.4326, -99.1332],
+    ['JAL', 'Jalisco', 'mx-guadalajara', 'Guadalajara', 20.6597, -103.3496],
+  ]),
+  country('SA', '沙特阿拉伯', 'Saudi Arabia', [
+    ['01', 'Riyadh', 'sa-riyadh', 'Riyadh', 24.7136, 46.6753],
+    ['02', 'Makkah', 'sa-mecca', 'Mecca', 21.3891, 39.8579],
+  ]),
+  country('AR', '阿根廷', 'Argentina', [
+    ['C', 'Buenos Aires', 'ar-buenos-aires', 'Buenos Aires', -34.6037, -58.3816],
+    ['X', 'Córdoba', 'ar-cordoba', 'Córdoba', -31.4201, -64.1888],
+  ]),
+  country('EG', '埃及', 'Egypt', [
+    ['C', 'Cairo', 'eg-cairo', 'Cairo', 30.0444, 31.2357],
+    ['ALX', 'Alexandria', 'eg-alexandria', 'Alexandria', 31.2156, 29.9553],
+  ]),
+  country('ID', '印度尼西亚', 'Indonesia', [
+    ['JK', 'Jakarta', 'id-jakarta', 'Jakarta', -6.2088, 106.8456],
+    ['YO', 'Yogyakarta', 'id-yogyakarta', 'Yogyakarta', -7.7956, 110.3695],
   ]),
 ];
 export function publicCatalog(): CountryOption[] {

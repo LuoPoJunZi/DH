@@ -1,5 +1,5 @@
-import { ATTRIBUTION, DATA_NOTICE } from './utils';
-import type { ExportEntry, ExportFormat } from './types';
+import { ATTRIBUTION, DATA_NOTICE } from '../shared/address';
+import type { ExportEntry, ExportFormat } from '../shared/types';
 
 export function csvCell(value: string): string {
   // Guard spreadsheet formulas even when hidden behind leading whitespace.

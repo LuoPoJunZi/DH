@@ -1,0 +1,7 @@
+{
+  "extends": "../tsconfig.app.json",
+  "include": ["client", "shared", "data/**/*.ts", "worker.d.ts"],
+  "compilerOptions": {
+    "tsBuildInfoFile": "../node_modules/.tmp/tsconfig.address-client.tsbuildinfo"
+  }
+}

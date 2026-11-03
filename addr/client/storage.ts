@@ -1,5 +1,5 @@
-import { addressKey, isAddressRecord } from './utils';
-import type { SavedAddress } from './types';
+import { addressKey, isAddressRecord } from '../shared/address';
+import type { SavedAddress } from '../shared/types';
 
 export const STORAGE_KEY = 'luopo-tools.address-generator.online-favorites.v6';
 export const MAX_FAVORITES = 100;

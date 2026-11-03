@@ -1,5 +1,5 @@
-import { isAddressRecord, isCountryCode, isObject } from './utils';
-import type { AddressCatalog, GenerateOptions, GenerateResult } from './types';
+import { isAddressRecord, isCountryCode, isObject } from '../shared/address';
+import type { AddressCatalog, GenerateOptions, GenerateResult } from '../shared/types';
 const API_ROOT = '/api/address';
 async function readResponse(response: Response): Promise<unknown> {
   if (!response.headers.get('content-type')?.includes('application/json')) {

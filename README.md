@@ -20,7 +20,7 @@ GitHub：[https://github.com/LuoPoJunZi](https://github.com/LuoPoJunZi)
 - 适配桌面、平板与手机，支持键盘操作和 `/`、Ctrl/⌘ K 搜索快捷键；
 - 每个页面独立 SEO 信息；
 - JSON、Base64、URL、时间戳、UUID、字数统计、文本去重、进制转换八个基础工具，以及多国家在线地址生成工具；
-- 地址生成优先复用原 worker.js 的美国在线取址，并接入其他国家的开放地图门牌查询；支持复制、收藏、备注、导出和 Google Maps 一键查询，无需 CF 后台新增配置；
+- 地址生成基于指定参考 Worker 重做，独立维护在 addr/；支持 30 个国家/地区、住宅与商业筛选、免州销售税筛选、收藏、导出和 Google Maps 查询，无需 CF 后台新增配置；
 - Cloudflare Pages 默认 SPA fallback，深层路由可直接访问和刷新。
 
 ## 项目截图
@@ -44,7 +44,7 @@ GitHub：[https://github.com/LuoPoJunZi](https://github.com/LuoPoJunZi)
 ├── .github/workflows/       # CI
 ├── docs/                    # 架构与开发记录
 ├── functions/               # 地址 API 的 Pages Functions
-├── server/address/          # 在线取址、缓存与原 Worker 适配
+├── addr/       # 独立地址模块（页面、Worker、配置、测试）
 ├── public/                  # Favicon、Manifest、Headers、生成的 SEO 文件
 ├── scripts/                 # 构建期脚本
 ├── src/
@@ -498,9 +498,9 @@ CLI 创建的 `.vercel/` 只保存本地项目关联信息，已经加入 `.giti
 
 ## 地址生成
 
-入口 `/tools/address-generator`。美国优先复用项目所有者 `worker.js` 的 50 州与在线反向取址代码，其他国家使用开放地图已有门牌记录；不使用本地地址池，也不模拟街道、门牌或邮编。每条提供原始地图对象及 Google Maps 查询链接，不进行地址正确性或 Google 收录核验。
+入口 /addr（旧地址 /tools/address-generator 会自动跳转）。基于项目所有者指定的参考 Worker 改编，独立代码集中在 [addr/](addr/README.md)：Photon 优先查找已有门牌候选，Overpass 备用，按需用 Nominatim 补充行政信息。支持住宅、商业、美国免州销售税筛选、香港双语、收藏和导出。地址不使用本地模拟池，Google Maps 只提供查询与预览。
 
-页面代码位于 `src/tools/other/address-generator/`，在线服务位于 `server/address/`，同站接口位于 `functions/api/address/`。继续通过 GitHub 推送后由 Cloudflare Pages 自动部署，无需后台新增配置。维护与本地运行见 [在线地址生成模块](docs/ADDRESS_GENERATOR.md)。修改后额外运行 `npm run test:address`。
+主站保留现有工具注册和 Pages API 薄入口。仍使用 GitHub 推送触发 Cloudflare Pages 自动部署，无需新增后台配置。修改后运行 npm run test:address、npm run lint 和 npm run build。目录职责及维护方法见独立模块说明。
 
 ## 如何添加新工具
 
@@ -528,7 +528,7 @@ CLI 创建的 `.vercel/` 只保存本地项目关联信息，已经加入 `.giti
 
 ## 隐私
 
-基础工具使用浏览器本地能力处理输入。地址生成会将所选国家、地区和必要的查询选项发送至同站地址接口，再查询开放地图；收藏与备注只保存在当前浏览器。美国可选的姓名和电话为独立测试资料，不是住户身份信息。
+基础工具使用浏览器本地能力处理输入。地址生成会将所选国家、地区和必要的查询选项发送至同站地址接口，再查询开放地图；收藏与备注只保存在当前浏览器。可选的姓名和电话为独立测试资料，不是住户身份信息。
 
 ## License
 

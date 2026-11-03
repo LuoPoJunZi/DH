@@ -21,9 +21,17 @@ export const COUNTRY_CODES = [
   'PH',
   'MY',
   'VN',
+  'BR',
+  'RU',
+  'ZA',
+  'MX',
+  'SA',
+  'AR',
+  'EG',
+  'ID',
 ] as const;
 export type CountryCode = (typeof COUNTRY_CODES)[number];
-export type PlaceKind = 'residential' | 'building';
+export type PlaceKind = 'residential' | 'commercial' | 'any';
 export interface CityOption {
   id: string;
   name: string;
@@ -54,9 +62,16 @@ export interface GenerateOptions {
   kind: PlaceKind;
   count: number;
   includeContact: boolean;
+  taxFree?: boolean;
   previousSourceId?: string;
 }
 export interface AddressRecord {
+  provider?: 'photon' | 'overpass';
+  addressType?: 'residential' | 'commercial' | 'public' | 'unspecified';
+  category?: string;
+  placeName?: string;
+  taxFree?: { code: string; name: string; note: string };
+  localized?: { en?: string; zh?: string };
   schemaVersion: 6;
   id: string;
   countryCode: CountryCode;

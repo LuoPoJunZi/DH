@@ -5,15 +5,21 @@ import { spawnSync } from 'node:child_process';
 import ts from 'typescript';
 
 const root = fileURLToPath(new URL('../../', import.meta.url));
-const output = path.join(root, 'output/playwright/address-online-unit');
+const output = path.join(root, 'output/playwright/address-module-unit');
 await mkdir(output, { recursive: true });
 await writeFile(path.join(output, 'package.json'), '{"type":"commonjs"}\n');
-const source = path.join(root, 'src/tools/other/address-generator');
+const source = path.join(root, 'addr');
 const program = ts.createProgram(
-  ['utils.ts', 'api.ts', 'storage.ts', 'export.ts']
+  [
+    'shared/address.ts',
+    'client/api.ts',
+    'client/storage.ts',
+    'client/export.ts',
+    'server/service.ts',
+    'worker.js',
+  ]
     .map((file) => path.join(source, file))
     .concat([
-      path.join(root, 'server/address/service.ts'),
       path.join(root, 'functions/api/address/catalog.ts'),
       path.join(root, 'functions/api/address/generate.ts'),
     ]),
@@ -23,6 +29,8 @@ const program = ts.createProgram(
     moduleResolution: ts.ModuleResolutionKind.Node10,
     lib: ['lib.es2022.d.ts', 'lib.dom.d.ts', 'lib.dom.iterable.d.ts'],
     strict: true,
+    allowJs: true,
+    checkJs: false,
     noUncheckedIndexedAccess: true,
     esModuleInterop: true,
     resolveJsonModule: true,
@@ -46,7 +54,7 @@ if (diagnostics.length) {
   program.emit();
   const result = spawnSync(
     process.execPath,
-    ['--test', fileURLToPath(new URL('core.test.mjs', import.meta.url))],
+    ['--test', fileURLToPath(new URL('../tests/core.test.mjs', import.meta.url))],
     { cwd: root, stdio: 'inherit' },
   );
   if (result.error) throw result.error;

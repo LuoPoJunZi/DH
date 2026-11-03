@@ -1,5 +1,5 @@
 {
-  "extends": "../server/tsconfig.json",
+  "extends": "../addr/server/tsconfig.json",
   "include": ["api/address/**/*.ts"],
   "compilerOptions": {
     "resolveJsonModule": true,
