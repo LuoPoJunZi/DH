@@ -11,6 +11,7 @@ const load = (file) => require(path.join(root, file));
 const { publicCatalog, COUNTRY_SEEDS } = load('server/address/catalog.js');
 const { resolveScope, normalizeOverpass, fetchMappedPool } = load('server/address/providers.js');
 const { createAddressService, validateOptions } = load('server/address/service.js');
+const { normalizeInternationalReverse } = load('server/address/international.js');
 const {
   workerStates,
   getRandomState,
@@ -565,5 +566,134 @@ test('country catalog bypasses stale browser responses after deployment', async 
     assert.equal((await loadCatalog(new AbortController().signal)).countries.length, 22);
   } finally {
     globalThis.fetch = original;
+  }
+});
+
+function internationalReverse(overrides = {}) {
+  const s = scope({ countryCode: 'GB', regionCode: 'ENG' });
+  return reverse({
+    lat: String(s.seed.latitude),
+    lon: String(s.seed.longitude),
+    address: {
+      country_code: 'gb',
+      house_number: '12',
+      road: 'Source Road',
+      city: 'Source City',
+      state: 'Source Region',
+      postcode: '00123',
+    },
+    ...overrides,
+  });
+}
+test('international reverse records preserve source fields and never fill missing data from selectors', () => {
+  const s = scope({ countryCode: 'GB', regionCode: 'ENG' });
+  const record = normalizeInternationalReverse(internationalReverse(), s, () => NOW);
+  assert.ok(isAddressRecord(record));
+  assert.equal(record.postalCode, '00123');
+  assert.equal(record.addressLine1, '12 Source Road');
+  assert.equal(record.city, 'Source City');
+  assert.equal(record.sourcePlaceId, 'way/12345');
+  const address = { ...internationalReverse().address, city: '', state: '', postcode: '' };
+  const partial = normalizeInternationalReverse(internationalReverse({ address }), s, () => NOW);
+  assert.equal(partial.city, '');
+  assert.equal(partial.region, '');
+  assert.equal(partial.postalCode, '');
+  assert.equal(
+    normalizeInternationalReverse(
+      internationalReverse({ address: { ...address, house_number: '' } }),
+      s,
+      () => NOW,
+    ),
+    null,
+  );
+  assert.equal(
+    normalizeInternationalReverse(
+      internationalReverse({ address: { ...address, country_code: 'us' } }),
+      s,
+      () => NOW,
+    ),
+    null,
+  );
+  assert.equal(
+    normalizeInternationalReverse(internationalReverse({ osm_id: 0 }), s, () => NOW),
+    null,
+  );
+  assert.equal(
+    normalizeInternationalReverse(internationalReverse({ lat: '80' }), s, () => NOW),
+    null,
+  );
+});
+test('international source failure switches to real reverse data and refreshes the short cache', async () => {
+  let reverseCalls = 0,
+    overpassCalls = 0,
+    at = NOW;
+  const service = fakeService({
+    now: () => at,
+    fetcher: async (input, init) => {
+      assert.equal(init.redirect, 'manual');
+      if (String(input).includes('overpass')) {
+        overpassCalls++;
+        return new Response('', { status: 503 });
+      }
+      reverseCalls++;
+      return Response.json(internationalReverse({ osm_id: 12345 + reverseCalls }));
+    },
+  });
+  const body = { ...options, countryCode: 'GB', regionCode: 'ENG' };
+  const a = await request(service, body),
+    b = await request(service, body);
+  assert.equal(a.response.status, 200);
+  assert.equal(a.data.cache, 'miss');
+  assert.equal(b.data.cache, 'hit');
+  assert.equal(reverseCalls, 1);
+  assert.equal(overpassCalls, 1);
+  const next = await request(service, {
+    ...body,
+    previousSourceId: a.data.records[0].sourcePlaceId,
+  });
+  assert.equal(next.response.status, 200);
+  assert.equal(next.data.cache, 'miss');
+  assert.equal(reverseCalls, 2);
+  assert.equal(overpassCalls, 1);
+  assert.notEqual(next.data.records[0].sourcePlaceId, a.data.records[0].sourcePlaceId);
+  at += 31000;
+  assert.equal((await request(service, body)).response.status, 200);
+  assert.equal(overpassCalls, 2);
+});
+test('healthy Overpass cache remains shared when the UI requests another address', async () => {
+  let calls = 0;
+  const service = fakeService({
+    fetcher: async () => {
+      calls++;
+      return Response.json(overpass());
+    },
+  });
+  const body = { ...options, countryCode: 'GB', regionCode: 'ENG' };
+  const first = await request(service, body);
+  assert.equal(first.response.status, 200);
+  const next = await request(service, {
+    ...body,
+    previousSourceId: first.data.records[0].sourcePlaceId,
+  });
+  assert.equal(next.data.cache, 'hit');
+  assert.equal(calls, 1);
+});
+test('source throttling and missing records do not trigger extra map lookups', async () => {
+  for (const response of [
+    () => new Response('', { status: 429 }),
+    () => Response.json({ elements: [] }),
+  ]) {
+    let calls = 0;
+    const result = await request(
+      fakeService({
+        fetcher: async () => {
+          calls++;
+          return response();
+        },
+      }),
+      { ...options, countryCode: 'GB', regionCode: 'ENG' },
+    );
+    assert.equal(calls, 1);
+    assert.equal('records' in result.data, false);
   }
 });

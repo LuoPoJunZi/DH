@@ -1,6 +1,7 @@
 import { publicCatalog } from './catalog';
 import { fetchUsWorkerPool, getUserData, getRandomState } from './us-worker';
-import { fetchMappedPool, resolveScope, type OsmAddressPool, type Scope } from './providers';
+import { resolveScope, type OsmAddressPool, type Scope } from './providers';
+import { fetchInternationalPool, fetchInternationalReverse } from './international';
 import { ApiError, json, readJsonLimited, type AddressContext } from './runtime';
 import {
   addressKey,
@@ -13,6 +14,8 @@ import type { AddressRecord, GenerateOptions } from '../../src/tools/other/addre
 
 const TTL_MS = 12 * 60 * 60 * 1000;
 const MAX_MEMORY_KEYS = 35;
+const poolTtl = (scope: Scope, pool: OsmAddressPool) =>
+  scope.countryCode === 'US' || pool.strategy === 'reverse' ? 30000 : TTL_MS;
 interface Dependencies {
   fetcher?: typeof fetch;
   now?: () => number;
@@ -84,6 +87,7 @@ function cloudflareCache(): EdgeCache | undefined {
 function isCachedPool(value: unknown): value is OsmAddressPool {
   return (
     isObject(value) &&
+    (value.strategy === undefined || value.strategy === 'reverse') &&
     Array.isArray(value.records) &&
     value.records.length > 0 &&
     value.records.length <= 180 &&
@@ -115,12 +119,14 @@ export function createAddressService(deps: Dependencies = {}) {
     context: AddressContext,
     scope: Scope,
     count: number,
-    refresh = false,
+    previousSourceId?: string,
   ): Promise<{ pool: OsmAddressPool; hit: boolean }> {
     const key = scope.countryCode === 'US' ? 'us-worker-' + scope.regionCode : scope.seed.id;
-    const ttl = scope.countryCode === 'US' ? 30000 : TTL_MS;
+    const refresh = scope.countryCode === 'US' && Boolean(previousSourceId);
     const local = cached.get(key);
-    if (!refresh && local && local.expires > now()) return { pool: local.pool, hit: true };
+    let reverseOnly = local?.pool.strategy === 'reverse' && local.expires > now();
+    if (!refresh && local && local.expires > now() && !(reverseOnly && previousSourceId))
+      return { pool: local.pool, hit: true };
     const edge = deps.disableEdgeCacheForTests ? undefined : cloudflareCache();
     // This is an internal cache key, not a public endpoint, never requested from the network.
     const cacheKey = new Request(
@@ -134,9 +140,16 @@ export function createAddressService(deps: Dependencies = {}) {
         const hit = await edge.match(cacheKey);
         if (hit && hit.ok) {
           const value = await readJsonLimited(hit, 900_000);
-          if (isCachedPool(value) && Date.parse(value.retrievedAt) > now() - ttl) {
-            cached.set(key, { expires: Date.parse(value.retrievedAt) + ttl, pool: value });
-            return { pool: value, hit: true };
+          if (
+            isCachedPool(value) &&
+            Date.parse(value.retrievedAt) > now() - poolTtl(scope, value)
+          ) {
+            cached.set(key, {
+              expires: Date.parse(value.retrievedAt) + poolTtl(scope, value),
+              pool: value,
+            });
+            reverseOnly = value.strategy === 'reverse';
+            if (!(reverseOnly && previousSourceId)) return { pool: value, hit: true };
           }
         }
       } catch {
@@ -159,11 +172,20 @@ export function createAddressService(deps: Dependencies = {}) {
             random,
             deps.reverseSchedule,
           )
-        : fetchMappedPool(scope, context.request.signal, fetcher, now);
+        : (reverseOnly ? fetchInternationalReverse : fetchInternationalPool)(
+            scope,
+            context.request.signal,
+            fetcher,
+            now,
+            count,
+            random,
+            deps.reverseSchedule,
+          );
     inflight.set(key, pending);
     try {
       const pool = await pending;
       if (cached.size >= MAX_MEMORY_KEYS) cached.delete(cached.keys().next().value!);
+      const ttl = poolTtl(scope, pool);
       cached.set(key, { expires: now() + ttl, pool });
       if (edge) {
         const response = new Response(JSON.stringify(pool), {
@@ -223,7 +245,7 @@ export function createAddressService(deps: Dependencies = {}) {
           context,
           scope,
           options.count,
-          scope.countryCode === 'US' && Boolean(options.previousSourceId),
+          options.previousSourceId,
         );
         const profile =
           scope.countryCode === 'US' && options.includeContact

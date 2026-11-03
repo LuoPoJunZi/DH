@@ -78,3 +78,7 @@ npx --yes --package=node@22 --package=wrangler@4.156.2 -- wrangler pages dev dis
 Cloudflare 的 fetch 不支持 redirect: error，会在发送请求前直接抛错。美国反查、其他国家查询及测试资料改用 manual；地图接口遇到重定向明确返回错误，仍不跟随未知目标或生成模拟地址。前端区分网关 HTML 错误与尚未启用的接口，国家目录请求跳过浏览器缓存。加入该运行环境差异的回归测试。修复后，本地 Pages 与浏览器均实际获取到美国门牌记录，320px / 1440px 深浅主题和网关错误分支通过检查。国际接口在本地仍遇到公共服务超时，保留明确超时提示，不使用模拟地址兜底。
 
 参考：[Cloudflare Request 文档](https://developers.cloudflare.com/workers/runtime-apis/request/)。
+
+国际查询在 Overpass 出现连接、服务繁忙或超时错误时，改用同一开放地图的在线反向查询。仅接受原始国家、对象 ID、门牌及道路或日本街区，缺失字段留空；美国与国际反查共享每实例 1.1 秒请求间隔。备用反查只缓存 30 秒，再次生成可刷新；健康的 Overpass 地址候选继续使用原有缓存。两个入口均不可用时仍返回错误。
+
+备用路径的本地接口和浏览器均已实际返回英国门牌记录；30 项核心测试、lint、格式检查及构建通过。

@@ -139,7 +139,7 @@ export function normalizeWorkerAddress(
   };
 }
 let nextReverseRequest = 0;
-async function waitForReverseSlot(signal: AbortSignal): Promise<void> {
+export async function waitForReverseSlot(signal: AbortSignal): Promise<void> {
   const at = Math.max(Date.now(), nextReverseRequest);
   nextReverseRequest = at + 1100;
   const delay = at - Date.now();

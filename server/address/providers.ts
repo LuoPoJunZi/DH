@@ -92,7 +92,7 @@ function formatLine(country: string, tags: Record<string, unknown>): string {
     ['DE', 'FR', 'NL', 'TR', 'ES', 'IT'].includes(country) ? `${street} ${num}` : `${num} ${street}`
   ).slice(0, 500);
 }
-function formatFull(
+export function formatFull(
   scope: Scope,
   line: string,
   city: string,
@@ -124,6 +124,7 @@ function formatFull(
 }
 
 export interface OsmAddressPool {
+  strategy?: 'reverse';
   records: AddressRecord[];
   retrievedAt: string;
 }

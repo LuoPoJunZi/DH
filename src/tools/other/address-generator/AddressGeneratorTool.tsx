@@ -125,7 +125,7 @@ export default function AddressGeneratorTool() {
           kind: 'building',
           count: 1,
           includeContact: countryCode === 'US' && includeContact,
-          previousSourceId: countryCode === 'US' ? records[0]?.sourcePlaceId : undefined,
+          previousSourceId: records[0]?.sourcePlaceId,
         },
         controller.signal,
       );
