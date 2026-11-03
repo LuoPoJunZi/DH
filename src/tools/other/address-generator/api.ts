@@ -3,7 +3,11 @@ import type { AddressCatalog, GenerateOptions, GenerateResult } from './types';
 const API_ROOT = '/api/address';
 async function readResponse(response: Response): Promise<unknown> {
   if (!response.headers.get('content-type')?.includes('application/json')) {
-    throw new Error('在线地址服务暂未就绪，请稍后重试。');
+    throw new Error(
+      response.ok
+        ? '在线地址服务暂未就绪，请稍后重试。'
+        : '在线地址服务返回异常（HTTP ' + response.status + '），请稍后重试。',
+    );
   }
   const value: unknown = await response.json();
   if (!response.ok) {
@@ -15,7 +19,12 @@ async function readResponse(response: Response): Promise<unknown> {
 }
 export async function loadCatalog(signal: AbortSignal): Promise<AddressCatalog> {
   const value = await readResponse(
-    await fetch(`${API_ROOT}/catalog`, { signal, credentials: 'same-origin' }),
+    await fetch(`${API_ROOT}/catalog`, {
+      signal,
+      credentials: 'same-origin',
+      cache: 'no-store',
+      headers: { Accept: 'application/json' },
+    }),
   );
   if (
     !isObject(value) ||
@@ -60,7 +69,7 @@ export async function generateAddresses(
   const value = await readResponse(
     await fetch(`${API_ROOT}/generate`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
       body: JSON.stringify(options),
       credentials: 'same-origin',
       signal,

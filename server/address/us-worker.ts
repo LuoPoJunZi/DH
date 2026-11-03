@@ -196,8 +196,10 @@ export async function fetchUsWorkerPool(
             'Accept-Language': 'en-US,en;q=0.9',
           },
           signal: attemptTimeout.signal,
-          redirect: 'error',
+          redirect: 'manual',
         });
+        if (response.status >= 300 && response.status < 400)
+          throw new ApiError(503, '美国地址地图服务暂时重定向，请稍后重试。', 'UPSTREAM_REDIRECT');
         if (response.status === 429)
           throw new ApiError(429, '开放地图服务正限流，请稍后重试。', 'UPSTREAM_LIMIT');
         if (response.status === 403)
@@ -244,7 +246,7 @@ export async function getUserData(
   try {
     const response = await fetcher(addressSourceConfig.profileEndpoint, {
       signal: timeout.signal,
-      redirect: 'error',
+      redirect: 'manual',
     });
     if (response.ok) {
       const value = await readJsonLimited(response, 100000);

@@ -229,9 +229,11 @@ export async function fetchMappedPool(
         'User-Agent': addressSourceConfig.userAgent,
       },
       body: body.toString(),
-      redirect: 'error',
+      redirect: 'manual',
       signal: timeout.signal,
     });
+    if (response.status >= 300 && response.status < 400)
+      throw new ApiError(503, '公开地图服务暂时重定向，请稍后重试。', 'UPSTREAM_REDIRECT');
     if (response.status === 429)
       throw new ApiError(429, '公开地图查询服务正限流，请稍后再试。', 'UPSTREAM_LIMIT');
     if (response.status === 503 || response.status === 504)

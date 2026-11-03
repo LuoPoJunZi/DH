@@ -27,6 +27,7 @@ const { loadFavorites, saveFavorites, clearFavorites, STORAGE_KEY } = load(
   'src/tools/other/address-generator/storage.js',
 );
 const { serializeAddresses, csvCell } = load('src/tools/other/address-generator/export.js');
+const { loadCatalog, generateAddresses } = load('src/tools/other/address-generator/api.js');
 const NOW = Date.parse('2026-11-03T00:00:00Z');
 const options = {
   countryCode: 'US',
@@ -473,4 +474,96 @@ test('US network and gateway errors are not reported as missing map addresses', 
   assert.equal(unavailable.response.status, 502);
   assert.equal(unavailable.data.code, 'UPSTREAM_NETWORK');
   assert.equal('records' in unavailable.data, false);
+});
+
+test('all upstream providers use redirect modes supported by workerd', async () => {
+  const hosts = [];
+  const service = fakeService({
+    fetcher: async (input, init) => {
+      if (init.redirect === 'error')
+        throw new TypeError('Invalid redirect value: workerd supports follow or manual');
+      assert.equal(init.redirect, 'manual');
+      const host = new URL(input).hostname;
+      hosts.push(host);
+      if (host === 'randomuser.me')
+        return Response.json({
+          results: [{ name: { first: 'Example', last: 'Person' }, gender: 'female' }],
+        });
+      return Response.json(host.includes('nominatim') ? reverse() : overpass());
+    },
+  });
+  assert.equal((await request(service, { ...options, includeContact: true })).response.status, 200);
+  assert.equal(
+    (await request(service, { ...options, countryCode: 'GB', regionCode: 'ENG' })).response.status,
+    200,
+  );
+  assert.deepEqual(hosts, ['nominatim.openstreetmap.org', 'randomuser.me', 'overpass-api.de']);
+});
+
+test('redirected map responses stop without following another host or inventing results', async () => {
+  for (const changed of [{}, { countryCode: 'GB', regionCode: 'ENG' }]) {
+    let calls = 0;
+    const result = await request(
+      fakeService({
+        fetcher: async () => {
+          calls++;
+          return new Response('', { status: 302, headers: { Location: 'https://other.example/' } });
+        },
+      }),
+      { ...options, ...changed },
+    );
+    assert.equal(calls, 1);
+    assert.equal(result.response.status, 503);
+    assert.equal(result.data.code, 'UPSTREAM_REDIRECT');
+    assert.equal('records' in result.data, false);
+  }
+});
+
+test('client reports gateway HTML separately from an undeployed API', async () => {
+  const original = globalThis.fetch;
+  try {
+    for (const status of [502, 503]) {
+      globalThis.fetch = async () =>
+        new Response('<html>gateway error</html>', {
+          status,
+          headers: { 'Content-Type': 'text/html' },
+        });
+      await assert.rejects(
+        () => generateAddresses(options, new AbortController().signal),
+        new RegExp('HTTP ' + status),
+      );
+      await assert.rejects(
+        () => loadCatalog(new AbortController().signal),
+        new RegExp('HTTP ' + status),
+      );
+    }
+    globalThis.fetch = async () =>
+      new Response('<html>SPA fallback</html>', { headers: { 'Content-Type': 'text/html' } });
+    await assert.rejects(() => loadCatalog(new AbortController().signal), /暂未就绪/);
+    globalThis.fetch = async () => Response.json({ error: '上游服务暂时限流' }, { status: 429 });
+    await assert.rejects(
+      () => generateAddresses(options, new AbortController().signal),
+      /上游服务暂时限流/,
+    );
+  } finally {
+    globalThis.fetch = original;
+  }
+});
+
+test('country catalog bypasses stale browser responses after deployment', async () => {
+  const original = globalThis.fetch;
+  try {
+    globalThis.fetch = async (input, init) => {
+      assert.equal(input, '/api/address/catalog');
+      assert.equal(init.cache, 'no-store');
+      assert.equal(init.headers.Accept, 'application/json');
+      return fakeService().catalog({
+        request: new Request('https://tools.example.test/api/address/catalog'),
+        waitUntil: () => {},
+      });
+    };
+    assert.equal((await loadCatalog(new AbortController().signal)).countries.length, 22);
+  } finally {
+    globalThis.fetch = original;
+  }
 });
