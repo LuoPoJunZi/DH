@@ -6,12 +6,14 @@ import {
   Fingerprint,
   Link2,
   ListFilter,
+  MapPin,
   TextCursorInput,
   type LucideProps,
 } from 'lucide-react';
 import type { ToolIconName } from '../../types/tool';
 
 const iconMap = {
+  'map-pin': MapPin,
   braces: Braces,
   binary: Binary,
   link: Link2,

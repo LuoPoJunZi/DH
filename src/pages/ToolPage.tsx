@@ -16,7 +16,7 @@ export function ToolPage() {
   const relatedTools = getRelatedTools(tool);
 
   return (
-    <div className="tool-page container">
+    <div className={'tool-page container tool-page--' + tool.id}>
       <Seo
         title={tool.seo.title}
         description={tool.seo.description}
@@ -33,7 +33,12 @@ export function ToolPage() {
       <header className="tool-page__header">
         <p className="eyebrow">{category?.name}</p>
         <h1>{tool.name}</h1>
-        <p>{tool.description}。您的数据仅在浏览器本地处理，不会上传至服务器。</p>
+        <p>
+          {tool.description}。
+          {tool.processing === 'online'
+            ? '仅查询所选国家和地区，收藏保存在当前浏览器。'
+            : '您的数据仅在浏览器本地处理，不会上传至服务器。'}
+        </p>
       </header>
 
       <Suspense fallback={<div className="tool-loading">正在加载工具…</div>}>

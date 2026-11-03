@@ -1,6 +1,6 @@
 # LUOPO Tools
 
-一个简洁、快速、注重隐私的在线工具集合。所有首批工具都直接在浏览器中运行，输入内容不会上传到服务器。项目面向长期扩展设计，可直接部署到 Cloudflare Pages。
+一个简洁、快速、注重隐私的在线工具集合。基础工具直接在浏览器中运行；地址生成按需查询公开地图，收藏仅保存在当前浏览器。项目面向长期扩展设计，可直接部署到 Cloudflare Pages。
 
 正式地址：[https://tool.luopojunzi.com/](https://tool.luopojunzi.com/)
 
@@ -19,7 +19,8 @@ GitHub：[https://github.com/LuoPoJunZi](https://github.com/LuoPoJunZi)
 - 全站使用按屏幕尺寸切换的远程背景图，配合浅深主题遮罩与固定磨砂页脚，图片失败时回退到主题底色；
 - 适配桌面、平板与手机，支持键盘操作和 `/`、Ctrl/⌘ K 搜索快捷键；
 - 每个页面独立 SEO 信息；
-- JSON、Base64、URL、时间戳、UUID、字数统计、文本去重、进制转换八个首批工具；
+- JSON、Base64、URL、时间戳、UUID、字数统计、文本去重、进制转换八个基础工具，以及多国家在线地址生成工具；
+- 地址生成优先复用原 worker.js 的美国在线取址，并接入其他国家的开放地图门牌查询；支持复制、收藏、备注、导出和 Google Maps 一键查询，无需 CF 后台新增配置；
 - Cloudflare Pages 默认 SPA fallback，深层路由可直接访问和刷新。
 
 ## 项目截图
@@ -42,6 +43,8 @@ GitHub：[https://github.com/LuoPoJunZi](https://github.com/LuoPoJunZi)
 .
 ├── .github/workflows/       # CI
 ├── docs/                    # 架构与开发记录
+├── functions/               # 地址 API 的 Pages Functions
+├── server/address/          # 在线取址、缓存与原 Worker 适配
 ├── public/                  # Favicon、Manifest、Headers、生成的 SEO 文件
 ├── scripts/                 # 构建期脚本
 ├── src/
@@ -54,7 +57,6 @@ GitHub：[https://github.com/LuoPoJunZi](https://github.com/LuoPoJunZi)
 │   ├── tools/               # 独立工具模块
 │   ├── types/               # 共享类型
 │   └── utils/               # 纯工具函数
-├── AGENTS.md                # AI Agent 开发规范
 ├── CHANGELOG.md
 ├── package.json
 ├── vercel.json              # Vercel SPA 深层路由重写
@@ -108,11 +110,11 @@ git commit -m "feat: describe the change"
 git push
 ```
 
-`dist/` 和 `node_modules/` 均已加入 `.gitignore`，不要提交。Push 后 Cloudflare Pages 会从 GitHub 拉取源代码、安装依赖、构建并自动发布。
+`dist/`、`node_modules/`、本地 AI 协作说明与配置、测试截图和日志均通过 `.gitignore` 排除。`public/sitemap.xml` 与 `public/robots.txt` 由开发和构建命令自动生成，参与发布但不纳入 Git 跟踪。源码、依赖锁文件、质量检查、部署配置和正式文档继续随仓库维护。Push 后 Cloudflare Pages 会从 GitHub 拉取源代码、安装依赖、构建并自动发布。
 
 ## Cloudflare Pages 部署教程
 
-本项目是纯静态 React + Vite SPA，推荐使用 **GitHub + Cloudflare Pages Git Integration**。配置完成后，每次向 `main` 分支 Push，Cloudflare 都会自动安装依赖、构建并发布，无需服务器、数据库、Pages Functions 或业务密钥。
+本项目由静态 React + Vite 前端和仅服务地址生成的 Pages Functions 组成，继续使用 **GitHub + Cloudflare Pages Git Integration**。每次向 `main` 分支 Push 后自动构建和发布，根目录的 `functions/` 会被自动识别；无需在 CF 后台添加业务密钥、环境变量、数据库或独立 Worker。
 
 > [!IMPORTANT]
 > 创建项目时请选择 Git Integration。Cloudflare Pages 的 Direct Upload 项目以后不能直接切换成 Git Integration；如果希望长期通过 GitHub 自动部署，不要先创建拖拽上传项目。
@@ -316,7 +318,7 @@ npx wrangler pages deploy dist --project-name dh --branch=preview
 
 ## Vercel 部署教程
 
-本项目也可以作为纯静态 React + Vite SPA 部署到 Vercel。推荐使用 **GitHub + Vercel Git Integration**：导入一次仓库后，`main` 分支的新提交会自动更新生产环境，其他分支和 Pull Request 会生成独立的 Preview Deployment。
+基础工具与导航可以部署到 Vercel；当前在线地址 API 使用 Cloudflare Pages Functions，原 Vercel 静态配置不执行该 API。推荐使用 **GitHub + Vercel Git Integration**：导入一次仓库后，`main` 分支的新提交会自动更新生产环境，其他分支和 Pull Request 会生成独立的 Preview Deployment。
 
 ### 1. 部署前准备
 
@@ -494,6 +496,12 @@ CLI 创建的 `.vercel/` 只保存本地项目关联信息，已经加入 `.giti
 - [Supported Node.js Versions](https://vercel.com/docs/functions/runtimes/node-js/node-js-versions)
 - [Adding and Configuring a Custom Domain](https://vercel.com/docs/domains/working-with-domains/add-a-domain)
 
+## 地址生成
+
+入口 `/tools/address-generator`。美国优先复用项目所有者 `worker.js` 的 50 州与在线反向取址代码，其他国家使用开放地图已有门牌记录；不使用本地地址池，也不模拟街道、门牌或邮编。每条提供原始地图对象及 Google Maps 查询链接，不进行地址正确性或 Google 收录核验。
+
+页面代码位于 `src/tools/other/address-generator/`，在线服务位于 `server/address/`，同站接口位于 `functions/api/address/`。继续通过 GitHub 推送后由 Cloudflare Pages 自动部署，无需后台新增配置。维护与本地运行见 [在线地址生成模块](docs/ADDRESS_GENERATOR.md)。修改后额外运行 `npm run test:address`。
+
 ## 如何添加新工具
 
 1. 在 `src/tools/<category>/<tool-id>/` 创建工具组件并默认导出；
@@ -512,15 +520,15 @@ CLI 创建的 `.vercel/` 只保存本地项目关联信息，已经加入 `.giti
 
 网站名称、描述、URL、作者、GitHub、个人博客和工具分类统一位于 `src/config/site.data.json`。正式 Logo、项目截图和桌面 / 手机背景图链接统一位于 `src/config/images.ts`。背景图使用项目所有者指定的远程接口，由浏览器直接加载，不下载到仓库。网站导航注册表位于 `src/config/webNavigation.ts`，同步生成的数据位于 `src/config/liumingye-navigation.data.json`，本地分类名称与新增链接位于 `src/config/webNavigation.custom.data.json`，只收录 HTTPS 地址。绑定正式域名、GitHub 仓库或图床资源后只需更新配置并重新构建。
 
-欢迎语的定位接口集中配置在 `src/config/visitorLocation.ts`。请求由访客浏览器直接发起，城市仅在当前浏览器会话中缓存，本站没有后端，也不会保存定位结果；接口不可用时回退到浏览器时区城市。
+天气卡片的定位接口集中配置在 `src/config/visitorLocation.ts`。请求由访客浏览器直接发起，城市仅在当前浏览器会话中缓存，本站没有定位后端，也不会保存定位结果；接口不可用时回退到浏览器时区城市。
 
 ## 贡献指南
 
-修改前请先阅读 `AGENTS.md` 和 `docs/DEVELOPMENT.md`。保持改动边界清晰，使用 Conventional Commits，并确保 lint 与 production build 通过。
+修改前请先阅读本文件和 `docs/DEVELOPMENT.md`。保持改动边界清晰，使用 Conventional Commits，并确保 lint 与 production build 通过。本地 AI 协作说明（例如 `AGENTS.md`）仅留在开发环境，不提交到仓库。
 
 ## 隐私
 
-首批工具全部使用浏览器本地能力处理数据，不会将输入上传到任何服务。未来若加入依赖远程 API 的工具，必须在页面上明确说明数据流向。
+基础工具使用浏览器本地能力处理输入。地址生成会将所选国家、地区和必要的查询选项发送至同站地址接口，再查询开放地图；收藏与备注只保存在当前浏览器。美国可选的姓名和电话为独立测试资料，不是住户身份信息。
 
 ## License
 

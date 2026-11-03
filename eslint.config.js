@@ -9,6 +9,7 @@ export default tseslint.config(
     ignores: [
       'dist',
       'node_modules',
+      '.wrangler/**',
       'output/playwright/**',
       '.playwright-cli/**',
       'public/sitemap.xml',

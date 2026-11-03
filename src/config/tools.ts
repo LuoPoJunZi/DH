@@ -3,6 +3,7 @@ import toolData from './tools.data.json';
 import type { ToolDefinition, ToolMeta } from '../types/tool';
 
 const toolLoaders = {
+  'address-generator': () => import('../tools/other/address-generator/AddressGeneratorTool'),
   'json-formatter': () => import('../tools/developer/json-formatter/JsonFormatterTool'),
   base64: () => import('../tools/developer/base64/Base64Tool'),
   'url-codec': () => import('../tools/developer/url-codec/UrlCodecTool'),

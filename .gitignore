@@ -35,3 +35,15 @@ pnpm-debug.log*
 .DS_Store
 Thumbs.db
 Desktop.ini
+
+# Local AI assistant instructions and settings
+AGENTS.md
+AGENTS.override.md
+CLAUDE.md
+GEMINI.md
+.codex/
+.claude/
+
+# Generated SEO files (created by predev and prebuild)
+/public/sitemap.xml
+/public/robots.txt

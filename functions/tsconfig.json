@@ -1,0 +1,9 @@
+{
+  "extends": "../server/tsconfig.json",
+  "include": ["api/address/**/*.ts"],
+  "compilerOptions": {
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true
+  }
+}

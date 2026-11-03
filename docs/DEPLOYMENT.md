@@ -1,6 +1,6 @@
 # 部署与恢复指南
 
-本文记录如何从 GitHub 仓库重新建立 LUOPO Tools 的 Cloudflare Pages 持续部署。项目是纯静态 Vite SPA，不需要数据库、CMS、Cloudflare Workers 或常驻服务器。
+本文记录如何从 GitHub 仓库重新建立 LUOPO Tools 的 Cloudflare Pages 持续部署。导航与基础工具是静态 Vite SPA；在线地址 API 使用根目录 Pages Functions，随原有 Git 集成自动构建，无需数据库、CMS、独立 Worker、密钥、额外后台绑定或常驻服务器。
 
 ## 1. GitHub 仓库准备
 
@@ -105,7 +105,7 @@ npx wrangler pages deploy dist --project-name dh
 
 ### 静态资源 404
 
-- `public` 中资源使用根路径，例如 `/favicon.svg`；
+- `public` 中资源使用根路径，例如 `/favicon.ico`；
 - `src/assets` 中资源通过模块 import；
 - 路径区分大小写，Cloudflare 的 Linux 构建环境与 Windows 不同。
 

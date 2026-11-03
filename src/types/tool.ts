@@ -3,6 +3,7 @@ import type { ComponentType, LazyExoticComponent } from 'react';
 export type ToolCategoryId = 'text' | 'developer' | 'image' | 'converter' | 'network' | 'other';
 
 export type ToolIconName =
+  | 'map-pin'
   | 'braces'
   | 'binary'
   | 'link'
@@ -27,6 +28,7 @@ export interface ToolMeta {
   icon: ToolIconName;
   keywords: string[];
   featured: boolean;
+  processing?: 'local' | 'online';
   seo: ToolSeo;
   usage: string[];
   features: string[];

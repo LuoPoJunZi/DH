@@ -8,6 +8,27 @@ import { ThemeToggle } from '../common/ThemeToggle';
 export function Header({ search }: { search?: ReactNode }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const location = useLocation();
+  const selectedNavigation = primaryNavigation
+    .filter(
+      (item) =>
+        location.pathname === item.href ||
+        (!item.end && location.pathname.startsWith(item.href + '/')),
+    )
+    .sort((left, right) => right.href.length - left.href.length)[0];
+  const navigationLinks = primaryNavigation.map((item) => {
+    const selected = item === selectedNavigation;
+    return (
+      <NavLink
+        key={item.href}
+        to={item.href}
+        end={item.end}
+        className={() => (selected ? 'active' : '')}
+        aria-current={selected ? 'page' : false}
+      >
+        {item.label}
+      </NavLink>
+    );
+  });
 
   useEffect(() => {
     setMenuOpen(false);
@@ -31,11 +52,7 @@ export function Header({ search }: { search?: ReactNode }) {
         <BrandMark />
         {search && <div className="site-header__search">{search}</div>}
         <nav className="desktop-nav" aria-label="主导航">
-          {primaryNavigation.map((item) => (
-            <NavLink key={item.href} to={item.href} end={item.end}>
-              {item.label}
-            </NavLink>
-          ))}
+          {navigationLinks}
         </nav>
         <div className="site-header__actions">
           <ThemeToggle />
@@ -57,13 +74,7 @@ export function Header({ search }: { search?: ReactNode }) {
           className="mobile-nav container container--wide"
           aria-label="移动端导航"
         >
-          <div className="mobile-nav__primary">
-            {primaryNavigation.map((item) => (
-              <NavLink key={item.href} to={item.href} end={item.end}>
-                {item.label}
-              </NavLink>
-            ))}
-          </div>
+          <div className="mobile-nav__primary">{navigationLinks}</div>
         </nav>
       )}
     </header>
