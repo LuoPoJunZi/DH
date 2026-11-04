@@ -24,7 +24,9 @@ export function AppLayout() {
       ? ' app-shell--navigation'
       : isToolDirectoryPage
         ? ' app-shell--directory'
-        : '');
+        : matchPath('/addr', pathname)
+          ? ' app-shell--address'
+          : '');
 
   return (
     <div className={shellClassName}>

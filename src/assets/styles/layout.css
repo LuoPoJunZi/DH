@@ -7,7 +7,8 @@
 }
 
 .app-shell--navigation,
-.app-shell--directory {
+.app-shell--directory,
+.app-shell--address {
   --wallpaper-scrim: transparent;
 }
 

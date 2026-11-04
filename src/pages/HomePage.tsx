@@ -6,7 +6,7 @@ import { featuredTools, getToolsByCategory } from '../config/tools';
 
 export function HomePage() {
   const activeCategories = categories.filter(
-    (category) => getToolsByCategory(category.id).length > 0,
+    (category) => category.id !== 'other' && getToolsByCategory(category.id).length > 0,
   );
 
   return (

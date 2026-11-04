@@ -1,10 +1,19 @@
 // Adapted from the owner-supplied online module; see LICENSE.
-import { Bookmark, Copy, Download, Globe2, MapPin, RefreshCw, Trash2 } from 'lucide-react';
-import { useEffect, useMemo, useRef, useState } from 'react';
+import {
+  Bookmark,
+  Copy,
+  Download,
+  Globe2,
+  LoaderCircle,
+  MapPin,
+  RefreshCw,
+  Trash2,
+} from 'lucide-react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { ActionButton } from '../../src/components/tool/ActionButton';
 import { ToolWorkspace } from '../../src/components/tool/ToolWorkspace';
 import { useCopy } from '../../src/hooks/useCopy';
-import { addressLinks } from '../shared/links';
+import { ADDRESS_DATA_SOURCES, addressLinks } from '../shared/links';
 import { AddressCard } from './components/AddressCard';
 import { generateAddresses, loadCatalog } from './api';
 import { downloadAddresses, serializeAddresses } from './export';
@@ -18,7 +27,7 @@ import type {
   ExportFormat,
   SavedAddress,
 } from '../shared/types';
-import { addressKey, DATA_NOTICE, isCountryCode } from '../shared/address';
+import { addressKey, isCountryCode } from '../shared/address';
 import './address-generator.css';
 
 const PAGE_SIZE = 10;
@@ -32,7 +41,6 @@ export default function AddressGeneratorTool() {
   const [countryCode, setCountryCode] = useState<CountryCode>('US');
   const [regionCode, setRegionCode] = useState('');
   const [cityId, setCityId] = useState('');
-  const [includeContact, setIncludeContact] = useState(true);
   const [kind, setKind] = useState<PlaceKind>('residential');
   const [taxFree, setTaxFree] = useState(false);
   const [catalog, setCatalog] = useState<AddressCatalog | null>(null);
@@ -41,6 +49,7 @@ export default function AddressGeneratorTool() {
   const [busy, setBusy] = useState(false);
   const requestRef = useRef<AbortController | null>(null);
   const requestId = useRef(0);
+  const lastAutomaticSelection = useRef('');
   const [records, setRecords] = useState<AddressRecord[]>([]);
   const [initialFavorites] = useState(() => loadFavorites());
   const [favorites, setFavorites] = useState<SavedAddress[]>(initialFavorites.entries);
@@ -105,7 +114,6 @@ export default function AddressGeneratorTool() {
     [],
   );
   const reset = () => {
-    setRecords([]);
     setPage(1);
     setError('');
     setMessage('');
@@ -119,15 +127,14 @@ export default function AddressGeneratorTool() {
     reset();
     setTab('results');
   };
-  const generate = async () => {
-    if (busy || !catalog?.ready) return;
+  const generate = useCallback(async () => {
+    if (!catalog?.ready) return;
     const controller = new AbortController();
     requestRef.current?.abort();
     requestRef.current = controller;
     const id = ++requestId.current;
     const timer = window.setTimeout(() => controller.abort(), 45000);
     setBusy(true);
-    setRecords([]);
     setTab('results');
     setPage(1);
     setConfirmClear(false);
@@ -142,14 +149,14 @@ export default function AddressGeneratorTool() {
           kind,
           taxFree,
           count: 1,
-          includeContact,
+          includeContact: true,
           previousSourceId: records[0]?.sourcePlaceId,
         },
         controller.signal,
       );
       if (id !== requestId.current) return;
       setRecords(result.records);
-      setMessage('已获取 ' + result.records.length + ' 条地址。' + result.warnings.join(' '));
+      setMessage(result.warnings.join(' '));
     } catch (cause) {
       if (id !== requestId.current) return;
       setError(
@@ -167,7 +174,13 @@ export default function AddressGeneratorTool() {
         requestRef.current = null;
       }
     }
-  };
+  }, [catalog?.ready, countryCode, regionCode, cityId, kind, taxFree, records]);
+  const selectionKey = [countryCode, regionCode, cityId, kind, taxFree].join('|');
+  useEffect(() => {
+    if (!catalog?.ready || lastAutomaticSelection.current === selectionKey) return;
+    lastAutomaticSelection.current = selectionKey;
+    void generate();
+  }, [catalog?.ready, selectionKey, generate]);
   const cancel = () => {
     requestId.current++;
     requestRef.current?.abort();
@@ -220,12 +233,7 @@ export default function AddressGeneratorTool() {
   return (
     <ToolWorkspace mode="online">
       <div className="ag-root">
-        <header className="ag-module-title">
-          <div>
-            <h1>地址生成</h1>
-            <p>从地图已有门牌中选择，支持住宅、商业与多国家地址。</p>
-          </div>
-        </header>
+        <h1 className="sr-only">地址生成</h1>
         <div className="ag-generator">
           <section className="ag-toolbar" aria-label="地址生成选项">
             <div className="ag-toolbar-main">
@@ -286,29 +294,8 @@ export default function AddressGeneratorTool() {
                   <span className="sr-only">（仅免州销售税）</span>
                 </label>
               )}
-              <span className="ag-shortcut">
-                按 <kbd>R</kbd> 换一个
-              </span>
-              <ActionButton
-                id="ag-generate"
-                className="ag-generate"
-                variant="primary"
-                icon={RefreshCw}
-                busy={busy}
-                disabled={!catalog?.ready}
-                onClick={() => {
-                  void generate();
-                }}
-              >
-                {busy ? '正在查找…' : '生成地址'}
-              </ActionButton>
-              {busy && <ActionButton onClick={cancel}>取消</ActionButton>}
-            </div>
-            <div className="ag-toolbar-detail">
-              <label className="field" htmlFor="ag-region">
-                <span className="field__label">
-                  {countryCode === 'US' ? '州' : '州 / 省 / 地区'}
-                </span>
+              <label className="field ag-region-field" htmlFor="ag-region">
+                <span className="sr-only">{countryCode === 'US' ? '州' : '州 / 省 / 地区'}</span>
                 <select
                   id="ag-region"
                   value={regionCode}
@@ -319,7 +306,7 @@ export default function AddressGeneratorTool() {
                     reset();
                   }}
                 >
-                  <option value="">随机所列地区</option>
+                  <option value="">{countryCode === 'US' ? '随机州' : '随机所列地区'}</option>
                   {(country?.regions ?? [])
                     .filter((region) => !taxFree || TAX_STATES.includes(region.code))
                     .map((region) => (
@@ -330,8 +317,8 @@ export default function AddressGeneratorTool() {
                 </select>
               </label>
               {countryCode !== 'US' && (
-                <label className="field" htmlFor="ag-city">
-                  <span className="field__label">参考城市</span>
+                <label className="field ag-city-field" htmlFor="ag-city">
+                  <span className="sr-only">参考城市</span>
                   <select
                     id="ag-city"
                     value={cityId}
@@ -350,19 +337,46 @@ export default function AddressGeneratorTool() {
                   </select>
                 </label>
               )}
-              <label className="ag-contact-option">
-                <input
-                  type="checkbox"
-                  checked={includeContact}
-                  disabled={busy}
-                  onChange={(event) => setIncludeContact(event.target.checked)}
-                />
-                <span>附带随机姓名与电话（测试）</span>
-              </label>
+              <span className="ag-shortcut">
+                按 <kbd>R</kbd> 换一个
+              </span>
+              <button
+                type="button"
+                className="ag-icon ag-favorites-toggle"
+                aria-label={
+                  tab === 'favorites'
+                    ? '返回生成地址'
+                    : '查看已保存地址（' + favorites.length + ' 条）'
+                }
+                title={
+                  tab === 'favorites' ? '返回生成地址' : '已保存地址（' + favorites.length + ' 条）'
+                }
+                aria-pressed={tab === 'favorites'}
+                disabled={busy}
+                onClick={() => {
+                  setTab(tab === 'results' ? 'favorites' : 'results');
+                  setPage(1);
+                  setConfirmClear(false);
+                }}
+              >
+                <Bookmark size={18} aria-hidden="true" />
+                {favorites.length > 0 && <span>{favorites.length}</span>}
+              </button>
+              <ActionButton
+                id="ag-generate"
+                className="ag-generate"
+                variant="primary"
+                icon={RefreshCw}
+                busy={busy}
+                disabled={!catalog?.ready}
+                onClick={() => {
+                  void generate();
+                }}
+              >
+                {busy ? '正在查找…' : '生成地址'}
+              </ActionButton>
+              {busy && <ActionButton onClick={cancel}>取消</ActionButton>}
             </div>
-            {taxFree && (
-              <p className="ag-option-note">仅按州销售税筛选；地方销售税及其他税种另计。</p>
-            )}
             {!catalog && (
               <div className="ag-catalog-status" role="status">
                 <span>{catalogLoading ? '正在加载国家目录…' : '国家目录暂不可用'}</span>
@@ -383,16 +397,28 @@ export default function AddressGeneratorTool() {
             )}
             {entries.length === 0 ? (
               <div className="ag-empty">
-                <MapPin size={34} aria-hidden="true" />
-                <h2>{tab === 'results' ? '尚未生成地址' : '还没有保存的地址'}</h2>
+                {busy || catalogLoading ? (
+                  <LoaderCircle className="spin" size={30} aria-hidden="true" />
+                ) : (
+                  <MapPin size={34} aria-hidden="true" />
+                )}
+                <h2>
+                  {busy || catalogLoading
+                    ? '正在查找地址…'
+                    : tab === 'results'
+                      ? '暂未获取地址'
+                      : '还没有保存的地址'}
+                </h2>
                 <p>
-                  {tab === 'results'
-                    ? '选择国家和地区，点击生成地址。查询不到地图门牌时会给出提示。'
-                    : '生成后保存需要的地址，随时添加备注或导出。'}
+                  {busy || catalogLoading
+                    ? '正在从开放地图获取门牌，请稍候。'
+                    : tab === 'results'
+                      ? '选择国家和地区，点击生成地址重试。'
+                      : '生成后保存需要的地址，随时添加备注或导出。'}
                 </p>
               </div>
             ) : (
-              <div className="ag-results">
+              <div className="ag-results" aria-busy={busy}>
                 {visible.map((entry, index) => (
                   <AddressCard
                     key={entry.record.id}
@@ -428,45 +454,20 @@ export default function AddressGeneratorTool() {
                 ))}
               </div>
             )}
-            <div className="ag-output-heading">
-              <div className="ag-tabs" role="group" aria-label="结果视图">
-                <button
-                  type="button"
-                  aria-pressed={tab === 'results'}
-                  onClick={() => {
-                    setTab('results');
-                    setPage(1);
-                    setConfirmClear(false);
-                  }}
-                >
-                  生成结果
-                </button>
-                <button
-                  type="button"
-                  aria-pressed={tab === 'favorites'}
-                  onClick={() => {
-                    setTab('favorites');
-                    setPage(1);
-                    setConfirmClear(false);
-                  }}
-                >
-                  <Bookmark size={16} />
-                  已保存 <span>{favorites.length}</span>
-                </button>
-              </div>
-              <div className="ag-export-bar">
-                <span>导出当前{tab === 'results' ? '结果' : '收藏'}</span>
-                {(['csv', 'json', 'txt'] as const).map((format) => (
-                  <ActionButton
-                    key={format}
-                    icon={format === 'csv' ? Download : undefined}
-                    disabled={!entries.length}
-                    onClick={() => exportData(format)}
-                  >
-                    {format.toUpperCase()}
-                  </ActionButton>
-                ))}
-                {tab === 'favorites' && (
+            {tab === 'favorites' && (
+              <div className="ag-output-heading">
+                <div className="ag-export-bar">
+                  <span>导出收藏</span>
+                  {(['csv', 'json', 'txt'] as const).map((format) => (
+                    <ActionButton
+                      key={format}
+                      icon={format === 'csv' ? Download : undefined}
+                      disabled={!entries.length}
+                      onClick={() => exportData(format)}
+                    >
+                      {format.toUpperCase()}
+                    </ActionButton>
+                  ))}
                   <ActionButton
                     icon={Copy}
                     disabled={!entries.length}
@@ -476,8 +477,6 @@ export default function AddressGeneratorTool() {
                   >
                     复制全部
                   </ActionButton>
-                )}
-                {tab === 'favorites' ? (
                   <ActionButton
                     variant="quiet"
                     icon={Trash2}
@@ -486,15 +485,11 @@ export default function AddressGeneratorTool() {
                   >
                     清空收藏
                   </ActionButton>
-                ) : (
-                  <ActionButton variant="quiet" disabled={!records.length || busy} onClick={reset}>
-                    清空结果
-                  </ActionButton>
-                )}
+                </div>
               </div>
-            </div>
+            )}
             <p
-              className={message || status !== 'idle' ? 'ag-feedback' : 'sr-only'}
+              className={status === 'error' ? 'ag-feedback' : 'sr-only'}
               role="status"
               aria-live="polite"
             >
@@ -530,13 +525,24 @@ export default function AddressGeneratorTool() {
               </nav>
             )}
           </section>
+          <footer className="ag-data-footer">
+            <p>
+              地址数据 ©{' '}
+              <a href={addressLinks.copyright} target="_blank" rel="noopener noreferrer">
+                OpenStreetMap 贡献者
+              </a>
+              ，采用 ODbL 授权
+            </p>
+            <nav aria-label="地址数据来源">
+              <span>数据来源</span>
+              {ADDRESS_DATA_SOURCES.map((source) => (
+                <a key={source.name} href={source.url} target="_blank" rel="noopener noreferrer">
+                  {source.name}
+                </a>
+              ))}
+            </nav>
+          </footer>
         </div>
-        <p className="ag-data-note">
-          {DATA_NOTICE}{' '}
-          <a href={addressLinks.copyright} target="_blank" rel="noopener noreferrer">
-            © OpenStreetMap contributors
-          </a>
-        </p>
       </div>
     </ToolWorkspace>
   );

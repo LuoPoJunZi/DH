@@ -68,14 +68,13 @@ export function AddressCard({
   const displayed = { ...record, fullAddress: address };
   const fields = [
     ['门牌号', record.houseNumber],
-    ['街道 / 町丁目', record.street],
+    ['街道', record.street],
     ['城市', record.city],
     ['州 / 省', [record.region, record.regionCode].filter(Boolean).join(' · ')],
     [
       '邮政编码',
       record.postalCode || (record.postalCodeStatus === 'not-used' ? '不使用邮编' : '地图未提供'),
     ],
-    ...(record.district ? [['区 / 县', record.district]] : []),
     ['国家 / 地区', record.countryNameEn],
   ];
   const saveNote = () => {
@@ -171,12 +170,12 @@ export function AddressCard({
           <AddressFields fields={fields} index={index} onCopy={onCopy} />
           {record.contactKind === 'test' && (
             <>
-              <h3 className="ag-detail-title">测试资料</h3>
+              <h3 className="ag-detail-title">资料</h3>
               <AddressFields
                 fields={[
-                  ['姓名（测试）', record.recipient],
-                  ['性别（测试）', record.gender],
-                  ['电话（测试）', record.phone],
+                  ['姓名', record.recipient],
+                  ['性别', record.gender],
+                  ['电话', record.phone],
                 ]}
                 index={index}
                 onCopy={onCopy}

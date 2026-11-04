@@ -22,9 +22,11 @@
 
 ## 与主站的连接
 
-主站只保留现有工具注册及三个薄入口：src/tools/other/address-generator/AddressGeneratorTool.tsx、functions/api/address/catalog.ts 和 generate.ts。其余实现集中在本目录；旧的 server/address、src/config/address-generator 和分散在旧工具目录中的实现已移除。
+主站在 src/config/tools.ts 中直接懒加载本目录的 client/AddressGeneratorTool.tsx；functions/api/address/catalog.ts 和 generate.ts 是 Pages API 的两个薄入口。页面、生成逻辑、配置及测试均集中在本目录。
 
 页面入口为 /addr，旧地址 /tools/address-generator 自动跳转并保留查询参数和锚点；API 保持 /api/address/catalog 与 /api/address/generate。全站导航、页头、页脚和 ThemeProvider 继续复用主站。
+
+首次打开或切换国家、地址类型、免税州、州/省和城市后自动获取一条地址；相同筛选状态不会重复自动请求，失败可手动重试。新结果返回前保留上一条地址。默认附带随机测试姓名与电话。收藏从生成按钮旁的书签入口查看；结果页底部只保留 ODbL 版权及数据来源，收藏视图保留批量复制、导出和清空。
 
 ## 数据与速度
 
@@ -42,7 +44,7 @@ Photon 一次查询附近多个带门牌号的对象，在通过分类和原始�
 
 继续使用 GitHub → Cloudflare Pages 自动构建。构建命令 npm run build、产物目录 dist 不变；无需新增 Worker 项目、API Key、环境变量、KV、R2 或数据库。functions/ 下的薄入口会将本目录打包成 Pages Functions；worker.js 不需要另行部署。
 
-本地：npm run build；用现有 Wrangler pages dev dist --port 8788 --ip 127.0.0.1 运行接口，然后启动 Vite 预览。Vite 会把 /api/address 代理到 8788。
+本地：npm run build；用现有 Wrangler pages dev dist --port 8788 --ip 127.0.0.1 运行接口，然后运行 npm run preview 启动预览。Vite 会把 /api/address 代理到 8788。
 
 检查：npm run test:address、npm run lint、npm run format:check、npm run build。
 

@@ -1,3 +1,4 @@
+import { fileURLToPath } from 'node:url';
 import js from '@eslint/js';
 import globals from 'globals';
 import reactHooks from 'eslint-plugin-react-hooks';
@@ -25,7 +26,7 @@ export default tseslint.config(
       globals: globals.browser,
       parserOptions: {
         projectService: true,
-        tsconfigRootDir: import.meta.dirname,
+        tsconfigRootDir: fileURLToPath(new URL('..', import.meta.url)),
       },
     },
     plugins: {
@@ -45,7 +46,7 @@ export default tseslint.config(
     languageOptions: { globals: globals.browser },
   },
   {
-    files: ['scripts/**/*.mjs', 'addr/**/*.mjs', 'eslint.config.js'],
+    files: ['scripts/**/*.mjs', 'addr/**/*.mjs', 'config/eslint.config.js'],
     extends: [tseslint.configs.disableTypeChecked],
     languageOptions: { globals: globals.node },
   },

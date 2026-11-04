@@ -119,3 +119,7 @@ npx wrangler pages deploy dist --project-name dh
 ## 8. 更换 Cloudflare 账号恢复
 
 新账号只需要获得 GitHub 仓库权限，按第 2 节重新创建 Pages 项目，再按第 5 节迁移自定义域名。应用没有数据库或服务器状态，因此无需迁移运行时数据。
+
+## 9. 已有 Vercel 静态配置
+
+根目录 `vercel.json` 保留导航和基础工具的 SPA 路由兼容。静态部署仍使用 `npm run build` 和 `dist`；当前地址 API 依赖 Cloudflare Pages Functions，应随主站的 Cloudflare Pages Git 集成发布。日常维护以本文的 Cloudflare 流程为准。

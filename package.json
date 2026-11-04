@@ -12,11 +12,11 @@
     "generate:seo": "node scripts/generate-seo.mjs",
     "sync:navigation": "node scripts/sync-web-navigation.mjs",
     "predev": "npm run generate:seo",
-    "dev": "vite",
+    "dev": "vite --config config/vite.config.ts",
     "prebuild": "npm run generate:seo",
-    "build": "tsc -b && tsc -p addr/server/tsconfig.json && tsc -p functions/tsconfig.json && vite build",
-    "preview": "vite preview",
-    "lint": "eslint . --max-warnings=0",
+    "build": "tsc -b && tsc -p addr/server/tsconfig.json && tsc -p functions/tsconfig.json && vite build --config config/vite.config.ts",
+    "preview": "vite preview --config config/vite.config.ts",
+    "lint": "eslint --config config/eslint.config.js . --max-warnings=0",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "test:address": "node addr/scripts/test.mjs"
@@ -41,5 +41,12 @@
     "typescript": "~5.9.2",
     "typescript-eslint": "8.39.1",
     "vite": "^6.4.1"
+  },
+  "prettier": {
+    "semi": true,
+    "singleQuote": true,
+    "tabWidth": 2,
+    "trailingComma": "all",
+    "printWidth": 100
   }
 }
