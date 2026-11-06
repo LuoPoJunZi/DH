@@ -388,6 +388,15 @@
 }
 
 @media (max-width: 920px) {
+  .app-shell {
+    padding-bottom: 0;
+  }
+
+  .site-header,
+  .site-footer {
+    position: static;
+  }
+
   .brand__name,
   .desktop-nav {
     display: none;
@@ -399,9 +408,7 @@
 
   .mobile-nav {
     display: block;
-    max-height: calc(100dvh - var(--header-height));
     padding-block: 12px 20px;
-    overflow-y: auto;
   }
 
   .mobile-nav__primary a {

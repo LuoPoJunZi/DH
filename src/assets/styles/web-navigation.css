@@ -393,6 +393,12 @@
   }
 }
 
+@media (max-width: 920px) {
+  .web-navigation-sidebar {
+    position: static;
+  }
+}
+
 @media (max-width: 760px) {
   .web-navigation-shell {
     padding-top: var(--space-2);

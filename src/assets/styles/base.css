@@ -221,6 +221,12 @@ h3 {
   }
 }
 
+@media (max-width: 920px) {
+  html {
+    scroll-padding-block: var(--space-4);
+  }
+}
+
 @media (max-width: 640px) {
   .container {
     width: min(calc(100% - 32px), var(--container));
