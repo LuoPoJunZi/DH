@@ -1,4 +1,4 @@
-import { visitorLocationConfig } from '../config/visitorLocation';
+import { visitorLocationConfig } from '../config/widgets/visitorLocation';
 
 export function getTimeZoneCity() {
   try {

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { navigationWidgetsConfig } from '../config/navigationWidgets';
+import { navigationWidgetsConfig } from '../config/widgets/navigationWidgets';
 import type { MarketQuote } from '../types/navigation-widgets';
 import { fetchExternalData } from '../utils/externalData';
 import { parseCryptoQuotes, parseStockQuotes } from '../utils/navigationWidgetData';

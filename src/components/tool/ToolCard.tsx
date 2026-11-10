@@ -1,6 +1,6 @@
 import { ArrowUpRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { getCategory } from '../../config/categories';
+import { getCategory } from '../../config/tools/categories';
 import type { ToolDefinition } from '../../types/tool';
 import { ToolIcon } from './ToolIcon';
 

@@ -1,4 +1,4 @@
-import type { MarketId } from '../types/navigation-widgets';
+import type { MarketId } from '../../types/navigation-widgets';
 
 interface MarketItem {
   id: MarketId;

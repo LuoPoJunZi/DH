@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { siteConfig } from '../../config/site';
+import { siteConfig } from '../../config/site/site';
 
 interface SeoProps {
   title?: string;

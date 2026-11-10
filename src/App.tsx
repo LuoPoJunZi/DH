@@ -1,7 +1,7 @@
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import { AppLayout } from './layouts/AppLayout';
 import { CategoryPage } from './pages/CategoryPage';
-import { HomePage } from './pages/HomePage';
+import { ToolsPage } from './pages/ToolsPage';
 import { NotFoundPage } from './pages/NotFoundPage';
 import { ToolPage } from './pages/ToolPage';
 import { WebNavigationPage } from './pages/WebNavigationPage';
@@ -17,7 +17,7 @@ export default function App() {
       <Route element={<AppLayout />}>
         <Route index element={<WebNavigationPage />} />
         <Route path="navigation" element={<Navigate to="/" replace />} />
-        <Route path="tools" element={<HomePage />} />
+        <Route path="tools" element={<ToolsPage />} />
         <Route path="category/:categoryId" element={<CategoryPage />} />
         <Route path="addr" element={<ToolPage toolId="address-generator" />} />
         <Route path="tools/address-generator" element={<LegacyAddressRedirect />} />

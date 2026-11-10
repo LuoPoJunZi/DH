@@ -17,8 +17,8 @@ import { useOutletContext } from 'react-router-dom';
 import { ExternalImage } from '../components/common/ExternalImage';
 import { Seo } from '../components/common/Seo';
 import { NavigationWidgets } from '../components/navigation/NavigationWidgets';
-import { siteConfig } from '../config/site';
-import { webNavigationCategories } from '../config/webNavigation';
+import { siteConfig } from '../config/site/site';
+import { webNavigationCategories } from '../config/navigation/webNavigation';
 import type { NavigationOutletContext } from '../layouts/AppLayout';
 import type { WebNavigationCategoryId } from '../types/web-navigation';
 

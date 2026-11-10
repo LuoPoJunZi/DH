@@ -1,9 +1,9 @@
 import { ArrowLeft } from 'lucide-react';
 import { Link, useParams } from 'react-router-dom';
 import { Seo } from '../components/common/Seo';
-import { ToolGrid } from '../components/common/ToolGrid';
-import { getCategory } from '../config/categories';
-import { getToolsByCategory } from '../config/tools';
+import { ToolGrid } from '../components/tool/ToolGrid';
+import { getCategory } from '../config/tools/categories';
+import { getToolsByCategory } from '../config/tools/tools';
 import { NotFoundPage } from './NotFoundPage';
 
 export function CategoryPage() {

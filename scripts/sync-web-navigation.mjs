@@ -172,7 +172,10 @@ async function syncNavigation() {
   };
 
   const scriptDirectory = dirname(fileURLToPath(import.meta.url));
-  const outputPath = resolve(scriptDirectory, '../src/config/liumingye-navigation.data.json');
+  const outputPath = resolve(
+    scriptDirectory,
+    '../src/config/navigation/liumingye-navigation.data.json',
+  );
   await writeFile(outputPath, `${JSON.stringify(output, null, 2)}\n`, 'utf8');
 
   const recordCount = categories.reduce(

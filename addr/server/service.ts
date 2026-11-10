@@ -1,4 +1,4 @@
-import site from '../../src/config/site.data.json';
+import site from '../../src/config/site/site.data.json';
 import {
   findRealAddress,
   getRandomName,

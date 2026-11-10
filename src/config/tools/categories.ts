@@ -1,4 +1,4 @@
-import { siteConfig } from './site';
+import { siteConfig } from '../site/site';
 export const categories = siteConfig.categories;
 
 export function getCategory(categoryId: string) {

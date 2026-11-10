@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { imageConfig } from '../../config/images';
+import { imageConfig } from '../../config/site/images';
 
 export function SiteBackground() {
   const [loaded, setLoaded] = useState(false);

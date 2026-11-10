@@ -28,7 +28,7 @@ Pages 在产物没有顶层 `404.html` 时，会将未知请求交给根页面�
 
 Logo、Favicon 和 UI 图标等小型核心资源随代码版本管理。普通展示图片优先使用集中配置的稳定 HTTPS URL，大量自有媒体迁移到 CDN/R2；不下载第三方图片，不把大图转成 Base64 写入源码。外部图片不得成为工具功能依赖。
 
-正式展示图片由项目所有者通过自有图床提供，URL 统一写入 `src/config/images.ts`。缺少 URL 时使用无图设计或占位，不搜索或下载第三方素材。页头与页脚使用项目所有者提供的本地头像，加载失败时回退到同套 96 像素站点图标；资源路径集中配置在 `src/config/images.ts`。
+正式展示图片由项目所有者通过自有图床提供，URL 统一写入 `src/config/site/images.ts`。缺少 URL 时使用无图设计或占位，不搜索或下载第三方素材。页头与页脚使用项目所有者提供的本地头像，加载失败时回退到同套 96 像素站点图标；资源路径集中配置在 `src/config/site/images.ts`。
 
 ### 2026-08-21：网站导航与本地工具分离
 
@@ -150,7 +150,7 @@ Header 只保留“首页”和“在线工具”两个主入口，工具分类�
 ## 2026-10-11：磨砂页脚与响应式壁纸
 
 - 参考极光导航公开页面的固定底栏，以现有组件和 CSS 独立实现；左侧显示 LUOPO 品牌和版权说明，右侧保留个人博客与 GitHub，手机端居中排列。
-- 桌面背景使用项目所有者提供的 `https://api.yppp.net/pc.php`，760px 及以下使用 `https://api.yppp.net/pe.php`；地址集中在 `src/config/images.ts`，通过 `picture` 由浏览器选择，不下载第三方图片到仓库。
+- 桌面背景使用项目所有者提供的 `https://api.yppp.net/pc.php`，760px 及以下使用 `https://api.yppp.net/pe.php`；地址集中在 `src/config/site/images.ts`，通过 `picture` 由浏览器选择，不下载第三方图片到仓库。
 - 背景为不可交互的固定装饰层，图片加载前或失败时显示主题底色；浅深色遮罩与更深的浅色辅助文字保证随机壁纸上的可读性，减少动画设置继续生效。
 - 页脚高度通过样式变量统一管理，页面与滚动定位为固定栏留出空间，避免覆盖最后一组导航、来源说明或工具操作。
 - 不增加友情链接、欢迎语、依赖、后端或部署配置，保持已有入口与信息卡。
@@ -281,3 +281,7 @@ Header 只保留“首页”和“在线工具”两个主入口，工具分类�
 ## 2026-11-04：整理根目录配置
 
 Vite、ESLint 与浏览器 / Node TypeScript 分项配置集中在 config/；根目录 tsconfig.json 保留项目引用入口。Prettier 规则合入 package.json，保留根目录忽略清单。npm 脚本显式指定配置路径，Cloudflare Pages 仍使用 npm run build 和 dist，无需调整后台部署配置。
+
+## 2026-11-10：按职责整理主站目录
+
+主站配置分为 site、navigation、tools、widgets 四组；工具卡片组件归入 components/tool，首页搜索归入 components/navigation。在线工具列表页面更名为 ToolsPage.tsx，对应目录样式更名为 tools-directory.css。同步调整导入路径、SEO 生成与导航同步脚本、地址接口的站点配置引用以及维护文档。地址模块仍独立存放在 addr/，页面路由和现有 Pages 构建流程继续沿用。

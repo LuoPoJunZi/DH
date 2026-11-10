@@ -1,4 +1,4 @@
-import { siteConfig } from '../../config/site';
+import { siteConfig } from '../../config/site/site';
 import { BrandMark } from '../common/BrandMark';
 
 export function Footer() {

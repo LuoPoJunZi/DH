@@ -1,4 +1,4 @@
-import { navigationWidgetsConfig } from '../config/navigationWidgets';
+import { navigationWidgetsConfig } from '../config/widgets/navigationWidgets';
 import type { CurrentWeather, DailyForecast, MarketQuote } from '../types/navigation-widgets';
 
 function record(value: unknown): Record<string, unknown> | null {

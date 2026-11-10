@@ -1,5 +1,5 @@
 import { ChartNoAxesCombined, RefreshCw } from 'lucide-react';
-import { navigationWidgetsConfig } from '../../config/navigationWidgets';
+import { navigationWidgetsConfig } from '../../config/widgets/navigationWidgets';
 import { useMarketQuotes } from '../../hooks/useMarketQuotes';
 
 const priceFormat = new Intl.NumberFormat('zh-CN', {

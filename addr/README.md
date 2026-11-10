@@ -22,7 +22,7 @@
 
 ## 与主站的连接
 
-主站在 src/config/tools.ts 中直接懒加载本目录的 client/AddressGeneratorTool.tsx；functions/api/address/catalog.ts 和 generate.ts 是 Pages API 的两个薄入口。页面、生成逻辑、配置及测试均集中在本目录。
+主站在 src/config/tools/tools.ts 中直接懒加载本目录的 client/AddressGeneratorTool.tsx；functions/api/address/catalog.ts 和 generate.ts 是 Pages API 的两个薄入口。页面、生成逻辑、配置及测试均集中在本目录。
 
 页面入口为 /addr，旧地址 /tools/address-generator 自动跳转并保留查询参数和锚点；API 保持 /api/address/catalog 与 /api/address/generate。全站导航、页头、页脚和 ThemeProvider 继续复用主站。
 

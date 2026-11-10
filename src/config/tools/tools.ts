@@ -1,17 +1,17 @@
 import { lazy } from 'react';
 import toolData from './tools.data.json';
-import type { ToolDefinition, ToolMeta } from '../types/tool';
+import type { ToolDefinition, ToolMeta } from '../../types/tool';
 
 const toolLoaders = {
-  'address-generator': () => import('../../addr/client/AddressGeneratorTool'),
-  'json-formatter': () => import('../tools/developer/json-formatter/JsonFormatterTool'),
-  base64: () => import('../tools/developer/base64/Base64Tool'),
-  'url-codec': () => import('../tools/developer/url-codec/UrlCodecTool'),
-  timestamp: () => import('../tools/developer/timestamp/TimestampTool'),
-  'uuid-generator': () => import('../tools/developer/uuid-generator/UuidGeneratorTool'),
-  'word-counter': () => import('../tools/text/word-counter/WordCounterTool'),
-  'text-deduplicator': () => import('../tools/text/text-deduplicator/TextDeduplicatorTool'),
-  'radix-converter': () => import('../tools/converter/radix-converter/RadixConverterTool'),
+  'address-generator': () => import('../../../addr/client/AddressGeneratorTool'),
+  'json-formatter': () => import('../../tools/developer/json-formatter/JsonFormatterTool'),
+  base64: () => import('../../tools/developer/base64/Base64Tool'),
+  'url-codec': () => import('../../tools/developer/url-codec/UrlCodecTool'),
+  timestamp: () => import('../../tools/developer/timestamp/TimestampTool'),
+  'uuid-generator': () => import('../../tools/developer/uuid-generator/UuidGeneratorTool'),
+  'word-counter': () => import('../../tools/text/word-counter/WordCounterTool'),
+  'text-deduplicator': () => import('../../tools/text/text-deduplicator/TextDeduplicatorTool'),
+  'radix-converter': () => import('../../tools/converter/radix-converter/RadixConverterTool'),
 } satisfies Record<string, () => Promise<{ default: React.ComponentType }>>;
 
 const metadata = toolData as ToolMeta[];

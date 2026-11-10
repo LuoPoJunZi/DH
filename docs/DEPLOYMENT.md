@@ -69,7 +69,7 @@ Cloudflare Pages 在构建产物不存在顶层 `404.html` 时，默认按 SPA �
 5. 如果 DNS 在其他服务商，按 Dashboard 提示添加 CNAME；
 6. 等待证书状态变为 Active。
 
-域名启用后，修改 `src/config/site.data.json` 的 `url` 为正式 HTTPS 域名并重新 Push。这样 canonical、Open Graph、Sitemap 和 robots.txt 才会指向正式域名。
+域名启用后，修改 `src/config/site/site.data.json` 的 `url` 为正式 HTTPS 域名并重新 Push。这样 canonical、Open Graph、Sitemap 和 robots.txt 才会指向正式域名。
 
 ## 6. 可选的 Wrangler 手动预览部署
 

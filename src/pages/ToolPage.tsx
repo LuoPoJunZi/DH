@@ -2,9 +2,9 @@ import { ChevronRight } from 'lucide-react';
 import { Suspense } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { Seo } from '../components/common/Seo';
-import { ToolGrid } from '../components/common/ToolGrid';
-import { getCategory } from '../config/categories';
-import { getRelatedTools, getTool } from '../config/tools';
+import { ToolGrid } from '../components/tool/ToolGrid';
+import { getCategory } from '../config/tools/categories';
+import { getRelatedTools, getTool } from '../config/tools/tools';
 import { NotFoundPage } from './NotFoundPage';
 
 export function ToolPage({ toolId: fixedToolId }: { toolId?: string } = {}) {

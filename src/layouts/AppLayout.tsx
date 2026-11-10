@@ -4,7 +4,7 @@ import { Footer } from '../components/layout/Footer';
 import { Header } from '../components/layout/Header';
 import { ScrollToTop } from '../components/layout/ScrollToTop';
 import { SiteBackground } from '../components/layout/SiteBackground';
-import { WebNavigationSearch } from '../components/layout/WebNavigationSearch';
+import { WebNavigationSearch } from '../components/navigation/WebNavigationSearch';
 
 export interface NavigationOutletContext {
   query: string;

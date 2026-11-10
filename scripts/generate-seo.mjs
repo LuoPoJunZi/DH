@@ -4,8 +4,8 @@ import path from 'node:path';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const [site, tools] = await Promise.all([
-  readFile(path.join(root, 'src/config/site.data.json'), 'utf8').then(JSON.parse),
-  readFile(path.join(root, 'src/config/tools.data.json'), 'utf8').then(JSON.parse),
+  readFile(path.join(root, 'src/config/site/site.data.json'), 'utf8').then(JSON.parse),
+  readFile(path.join(root, 'src/config/tools/tools.data.json'), 'utf8').then(JSON.parse),
 ]);
 
 const routes = [

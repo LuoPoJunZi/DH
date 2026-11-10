@@ -17,6 +17,33 @@
 | `docs/`              | 开发、部署与历史记录                               |
 | `.github/workflows/` | 自动质量检查                                       |
 
+主站内部按以下职责组织：
+
+```text
+src/
+├─ pages/                 页面入口：网站导航、在线工具、分类和工具页
+├─ layouts/               页面整体布局
+├─ components/
+│  ├─ common/             基础组件、品牌、主题和 SEO
+│  ├─ layout/             页头、页脚、背景和滚动定位
+│  ├─ navigation/         首页搜索、时间、天气和行情
+│  └─ tool/               工具入口卡片和共享操作区
+├─ config/
+│  ├─ site/               品牌、站点信息、背景图和顶部导航
+│  ├─ navigation/         网站分类、链接与来源数据
+│  ├─ tools/              工具分类、元数据和懒加载注册
+│  └─ widgets/            天气、行情与城市定位配置
+├─ tools/                 按 developer、text、converter 分类的独立工具
+├─ hooks/                 React 状态与交互逻辑
+├─ utils/                 公共请求与数据解析
+├─ types/                 共享类型
+└─ assets/styles/         主站基础、布局、目录与工作区样式
+```
+
+根目录的 `config/` 管理构建和检查；`src/config/` 管理网站内容和行为。地址模块保持独立，页面在 `addr/client/`，查询逻辑在 `addr/server/`，前后端共用内容在 `addr/shared/`；根目录 `functions/` 负责接入 Pages API。
+
+在线工具列表入口为 `src/pages/ToolsPage.tsx`，对应样式为 `src/assets/styles/tools-directory.css`。
+
 ## 本地开发
 
 使用 Node.js 20.15+，推荐 Node.js 22。
@@ -53,16 +80,16 @@ npm run preview
 
 ## 常用修改位置
 
-| 内容                           | 文件                                        |
-| ------------------------------ | ------------------------------------------- |
-| 名称、域名、作者和工具分类     | `src/config/site.data.json`                 |
-| Logo 和桌面、手机背景图链接    | `src/config/images.ts`                      |
-| 顶部导航                       | `src/config/navigation.ts`                  |
-| 网站导航分类、简介与自定义链接 | `src/config/webNavigation.custom.data.json` |
-| 导航同步生成数据               | `src/config/liumingye-navigation.data.json` |
-| 工具名称、路径、关键词与 SEO   | `src/config/tools.data.json`                |
-| 工具组件懒加载                 | `src/config/tools.ts`                       |
-| 地址生成                       | `addr/`                                     |
+| 内容                           | 文件                                                   |
+| ------------------------------ | ------------------------------------------------------ |
+| 名称、域名、作者和工具分类     | `src/config/site/site.data.json`                       |
+| Logo 和桌面、手机背景图链接    | `src/config/site/images.ts`                            |
+| 顶部导航                       | `src/config/site/navigation.ts`                        |
+| 网站导航分类、简介与自定义链接 | `src/config/navigation/webNavigation.custom.data.json` |
+| 导航同步生成数据               | `src/config/navigation/liumingye-navigation.data.json` |
+| 工具名称、路径、关键词与 SEO   | `src/config/tools/tools.data.json`                     |
+| 工具组件懒加载                 | `src/config/tools/tools.ts`                            |
+| 地址生成                       | `addr/`                                                |
 
 添加基础工具时，在 `src/tools/<category>/<tool-id>/` 实现组件，再登记工具元数据和懒加载入口。地址生成直接维护在独立的 `addr/` 目录。
 

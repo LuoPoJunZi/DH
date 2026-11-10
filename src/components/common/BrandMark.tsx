@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
-import { imageConfig } from '../../config/images';
-import { siteConfig } from '../../config/site';
+import { imageConfig } from '../../config/site/images';
+import { siteConfig } from '../../config/site/site';
 
 export function BrandMark() {
   return (

@@ -3,7 +3,7 @@ import type {
   WebNavigationCategoryId,
   WebNavigationLink,
   WebNavigationSubcategory,
-} from '../types/web-navigation';
+} from '../../types/web-navigation';
 import liumingyeNavigationData from './liumingye-navigation.data.json';
 import customNavigationData from './webNavigation.custom.data.json';
 

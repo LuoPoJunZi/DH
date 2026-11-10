@@ -1,6 +1,6 @@
 import { Search, X } from 'lucide-react';
 import { useEffect, useRef } from 'react';
-import { webNavigationLinkCount } from '../../config/webNavigation';
+import { webNavigationLinkCount } from '../../config/navigation/webNavigation';
 
 interface WebNavigationSearchProps {
   query: string;

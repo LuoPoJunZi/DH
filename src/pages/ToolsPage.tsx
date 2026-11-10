@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom';
 import { Seo } from '../components/common/Seo';
-import { ToolGrid } from '../components/common/ToolGrid';
-import { categories } from '../config/categories';
-import { featuredTools, getToolsByCategory } from '../config/tools';
+import { ToolGrid } from '../components/tool/ToolGrid';
+import { categories } from '../config/tools/categories';
+import { featuredTools, getToolsByCategory } from '../config/tools/tools';
 
-export function HomePage() {
+export function ToolsPage() {
   const activeCategories = categories.filter(
     (category) => category.id !== 'other' && getToolsByCategory(category.id).length > 0,
   );

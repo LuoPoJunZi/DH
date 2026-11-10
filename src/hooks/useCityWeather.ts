@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { weatherConfig } from '../config/weather';
+import { weatherConfig } from '../config/widgets/weather';
 import type { CurrentWeather } from '../types/navigation-widgets';
 import { fetchExternalData } from '../utils/externalData';
 import { isCurrentWeather, parseWeatherData } from '../utils/navigationWidgetData';

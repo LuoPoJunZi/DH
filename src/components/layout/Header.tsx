@@ -1,7 +1,7 @@
 import { Menu, X } from 'lucide-react';
 import { useEffect, useState, type ReactNode } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
-import { primaryNavigation } from '../../config/navigation';
+import { primaryNavigation } from '../../config/site/navigation';
 import { BrandMark } from '../common/BrandMark';
 import { ThemeToggle } from '../common/ThemeToggle';
 

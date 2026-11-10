@@ -1,5 +1,5 @@
 import siteData from './site.data.json';
-import type { ToolCategory } from '../types/tool';
+import type { ToolCategory } from '../../types/tool';
 
 interface SiteConfig {
   name: string;
