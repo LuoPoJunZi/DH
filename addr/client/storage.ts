@@ -2,6 +2,7 @@ import { addressKey, isAddressRecord } from '../shared/address';
 import type { SavedAddress } from '../shared/types';
 
 export const STORAGE_KEY = 'luopo-tools.address-generator.online-favorites.v6';
+export const BACKUP_STORAGE_KEY = 'luopo-tools.address-generator.online-favorites.v6.backup';
 export const MAX_FAVORITES = 100;
 export const MAX_NOTE_LENGTH = 160;
 const MAX_STORAGE_CHARS = 2_000_000;
@@ -67,6 +68,33 @@ export function loadFavorites(storage?: StoragePort): FavoritesLoadResult {
   }
 }
 
+function preserveCorruptStorage(port: StoragePort) {
+  let raw: string | null = null;
+  try {
+    raw = port.getItem(STORAGE_KEY);
+    if (!raw) return;
+    if (raw.length > MAX_STORAGE_CHARS) return;
+    const parsed: unknown = JSON.parse(raw);
+    if (
+      object(parsed) &&
+      parsed.version === 6 &&
+      Array.isArray(parsed.entries) &&
+      parsed.entries.every(isSavedAddress)
+    ) {
+      return;
+    }
+  } catch {
+    // Raw content is not valid JSON; back it up below before overwriting.
+  }
+  if (raw) {
+    try {
+      port.setItem(BACKUP_STORAGE_KEY, raw);
+    } catch {
+      // Saving new favorites still proceeds if backup quota is full.
+    }
+  }
+}
+
 export function saveFavorites(entries: readonly SavedAddress[], storage?: StoragePort): string {
   try {
     if (entries.length > MAX_FAVORITES || !entries.every(isSavedAddress)) {
@@ -75,7 +103,9 @@ export function saveFavorites(entries: readonly SavedAddress[], storage?: Storag
     const seen = new Set(entries.map((entry) => addressKey(entry.record)));
     const ids = new Set(entries.map((entry) => entry.record.id));
     if (seen.size !== entries.length || ids.size !== entries.length) return '收藏中存在重复记录。';
-    (storage ?? browserStorage()).setItem(STORAGE_KEY, JSON.stringify({ version: 6, entries }));
+    const port = storage ?? browserStorage();
+    preserveCorruptStorage(port);
+    port.setItem(STORAGE_KEY, JSON.stringify({ version: 6, entries }));
     return '';
   } catch {
     return '保存失败：浏览器可能禁用了本地存储或空间不足。请先导出备份。';

@@ -12,7 +12,8 @@ export function Header({ search }: { search?: ReactNode }) {
     .filter(
       (item) =>
         location.pathname === item.href ||
-        (!item.end && location.pathname.startsWith(item.href + '/')),
+        (!item.end && location.pathname.startsWith(item.href + '/')) ||
+        (item.href === '/tools' && location.pathname.startsWith('/category/')),
     )
     .sort((left, right) => right.href.length - left.href.length)[0];
   const navigationLinks = primaryNavigation.map((item) => {

@@ -4,7 +4,7 @@ import { ActionButton } from '../../../components/tool/ActionButton';
 import { CopyButton } from '../../../components/tool/CopyButton';
 import { FieldError } from '../../../components/tool/FieldError';
 import { ToolWorkspace } from '../../../components/tool/ToolWorkspace';
-import { convertRadix, parseBigIntWithBase } from './utils';
+import { parseBigIntWithBase } from './utils';
 
 const commonBases = [2, 8, 10, 16, 36] as const;
 
@@ -12,27 +12,28 @@ export default function RadixConverterTool() {
   const [input, setInput] = useState('255');
   const [fromBase, setFromBase] = useState(10);
   const [toBase, setToBase] = useState(16);
-  const [output, setOutput] = useState('ff');
-  const [decimal, setDecimal] = useState(255n);
+  // The parsed value is base-independent; null means the input has not been converted yet.
+  const [decimal, setDecimal] = useState<bigint | null>(255n);
   const [error, setError] = useState('');
+  const output = decimal === null ? '' : decimal.toString(toBase);
 
   const run = () => {
     try {
-      const parsed = parseBigIntWithBase(input, fromBase);
-      setDecimal(parsed);
-      setOutput(convertRadix(input, fromBase, toBase));
+      setDecimal(parseBigIntWithBase(input, fromBase));
       setError('');
     } catch (caught) {
       setError(caught instanceof Error ? caught.message : '进制转换失败。');
-      setOutput('');
+      setDecimal(null);
     }
   };
 
+  const invalidate = () => {
+    setDecimal(null);
+    setError('');
+  };
+
   const swap = () => {
-    if (output) {
-      setInput(output);
-      setOutput(input);
-    }
+    if (decimal !== null) setInput(output);
     setFromBase(toBase);
     setToBase(fromBase);
     setError('');
@@ -46,7 +47,10 @@ export default function RadixConverterTool() {
           <input
             id="radix-input"
             value={input}
-            onChange={(event) => setInput(event.target.value)}
+            onChange={(event) => {
+              setInput(event.target.value);
+              invalidate();
+            }}
             onKeyDown={(event) => {
               if (event.key === 'Enter') run();
             }}
@@ -55,7 +59,13 @@ export default function RadixConverterTool() {
         </label>
         <label className="select-field">
           <span>原始进制</span>
-          <select value={fromBase} onChange={(event) => setFromBase(Number(event.target.value))}>
+          <select
+            value={fromBase}
+            onChange={(event) => {
+              setFromBase(Number(event.target.value));
+              invalidate();
+            }}
+          >
             {Array.from({ length: 35 }, (_, index) => index + 2).map((base) => (
               <option key={base} value={base}>
                 {base} 进制
@@ -94,13 +104,16 @@ export default function RadixConverterTool() {
         <CopyButton value={output} />
       </div>
       <div className="result-table result-table--compact">
-        {commonBases.map((base) => (
-          <div className="result-table__row" key={base}>
-            <span>{base} 进制</span>
-            <code>{decimal.toString(base)}</code>
-            <CopyButton value={decimal.toString(base)} label="复制" />
-          </div>
-        ))}
+        {commonBases.map((base) => {
+          const value = decimal === null ? '' : decimal.toString(base);
+          return (
+            <div className="result-table__row" key={base}>
+              <span>{base} 进制</span>
+              <code>{value || '—'}</code>
+              <CopyButton value={value} label="复制" />
+            </div>
+          );
+        })}
       </div>
       <div className="workspace-footer-actions">
         <ActionButton
@@ -108,9 +121,7 @@ export default function RadixConverterTool() {
           variant="quiet"
           onClick={() => {
             setInput('');
-            setOutput('');
-            setDecimal(0n);
-            setError('');
+            invalidate();
           }}
         >
           清空

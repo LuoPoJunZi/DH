@@ -14,9 +14,11 @@ export function countText(value: string): TextStatistics {
   const nonChineseText = value.replaceAll(/\p{Script=Han}/gu, ' ');
   const latinWords = nonChineseText.match(/[\p{L}\p{N}]+(?:['’-][\p{L}\p{N}]+)*/gu)?.length ?? 0;
   const words = chineseCharacters + latinWords;
+  const characters = Array.from(value);
   return {
-    characters: value.length,
-    charactersNoSpaces: value.replaceAll(/\s/gu, '').length,
+    // Count Unicode code points so emoji and rare CJK characters count as one.
+    characters: characters.length,
+    charactersNoSpaces: characters.filter((character) => !/\s/u.test(character)).length,
     words,
     chineseCharacters,
     lines: value ? value.split(/\r?\n/).length : 0,

@@ -9,8 +9,21 @@ import {
 const STORAGE_KEY = 'luopo-theme';
 
 function getStoredPreference(): ThemePreference {
-  const stored = localStorage.getItem(STORAGE_KEY);
-  return stored === 'light' || stored === 'dark' ? stored : 'system';
+  try {
+    const stored = localStorage.getItem(STORAGE_KEY);
+    return stored === 'light' || stored === 'dark' ? stored : 'system';
+  } catch {
+    // Storage can throw SecurityError when site data is blocked.
+    return 'system';
+  }
+}
+
+function storePreference(preference: ThemePreference) {
+  try {
+    localStorage.setItem(STORAGE_KEY, preference);
+  } catch {
+    // The preference still applies for the current session.
+  }
 }
 
 function getSystemTheme(): ResolvedTheme {
@@ -36,7 +49,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     document.documentElement.style.colorScheme = resolvedTheme;
     document
       .querySelector('meta[name="theme-color"]')
-      ?.setAttribute('content', resolvedTheme === 'dark' ? '#171713' : '#f4f1ea');
+      ?.setAttribute('content', resolvedTheme === 'dark' ? '#11151d' : '#f5f7fb');
   }, [resolvedTheme]);
 
   const value = useMemo<ThemeContextValue>(
@@ -45,7 +58,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
       resolvedTheme,
       setPreference: (nextPreference) => {
         setPreferenceState(nextPreference);
-        localStorage.setItem(STORAGE_KEY, nextPreference);
+        storePreference(nextPreference);
       },
     }),
     [preference, resolvedTheme],

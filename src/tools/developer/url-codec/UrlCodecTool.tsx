@@ -30,6 +30,12 @@ export default function UrlCodecTool() {
     setError('');
   };
 
+  const selectMode = (nextMode: 'encode' | 'decode') => {
+    if (nextMode !== mode) setOutput('');
+    setMode(nextMode);
+    setError('');
+  };
+
   return (
     <ToolWorkspace>
       <div className="mode-switch" aria-label="转换模式">
@@ -37,7 +43,7 @@ export default function UrlCodecTool() {
           type="button"
           data-active={mode === 'encode'}
           aria-pressed={mode === 'encode'}
-          onClick={() => setMode('encode')}
+          onClick={() => selectMode('encode')}
         >
           URL Encode
         </button>
@@ -45,7 +51,7 @@ export default function UrlCodecTool() {
           type="button"
           data-active={mode === 'decode'}
           aria-pressed={mode === 'decode'}
-          onClick={() => setMode('decode')}
+          onClick={() => selectMode('decode')}
         >
           URL Decode
         </button>

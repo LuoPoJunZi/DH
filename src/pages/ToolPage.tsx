@@ -2,6 +2,7 @@ import { ChevronRight } from 'lucide-react';
 import { Suspense } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { Seo } from '../components/common/Seo';
+import { ToolErrorBoundary } from '../components/tool/ToolErrorBoundary';
 import { ToolGrid } from '../components/tool/ToolGrid';
 import { getCategory } from '../config/tools/categories';
 import { getRelatedTools, getTool } from '../config/tools/tools';
@@ -27,7 +28,7 @@ export function ToolPage({ toolId: fixedToolId }: { toolId?: string } = {}) {
       {showSupportingContent && (
         <>
           <nav className="breadcrumbs" aria-label="面包屑">
-            <Link to="/">首页</Link>
+            <Link to="/tools">在线工具</Link>
             <ChevronRight size={14} aria-hidden="true" />
             <Link to={`/category/${tool.category}`}>{category?.name}</Link>
             <ChevronRight size={14} aria-hidden="true" />
@@ -46,9 +47,11 @@ export function ToolPage({ toolId: fixedToolId }: { toolId?: string } = {}) {
         </>
       )}
 
-      <Suspense fallback={<div className="tool-loading">正在加载工具…</div>}>
-        <ToolComponent />
-      </Suspense>
+      <ToolErrorBoundary key={tool.id}>
+        <Suspense fallback={<div className="tool-loading">正在加载工具…</div>}>
+          <ToolComponent />
+        </Suspense>
+      </ToolErrorBoundary>
 
       {showSupportingContent && (
         <>

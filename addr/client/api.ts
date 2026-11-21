@@ -9,7 +9,12 @@ async function readResponse(response: Response): Promise<unknown> {
         : '在线地址服务返回异常（HTTP ' + response.status + '），请稍后重试。',
     );
   }
-  const value: unknown = await response.json();
+  let value: unknown;
+  try {
+    value = await response.json();
+  } catch {
+    throw new Error('在线地址服务响应格式异常，请稍后重试。');
+  }
   if (!response.ok) {
     const message =
       isObject(value) && typeof value.error === 'string' ? value.error : '地址服务暂时不可用。';

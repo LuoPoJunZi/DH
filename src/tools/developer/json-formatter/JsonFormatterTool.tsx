@@ -12,6 +12,7 @@ export default function JsonFormatterTool() {
   const [output, setOutput] = useState('');
   const [status, setStatus] = useState('');
   const [error, setError] = useState('');
+  const [indent, setIndent] = useState<'format-2' | 'format-4'>('format-2');
 
   const run = (action: JsonAction) => {
     try {
@@ -21,6 +22,7 @@ export default function JsonFormatterTool() {
       setError('');
     } catch (caught) {
       setError(caught instanceof Error ? caught.message : 'JSON 处理失败。');
+      setOutput('');
       setStatus('');
     }
   };
@@ -39,14 +41,15 @@ export default function JsonFormatterTool() {
     anchor.href = url;
     anchor.download = 'formatted.json';
     anchor.click();
-    URL.revokeObjectURL(url);
+    // Delay revocation so Safari/Firefox can start the download first.
+    window.setTimeout(() => URL.revokeObjectURL(url), 1_000);
   };
 
   return (
     <ToolWorkspace>
       <div className="workspace-toolbar">
         <div className="workspace-toolbar__group">
-          <ActionButton variant="primary" icon={WandSparkles} onClick={() => run('format-2')}>
+          <ActionButton variant="primary" icon={WandSparkles} onClick={() => run(indent)}>
             格式化
           </ActionButton>
           <ActionButton icon={Minimize2} onClick={() => run('minify')}>
@@ -94,11 +97,16 @@ export default function JsonFormatterTool() {
         <label className="select-field select-field--inline">
           <span>缩进</span>
           <select
-            defaultValue="2"
-            onChange={(event) => run(event.target.value === '4' ? 'format-4' : 'format-2')}
+            value={indent}
+            onChange={(event) => {
+              const nextIndent = event.target.value === 'format-4' ? 'format-4' : 'format-2';
+              setIndent(nextIndent);
+              // Re-format only when there is something to format; avoid empty-input errors.
+              if (input.trim()) run(nextIndent);
+            }}
           >
-            <option value="2">2 空格</option>
-            <option value="4">4 空格</option>
+            <option value="format-2">2 空格</option>
+            <option value="format-4">4 空格</option>
           </select>
         </label>
       </div>

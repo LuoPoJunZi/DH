@@ -8,10 +8,15 @@ const [site, tools] = await Promise.all([
   readFile(path.join(root, 'src/config/tools/tools.data.json'), 'utf8').then(JSON.parse),
 ]);
 
+const usedCategoryIds = new Set(tools.map((tool) => tool.category));
+
 const routes = [
   '/',
   '/tools',
-  ...site.categories.map((category) => `/category/${category.id}`),
+  // Skip empty category pages so the sitemap only lists pages with real content.
+  ...site.categories
+    .filter((category) => usedCategoryIds.has(category.id))
+    .map((category) => `/category/${category.id}`),
   ...tools.map((tool) => tool.path),
 ];
 

@@ -89,14 +89,16 @@ async function findRealAddress(country, type, options = {}) {
           seed: location.seed,
           candidates: [
             candidate,
-            ...selectPool(usable, type).filter(
-              (c) =>
-                c !== candidate &&
-                hasAdminInfo(c.parts) &&
-                matchesCountry(c, country) &&
-                stateAllowed(c.parts) &&
-                selectPool([c], type).length,
-            ),
+            ...selectPool(usable, type)
+              .filter(
+                (c) =>
+                  c !== candidate &&
+                  hasAdminInfo(c.parts) &&
+                  matchesCountry(c, country) &&
+                  stateAllowed(c.parts) &&
+                  selectPool([c], type).length,
+              )
+              .map((c) => (c.countryCode ? c : { ...c, countryCode: candidate.countryCode })),
           ],
         };
       }

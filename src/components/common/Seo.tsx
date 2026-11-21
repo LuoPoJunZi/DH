@@ -6,6 +6,7 @@ interface SeoProps {
   description?: string;
   keywords?: string[];
   path?: string;
+  noindex?: boolean;
 }
 
 function setMeta(selector: string, attribute: 'name' | 'property', key: string, content: string) {
@@ -22,14 +23,24 @@ export function Seo({
   title,
   description = siteConfig.description,
   keywords = [],
-  path = '/',
+  path,
+  noindex = false,
 }: SeoProps) {
+  const keywordText = keywords.join(',');
+
   useEffect(() => {
     const fullTitle = title ? `${title} - ${siteConfig.shortName}` : siteConfig.name;
-    const canonical = new URL(path, siteConfig.url).href;
+    const effectivePath = path ?? window.location.pathname;
+    const canonical = new URL(effectivePath, siteConfig.url).href;
     document.title = fullTitle;
     setMeta('meta[name="description"]', 'name', 'description', description);
-    setMeta('meta[name="keywords"]', 'name', 'keywords', keywords.join(','));
+    setMeta('meta[name="keywords"]', 'name', 'keywords', keywordText);
+    setMeta(
+      'meta[name="robots"]',
+      'name',
+      'robots',
+      noindex ? 'noindex, nofollow' : 'index, follow',
+    );
     setMeta('meta[property="og:title"]', 'property', 'og:title', fullTitle);
     setMeta('meta[property="og:description"]', 'property', 'og:description', description);
     setMeta('meta[property="og:url"]', 'property', 'og:url', canonical);
@@ -43,7 +54,7 @@ export function Seo({
       document.head.append(canonicalLink);
     }
     canonicalLink.href = canonical;
-  }, [description, keywords, path, title]);
+  }, [description, keywordText, noindex, path, title]);
 
   return null;
 }

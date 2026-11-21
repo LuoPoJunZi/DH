@@ -26,9 +26,11 @@ function readLocationField(data: unknown, fields: readonly string[]) {
   return null;
 }
 
-async function requestVisitorCity() {
+async function requestVisitorCity(refresh: boolean) {
   try {
-    const cachedCity = window.sessionStorage.getItem(visitorLocationConfig.cacheKey);
+    const cachedCity = refresh
+      ? null
+      : window.sessionStorage.getItem(visitorLocationConfig.cacheKey);
     if (cachedCity) return cachedCity;
   } catch {
     // Continue without a cache in privacy-restricted browsing contexts.
@@ -67,6 +69,6 @@ async function requestVisitorCity() {
 
 export function getVisitorCity(refresh = false) {
   if (refresh) visitorCityRequest = null;
-  visitorCityRequest ??= requestVisitorCity();
+  visitorCityRequest ??= requestVisitorCity(refresh);
   return visitorCityRequest;
 }

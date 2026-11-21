@@ -24,7 +24,7 @@ export interface ToolMeta {
   shortName: string;
   description: string;
   category: ToolCategoryId;
-  path: `/tools/${string}`;
+  path: `/${string}`;
   icon: ToolIconName;
   keywords: string[];
   featured: boolean;

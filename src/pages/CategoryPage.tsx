@@ -20,8 +20,8 @@ export function CategoryPage() {
         keywords={[category.name, category.shortName, '在线工具']}
         path={`/category/${category.id}`}
       />
-      <Link className="back-link" to="/">
-        <ArrowLeft size={16} /> 返回首页
+      <Link className="back-link" to="/tools">
+        <ArrowLeft size={16} /> 返回在线工具
       </Link>
       <header className="page-header">
         <p className="eyebrow">工具分类 / {String(categoryTools.length).padStart(2, '0')}</p>
@@ -33,7 +33,7 @@ export function CategoryPage() {
       ) : (
         <div className="empty-state">
           <p>这个分类的工具正在准备中。</p>
-          <Link className="button button--primary" to="/">
+          <Link className="button button--primary" to="/tools">
             浏览现有工具
           </Link>
         </div>

@@ -96,22 +96,43 @@ function isPool(value: unknown): value is Pool {
     typeof value.retrievedAt === 'number'
   );
 }
+interface InflightLookup {
+  pool: Promise<Pool>;
+  controller: AbortController;
+  waiters: number;
+}
 export function createAddressService(deps: Dependencies = {}) {
   const fetcher = deps.fetcher ?? fetch,
     now = deps.now ?? Date.now,
     random = deps.random ?? Math.random,
     uuid = deps.uuid ?? (() => crypto.randomUUID());
   const memory = new Map<string, { pool: Pool; expires: number }>(),
-    inflight = new Map<string, Promise<Pool>>(),
+    inflight = new Map<string, InflightLookup>(),
     buckets = new Map<string, { start: number; count: number }>();
+  function remember(key: string, entry: { pool: Pool; expires: number }) {
+    if (!memory.has(key) && memory.size >= MAX_KEYS) memory.delete(memory.keys().next().value!);
+    memory.set(key, entry);
+  }
+  // A shared upstream lookup is aborted only after every waiting request has gone away.
+  function joinLookup(lookup: InflightLookup, signal: AbortSignal) {
+    lookup.waiters++;
+    const leave = () => {
+      lookup.waiters--;
+      if (lookup.waiters <= 0) lookup.controller.abort();
+    };
+    if (signal.aborted) leave();
+    else signal.addEventListener('abort', leave, { once: true });
+    return () => signal.removeEventListener('abort', leave);
+  }
   function consume(req: Request) {
     if (deps.disableRateLimitForTests) return;
     const at = now();
     for (const [id, b] of buckets) if (at - b.start > 60000) buckets.delete(id);
     const id = req.headers.get('CF-Connecting-IP') ?? 'local',
       b = buckets.get(id) ?? { start: at, count: 0 };
-    if (b.count >= 30 || buckets.size > 2000)
-      throw new ApiError(429, '操作过于频繁，请稍后重试。', 'RATE_LIMIT');
+    if (b.count >= 30) throw new ApiError(429, '操作过于频繁，请稍后重试。', 'RATE_LIMIT');
+    // Bound memory by evicting the oldest client instead of rejecting everyone.
+    if (!buckets.has(id) && buckets.size >= 2000) buckets.delete(buckets.keys().next().value!);
     b.count++;
     buckets.set(id, b);
   }
@@ -139,7 +160,7 @@ export function createAddressService(deps: Dependencies = {}) {
         if (hit?.ok) {
           const data = await readJsonLimited(hit, 700000);
           if (isPool(data) && usable(data)) {
-            memory.set(key, { pool: data, expires: data.retrievedAt + TTL });
+            remember(key, { pool: data, expires: data.retrievedAt + TTL });
             return { pool: data, hit: true };
           }
         }
@@ -147,17 +168,24 @@ export function createAddressService(deps: Dependencies = {}) {
         /* Public cache is best effort. */
       }
     const existing = inflight.get(key);
-    if (existing) return { pool: await existing, hit: true };
+    if (existing) {
+      const detach = joinLookup(existing, context.request.signal);
+      try {
+        return { pool: await existing.pool, hit: false };
+      } finally {
+        detach();
+      }
+    }
+    const controller = new AbortController();
     const pending = (async () => {
       const found = await findRealAddress(upstreamCountry(scope.countryCode), options.kind, {
         taxFree: options.taxFree,
-        stateCode:
-          scope.countryCode === 'US' && options.regionCode ? options.regionCode : undefined,
+        stateCode: scope.countryCode === 'US' ? scope.seed.regionCode : undefined,
         seed: { lat: scope.seed.latitude, lng: scope.seed.longitude, state: scope.seed.regionCode },
         userAgent: site.shortName + ' (' + site.url + ')',
         fetcher,
         random,
-        signal: context.request.signal,
+        signal: controller.signal,
       });
       const seen = new Set<string>();
       const records: AddressRecord[] = [];
@@ -177,8 +205,7 @@ export function createAddressService(deps: Dependencies = {}) {
           'NO_RESULTS',
         );
       const pool = { records, retrievedAt: now() };
-      if (memory.size >= MAX_KEYS) memory.delete(memory.keys().next().value!);
-      memory.set(key, { pool, expires: now() + TTL });
+      remember(key, { pool, expires: now() + TTL });
       if (edge)
         try {
           context.waitUntil(
@@ -197,10 +224,13 @@ export function createAddressService(deps: Dependencies = {}) {
         }
       return pool;
     })();
-    inflight.set(key, pending);
+    const lookup: InflightLookup = { pool: pending, controller, waiters: 0 };
+    inflight.set(key, lookup);
+    const detach = joinLookup(lookup, context.request.signal);
     try {
       return { pool: await pending, hit: false };
     } finally {
+      detach();
       inflight.delete(key);
     }
   }

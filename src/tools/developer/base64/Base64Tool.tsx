@@ -41,6 +41,7 @@ export default function Base64Tool() {
             data-active={mode === value}
             aria-pressed={mode === value}
             onClick={() => {
+              if (value !== mode) setOutput('');
               setMode(value);
               setError('');
             }}

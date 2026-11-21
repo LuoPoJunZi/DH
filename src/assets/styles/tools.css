@@ -556,6 +556,14 @@
   border-radius: var(--radius-lg);
 }
 
+.tool-loading--error > div {
+  display: grid;
+  justify-items: center;
+  gap: var(--space-4);
+  padding: var(--space-6);
+  text-align: center;
+}
+
 @media (max-width: 980px) {
   .metric-grid {
     grid-template-columns: repeat(4, minmax(0, 1fr));

@@ -82,6 +82,8 @@ export function toAddressRecord(
   // Missing country/street/house fields are never filled from the selected city.
   const parts = normalizeParts(upstreamCountry(scope.countryCode), candidate.parts);
   if (!parts) return null;
+  if (scope.countryCode === 'US' && parts.stateCode && parts.stateCode !== scope.seed.regionCode)
+    return null;
   const houseNumber = clean(parts.houseNumber, 40),
     street = clean(parts.street);
   if (!houseNumber || !street) return null;
@@ -89,7 +91,7 @@ export function toAddressRecord(
     region = clean(parts.state),
     postalCode = clean(parts.postcode, 40);
   const fullAddress = clean(formatAddress(upstreamCountry(scope.countryCode), parts), 2000);
-  if (!fullAddress || /undefined|null/.test(fullAddress)) return null;
+  if (!fullAddress || /\b(?:undefined|null)\b/.test(fullAddress)) return null;
   const date = new Date(now()).toISOString();
   const taxFree = scope.countryCode === 'US' ? getTaxFreeState(region) : null;
   const localized = scope.countryCode === 'HK' ? buildHongKongVersions(candidate) : null;

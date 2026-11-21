@@ -17,7 +17,13 @@ import { ADDRESS_DATA_SOURCES, addressLinks } from '../shared/links';
 import { AddressCard } from './components/AddressCard';
 import { generateAddresses, loadCatalog } from './api';
 import { downloadAddresses, serializeAddresses } from './export';
-import { clearFavorites, loadFavorites, MAX_FAVORITES, saveFavorites } from './storage';
+import {
+  clearFavorites,
+  loadFavorites,
+  MAX_FAVORITES,
+  saveFavorites,
+  STORAGE_KEY,
+} from './storage';
 import type {
   AddressCatalog,
   AddressRecord,
@@ -105,6 +111,15 @@ export default function AddressGeneratorTool() {
     };
     window.addEventListener('keydown', keydown);
     return () => window.removeEventListener('keydown', keydown);
+  }, []);
+  useEffect(() => {
+    const syncFavorites = (event: StorageEvent) => {
+      if (event.key === STORAGE_KEY || event.key === null) {
+        setFavorites(loadFavorites().entries);
+      }
+    };
+    window.addEventListener('storage', syncFavorites);
+    return () => window.removeEventListener('storage', syncFavorites);
   }, []);
   useEffect(
     () => () => {

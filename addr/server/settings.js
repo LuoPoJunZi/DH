@@ -229,3 +229,12 @@ Object.assign(COUNTRY_NAMES, {
   MY: 'Malaysia',
   VN: 'Vietnam',
 });
+
+Object.assign(ADDRESS_STYLES, {
+  SG: 'numberFirst',
+  NL: 'streetFirst',
+  TH: 'numberFirst',
+  PH: 'numberFirst',
+  MY: 'numberFirst',
+  VN: 'numberFirst',
+});

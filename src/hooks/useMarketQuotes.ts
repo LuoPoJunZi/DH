@@ -31,8 +31,12 @@ export function useMarketQuotes() {
       ]);
       if (controller.signal.aborted) return;
       const next = [...parseStockQuotes(stocks), ...parseCryptoQuotes(crypto)];
-      setQuotes(next);
-      setUpdatedAt(next.length ? new Date() : null);
+      // Keep the last known quote for any source that failed this round.
+      setQuotes((previous) => [
+        ...next,
+        ...previous.filter((quote) => !next.some((item) => item.id === quote.id)),
+      ]);
+      if (next.length) setUpdatedAt(new Date());
       setIsLoading(false);
       pending = false;
     };

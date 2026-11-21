@@ -9,8 +9,12 @@ export interface JsonResult {
 
 function describeJsonError(error: unknown, source: string) {
   if (!(error instanceof SyntaxError)) return 'JSON 处理失败，请检查输入内容。';
+  const lineColumnMatch = error.message.match(/line\s+(\d+)\s+column\s+(\d+)/i);
+  if (lineColumnMatch?.[1] && lineColumnMatch?.[2]) {
+    return `JSON 格式错误，约在第 ${lineColumnMatch[1]} 行、第 ${lineColumnMatch[2]} 列。`;
+  }
   const positionMatch = error.message.match(/position\s+(\d+)/i);
-  if (!positionMatch?.[1]) return `JSON 格式错误：${error.message}`;
+  if (!positionMatch?.[1]) return 'JSON 格式错误，请检查括号、引号或逗号是否匹配。';
   const position = Number(positionMatch[1]);
   const beforeError = source.slice(0, position);
   const line = beforeError.split('\n').length;
@@ -40,5 +44,5 @@ export const jsonSample = `{
   "project": "LUOPO Tools",
   "static": true,
   "features": ["fast", "private", "useful"],
-  "toolCount": 8
+  "localFirst": true
 }`;

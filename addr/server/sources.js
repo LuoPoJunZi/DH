@@ -15,15 +15,18 @@ import {
 } from './settings.js';
 import { classifyTags, osmUrl } from './candidates.js';
 let nextReverse = 0;
-async function reserveReverseSlot(signal) {
-  const at = Math.max(Date.now(), nextReverse);
-  nextReverse = at + 1100;
+async function reserveReverseSlot(signal, deadline = Infinity) {
   if (signal?.aborted) throw new DOMException('Aborted', 'AbortError');
+  const at = Math.max(Date.now(), nextReverse);
+  if (at + 250 > deadline) throw new Error('Reverse lookup budget exhausted');
+  const reserved = at + 1100;
+  nextReverse = reserved;
   const delay = at - Date.now();
   if (delay > 0)
     await new Promise((resolve, reject) => {
       const abort = () => {
         clearTimeout(timer);
+        if (nextReverse === reserved) nextReverse = Math.max(Date.now(), at);
         reject(new DOMException('Aborted', 'AbortError'));
       };
       const timer = setTimeout(() => {
@@ -214,9 +217,9 @@ export function createSources(fetcher = fetch, parent, userAgent = USER_AGENT) {
 
   async function fillFromNominatim(candidate, country, deadline, errors) {
     // accept-language 传一个不匹配任何语言的值，Nominatim 会回退到当地名称（与 Photon 的 lang=default 一致）
-    await reserveReverseSlot(parent);
     const url = `${NOMINATIM_REVERSE_URL}?format=json&lat=${candidate.lat}&lon=${candidate.lng}&zoom=18&addressdetails=1&accept-language=default`;
     try {
+      await reserveReverseSlot(parent, deadline);
       const data = await fetchJson(url, {}, budgetedTimeout(deadline, 1500));
       const a = data.address || {};
       const p = candidate.parts;
@@ -242,6 +245,7 @@ export function createSources(fetcher = fetch, parent, userAgent = USER_AGENT) {
       }
       candidate.countryCode = candidate.countryCode || a.country_code;
     } catch (error) {
+      if (parent?.aborted) throw error;
       errors.push(`nominatim: ${error.message}`);
     }
   }

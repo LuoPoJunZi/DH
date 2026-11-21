@@ -13,10 +13,14 @@ export function encodeBase64(value: string) {
 }
 
 export function decodeBase64(value: string) {
-  const normalized = value.replaceAll(/\s+/g, '');
+  const normalized = value.replaceAll(/\s+/g, '').replaceAll('-', '+').replaceAll('_', '/');
   if (!normalized) throw new Error('请输入需要解码的 Base64 内容。');
+  if (normalized.length % 4 === 1) {
+    throw new Error('Base64 内容无效，或解码结果不是 UTF-8 文本。');
+  }
+  const padded = normalized.padEnd(Math.ceil(normalized.length / 4) * 4, '=');
   try {
-    const binary = atob(normalized);
+    const binary = atob(padded);
     const bytes = Uint8Array.from(binary, (character) => character.charCodeAt(0));
     return new TextDecoder('utf-8', { fatal: true }).decode(bytes);
   } catch {
