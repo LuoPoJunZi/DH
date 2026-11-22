@@ -19,7 +19,9 @@
     "lint": "eslint --config config/eslint.config.js . --max-warnings=0",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "test:address": "node addr/scripts/test.mjs"
+    "test": "npm run test:address && npm run test:tools",
+    "test:address": "node addr/scripts/test.mjs",
+    "test:tools": "node scripts/test-tools.mjs"
   },
   "dependencies": {
     "lucide-react": "^0.468.0",

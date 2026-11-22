@@ -444,3 +444,21 @@ test(
     assert.equal('records' in result.data, false);
   },
 );
+test('malformed Photon features without geometry are skipped without failing valid results', async () => {
+  const result = await request(
+    service({
+      fetcher: async () =>
+        Response.json({
+          features: [
+            null,
+            { type: 'Feature', properties: { housenumber: '99' } },
+            { type: 'Feature', geometry: { coordinates: [] }, properties: {} },
+            feature(201),
+          ],
+        }),
+    }),
+  );
+  assert.equal(result.response.status, 200);
+  assert.equal(result.data.records.length, 1);
+  assert.equal(result.data.records[0].sourcePlaceId, 'way/201');
+});

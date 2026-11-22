@@ -2,22 +2,20 @@ import { useEffect, useState } from 'react';
 import { getTimeZoneCity, getVisitorCity } from '../utils/visitorLocation';
 
 export function useVisitorCity(refreshKey = 0) {
-  const [city, setCity] = useState<string | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const [state, setState] = useState<{ key: number; city: string | null }>({
+    key: -1,
+    city: null,
+  });
+  const isLoading = state.key !== refreshKey;
 
   useEffect(() => {
-    let active = true;
-    setIsLoading(true);
-    void getVisitorCity(refreshKey > 0).then((result) => {
-      if (active) {
-        setCity(result ?? getTimeZoneCity());
-        setIsLoading(false);
-      }
+    const controller = new AbortController();
+    void getVisitorCity(refreshKey > 0, controller.signal).then((result) => {
+      if (controller.signal.aborted) return;
+      setState({ key: refreshKey, city: result ?? getTimeZoneCity() });
     });
-    return () => {
-      active = false;
-    };
+    return () => controller.abort();
   }, [refreshKey]);
 
-  return { city, isLoading };
+  return { city: state.city, isLoading };
 }

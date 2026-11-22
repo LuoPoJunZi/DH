@@ -4,7 +4,13 @@ import type { AddressRecord } from '../../shared/types';
 import { googleMapsUrl, googleMapPreviewUrl, sourceMapUrl } from '../../shared/address';
 
 export function AddressMap({ record, index }: { record: AddressRecord; index: number }) {
+  const previewUrl = googleMapPreviewUrl(record);
   const [state, setState] = useState<'loading' | 'loaded' | 'failed'>('loading');
+  const [prevUrl, setPrevUrl] = useState(previewUrl);
+  if (prevUrl !== previewUrl) {
+    setPrevUrl(previewUrl);
+    setState('loading');
+  }
   const [attempt, setAttempt] = useState(0);
   const [visible, setVisible] = useState(false);
   const frameRef = useRef<HTMLDivElement>(null);
@@ -26,14 +32,14 @@ export function AddressMap({ record, index }: { record: AddressRecord; index: nu
     if (!visible || state !== 'loading') return;
     const timer = window.setTimeout(() => setState('failed'), 15000);
     return () => window.clearTimeout(timer);
-  }, [state, attempt, visible]);
+  }, [state, attempt, visible, previewUrl]);
   return (
     <aside className="ag-map-pane" aria-label="地址地图">
       <div className="ag-map-frame" ref={frameRef}>
         <iframe
-          key={attempt}
+          key={`${previewUrl}-${attempt}`}
           title={'第 ' + index + ' 条地址地图'}
-          src={googleMapPreviewUrl(record)}
+          src={previewUrl}
           loading="lazy"
           referrerPolicy="no-referrer"
           allowFullScreen

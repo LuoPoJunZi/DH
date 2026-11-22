@@ -61,7 +61,7 @@ export function MarketWidget() {
           ? '正在获取行情…'
           : !quotes.length
             ? '行情暂不可用，请稍后刷新'
-            : quotes.length < 4
+            : quotes.length < navigationWidgetsConfig.marketItems.length
               ? '部分行情暂不可用'
               : '行情已更新'}
       </p>

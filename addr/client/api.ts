@@ -1,4 +1,4 @@
-import { isAddressRecord, isCountryCode, isObject } from '../shared/address';
+import { isAddressRecord, isCountryCode, isObject, MAX_BATCH_SIZE } from '../shared/address';
 import type { AddressCatalog, GenerateOptions, GenerateResult } from '../shared/types';
 const API_ROOT = '/api/address';
 async function readResponse(response: Response): Promise<unknown> {
@@ -83,7 +83,7 @@ export async function generateAddresses(
   if (
     !isObject(value) ||
     !Array.isArray(value.records) ||
-    value.records.length > 5 ||
+    value.records.length > MAX_BATCH_SIZE ||
     !value.records.every(isAddressRecord) ||
     !Array.isArray(value.warnings) ||
     !value.warnings.every((item) => typeof item === 'string') ||

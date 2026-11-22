@@ -1,3 +1,5 @@
+import { siteConfig } from '../../../config/site/site';
+
 const MAX_INPUT_LENGTH = 2_000_000;
 
 export type JsonAction = 'format-2' | 'format-4' | 'minify' | 'validate';
@@ -40,9 +42,13 @@ export function processJson(source: string, action: JsonAction): JsonResult {
   }
 }
 
-export const jsonSample = `{
-  "project": "LUOPO Tools",
-  "static": true,
-  "features": ["fast", "private", "useful"],
-  "localFirst": true
-}`;
+export const jsonSample = JSON.stringify(
+  {
+    project: siteConfig.name,
+    static: true,
+    features: ['fast', 'private', 'useful'],
+    localFirst: true,
+  },
+  null,
+  2,
+);

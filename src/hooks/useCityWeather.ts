@@ -58,30 +58,20 @@ async function requestCityWeather(city: string, signal: AbortSignal, refresh: bo
   )
     return null;
 
-  const coordinates = { latitude: String(latitude), longitude: String(longitude) };
   const forecastQuery = new URLSearchParams({
-    ...coordinates,
+    latitude: String(latitude),
+    longitude: String(longitude),
     current: weatherConfig.currentFields.join(','),
     daily: weatherConfig.dailyFields.join(','),
     forecast_days: String(weatherConfig.forecastDays),
     timezone: 'auto',
   });
-  const airQuery = new URLSearchParams({ ...coordinates, current: 'us_aqi' });
-  const [forecast, air] = await Promise.all([
-    fetchExternalData(
-      weatherConfig.forecastEndpoint + '?' + forecastQuery.toString(),
-      weatherConfig.timeoutMs,
-      { signal },
-    ),
-    fetchExternalData(
-      weatherConfig.airQualityEndpoint + '?' + airQuery.toString(),
-      weatherConfig.timeoutMs,
-      {
-        signal,
-      },
-    ),
-  ]);
-  const weather = parseWeatherData(forecast, air);
+  const forecast = await fetchExternalData(
+    weatherConfig.forecastEndpoint + '?' + forecastQuery.toString(),
+    weatherConfig.timeoutMs,
+    { signal },
+  );
+  const weather = parseWeatherData(forecast);
   if (!weather || signal.aborted) return null;
   try {
     window.sessionStorage.setItem(

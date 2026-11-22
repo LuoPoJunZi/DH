@@ -7,7 +7,7 @@ import { weatherPresentation } from './weatherPresentation';
 export function WeatherWidget() {
   const [refreshKey, setRefreshKey] = useState(0);
   const { city, isLoading: isLocating } = useVisitorCity(refreshKey);
-  const { weather, isLoading } = useCityWeather(city, refreshKey);
+  const { weather, isLoading } = useCityWeather(isLocating ? null : city, refreshKey);
   const current = weather ? weatherPresentation(weather.weatherCode, weather.isDay) : null;
   const CurrentIcon = current?.icon;
 

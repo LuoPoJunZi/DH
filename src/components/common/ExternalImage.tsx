@@ -19,9 +19,10 @@ export function ExternalImage({
   onError,
   ...props
 }: ExternalImageProps) {
-  const [failed, setFailed] = useState(false);
+  const [failedSrc, setFailedSrc] = useState<string | null>(null);
+  const failed = !src || failedSrc === src;
 
-  if (!src || failed) {
+  if (failed) {
     return (
       <div
         className={['image-fallback', fallbackClassName].filter(Boolean).join(' ')}
@@ -45,7 +46,7 @@ export function ExternalImage({
       alt={alt}
       loading={loading}
       onError={(event) => {
-        setFailed(true);
+        setFailedSrc(src);
         onError?.(event);
       }}
       {...props}

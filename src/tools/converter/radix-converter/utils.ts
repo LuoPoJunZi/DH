@@ -1,4 +1,5 @@
 const digits = '0123456789abcdefghijklmnopqrstuvwxyz';
+const MAX_INPUT_LENGTH = 10_000;
 
 export function parseBigIntWithBase(value: string, base: number) {
   if (!Number.isInteger(base) || base < 2 || base > 36)
@@ -6,8 +7,11 @@ export function parseBigIntWithBase(value: string, base: number) {
   const trimmed = value.trim().toLocaleLowerCase();
   if (!trimmed) throw new Error('请输入需要转换的整数。');
   const negative = trimmed.startsWith('-');
-  const body = negative ? trimmed.slice(1) : trimmed;
+  const body = negative || trimmed.startsWith('+') ? trimmed.slice(1) : trimmed;
   if (!body) throw new Error('请输入有效整数。');
+  if (body.length > MAX_INPUT_LENGTH) {
+    throw new Error(`输入超过 ${MAX_INPUT_LENGTH.toLocaleString()} 位，请缩短后重试。`);
+  }
 
   let result = 0n;
   for (const character of body) {

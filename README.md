@@ -59,6 +59,7 @@ npm run dev
 
 ```bash
 npm run test:address
+npm run test:tools
 npm run lint
 npm run format:check
 npm run build

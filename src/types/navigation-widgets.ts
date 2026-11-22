@@ -9,11 +9,7 @@ export interface CurrentWeather {
   temperature: number;
   apparentTemperature: number;
   weatherCode: number;
-  windSpeed: number;
   isDay: boolean;
-  humidity: number | null;
-  airQuality: number | null;
-  uvIndex: number | null;
   forecast: DailyForecast[];
 }
 

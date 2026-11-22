@@ -14,20 +14,18 @@ function numeric(value: unknown): number | null {
   return Number.isFinite(number) ? number : null;
 }
 
-export function parseWeatherData(value: unknown, airQuality: unknown): CurrentWeather | null {
+export function parseWeatherData(value: unknown): CurrentWeather | null {
   const data = record(value);
   const current = record(data?.current);
   if (!current) return null;
   const temperature = numeric(current.temperature_2m);
   const apparentTemperature = numeric(current.apparent_temperature);
   const weatherCode = numeric(current.weather_code);
-  const windSpeed = numeric(current.wind_speed_10m);
   const isDay = numeric(current.is_day);
   if (
     temperature === null ||
     apparentTemperature === null ||
     weatherCode === null ||
-    windSpeed === null ||
     (isDay !== 0 && isDay !== 1)
   )
     return null;
@@ -53,16 +51,11 @@ export function parseWeatherData(value: unknown, airQuality: unknown): CurrentWe
       forecast.push({ date, minimum, maximum, weatherCode: code });
     }
   }
-  const air = record(record(airQuality)?.current);
   return {
     temperature,
     apparentTemperature,
     weatherCode,
-    windSpeed,
     isDay: isDay === 1,
-    humidity: numeric(current.relative_humidity_2m),
-    airQuality: numeric(air?.us_aqi),
-    uvIndex: Array.isArray(daily?.uv_index_max) ? numeric(daily.uv_index_max[0]) : null,
     forecast,
   };
 }
@@ -70,12 +63,9 @@ export function parseWeatherData(value: unknown, airQuality: unknown): CurrentWe
 export function isCurrentWeather(value: unknown): value is CurrentWeather {
   const data = record(value);
   if (!data || typeof data.isDay !== 'boolean' || !Array.isArray(data.forecast)) return false;
-  const numberFields = ['temperature', 'apparentTemperature', 'weatherCode', 'windSpeed'];
+  const numberFields = ['temperature', 'apparentTemperature', 'weatherCode'];
   return (
     numberFields.every((key) => typeof data[key] === 'number' && Number.isFinite(data[key])) &&
-    ['humidity', 'airQuality', 'uvIndex'].every(
-      (key) => data[key] === null || (typeof data[key] === 'number' && Number.isFinite(data[key])),
-    ) &&
     data.forecast.length <= 5 &&
     data.forecast.every((item) => {
       const day = record(item);

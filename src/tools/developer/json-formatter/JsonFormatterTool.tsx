@@ -5,6 +5,7 @@ import { CopyButton } from '../../../components/tool/CopyButton';
 import { FieldError } from '../../../components/tool/FieldError';
 import { TextAreaField } from '../../../components/tool/TextAreaField';
 import { ToolWorkspace } from '../../../components/tool/ToolWorkspace';
+import { siteConfig } from '../../../config/site/site';
 import { jsonSample, processJson, type JsonAction } from './utils';
 
 export default function JsonFormatterTool() {
@@ -75,7 +76,7 @@ export default function JsonFormatterTool() {
           hint={`${input.length.toLocaleString()} 字符`}
           value={input}
           onChange={(event) => setInput(event.target.value)}
-          placeholder='粘贴 JSON，例如 { "name": "LUOPO" }'
+          placeholder={`粘贴 JSON，例如 { "name": "${siteConfig.author}" }`}
           spellCheck={false}
         />
         <TextAreaField

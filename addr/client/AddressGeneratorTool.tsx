@@ -59,6 +59,7 @@ export default function AddressGeneratorTool() {
   const [records, setRecords] = useState<AddressRecord[]>([]);
   const [initialFavorites] = useState(() => loadFavorites());
   const [favorites, setFavorites] = useState<SavedAddress[]>(initialFavorites.entries);
+  const [hasStorageWarning, setHasStorageWarning] = useState(Boolean(initialFavorites.warning));
   const [message, setMessage] = useState(initialFavorites.warning);
   const [error, setError] = useState('');
   const [tab, setTab] = useState<'results' | 'favorites'>('results');
@@ -240,6 +241,7 @@ export default function AddressGeneratorTool() {
       return;
     }
     setFavorites([]);
+    setHasStorageWarning(false);
     setConfirmClear(false);
     setPage(1);
     setMessage('已清空本工具收藏。');
@@ -495,7 +497,7 @@ export default function AddressGeneratorTool() {
                   <ActionButton
                     variant="quiet"
                     icon={Trash2}
-                    disabled={!favorites.length && !initialFavorites.warning}
+                    disabled={!favorites.length && !hasStorageWarning}
                     onClick={() => setConfirmClear(true)}
                   >
                     清空收藏

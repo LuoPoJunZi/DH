@@ -87,8 +87,11 @@ export function createSources(fetcher = fetch, parent, userAgent = USER_AGENT) {
   }
 
   function fromPhotonFeature(feature) {
+    if (!feature || typeof feature !== 'object') return null;
+    const coordinates = feature.geometry?.coordinates;
+    if (!Array.isArray(coordinates) || coordinates.length < 2) return null;
     const p = feature.properties || {};
-    const [lng, lat] = feature.geometry.coordinates;
+    const [lng, lat] = coordinates;
     const osmTypes = { N: 'node', W: 'way', R: 'relation' };
     return {
       parts: {
@@ -112,6 +115,7 @@ export function createSources(fetcher = fetch, parent, userAgent = USER_AGENT) {
   }
 
   function fromOverpassElement(element) {
+    if (!element || typeof element !== 'object') return null;
     const t = element.tags || {};
     const lat = element.lat ?? element.center?.lat;
     const lng = element.lon ?? element.center?.lon;
@@ -156,7 +160,9 @@ export function createSources(fetcher = fetch, parent, userAgent = USER_AGENT) {
       {},
       budgetedTimeout(deadline, 4500),
     );
-    return (data.features || []).map(fromPhotonFeature);
+    return (Array.isArray(data.features) ? data.features : [])
+      .map(fromPhotonFeature)
+      .filter(Boolean);
   }
 
   function buildOverpassQuery(location, type, radiusKm) {
@@ -192,8 +198,11 @@ export function createSources(fetcher = fetch, parent, userAgent = USER_AGENT) {
           },
           budgetedTimeout(deadline, 3500),
         );
-        return (data.elements || []).map(fromOverpassElement);
+        return (Array.isArray(data.elements) ? data.elements : [])
+          .map(fromOverpassElement)
+          .filter(Boolean);
       } catch (error) {
+        if (parent?.aborted) throw error;
         errors.push(`overpass(${new URL(endpoint).host}): ${error.message}`);
       }
     }

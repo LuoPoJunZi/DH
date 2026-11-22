@@ -63,6 +63,11 @@ export function AddressCard({
   onNote,
 }: Props) {
   const [draftNote, setDraftNote] = useState(note);
+  const [prevNote, setPrevNote] = useState(note);
+  if (prevNote !== note) {
+    setPrevNote(note);
+    setDraftNote(note);
+  }
   const [language, setLanguage] = useState<'en' | 'zh'>('en');
   const address = record.localized?.[language] || record.fullAddress;
   const displayed = { ...record, fullAddress: address };

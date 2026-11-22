@@ -7,7 +7,6 @@ import { parseCryptoQuotes, parseStockQuotes } from '../utils/navigationWidgetDa
 export function useMarketQuotes() {
   const [quotes, setQuotes] = useState<MarketQuote[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [updatedAt, setUpdatedAt] = useState<Date | null>(null);
   const [refreshKey, setRefreshKey] = useState(0);
 
   useEffect(() => {
@@ -36,7 +35,6 @@ export function useMarketQuotes() {
         ...next,
         ...previous.filter((quote) => !next.some((item) => item.id === quote.id)),
       ]);
-      if (next.length) setUpdatedAt(new Date());
       setIsLoading(false);
       pending = false;
     };
@@ -50,5 +48,5 @@ export function useMarketQuotes() {
     };
   }, [refreshKey]);
 
-  return { quotes, isLoading, updatedAt, refresh: () => setRefreshKey((value) => value + 1) };
+  return { quotes, isLoading, refresh: () => setRefreshKey((value) => value + 1) };
 }
